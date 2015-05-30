@@ -30,22 +30,55 @@
  *
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package net.justinwhite.score10;
 
-buildscript {
-    repositories {
-        jcenter()
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
+
+public class NewGameActivityFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
+
+    SeekBar seekNumPlayers;
+    TextView textNumPlayers;
+
+    public NewGameActivityFragment() {
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_new_game, container, false);
+
+        seekNumPlayers = (SeekBar)v.findViewById(R.id.seekNumPlayers);
+        seekNumPlayers.setOnSeekBarChangeListener(this);
+        textNumPlayers = (TextView)v.findViewById(R.id.editNumPlayers);
+        textNumPlayers.clearFocus();
+
+        return v;
     }
-}
 
-allprojects {
-    repositories {
-        jcenter()
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+        if (fromTouch) {
+            textNumPlayers.setText(Integer.toString(progress + 2));
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    public void StartNewGame(View view) {
+
     }
 }
