@@ -32,7 +32,7 @@
 
 package net.justinwhite.score10;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,9 +54,9 @@ public class NewGameActivityFragment extends Fragment implements SeekBar.OnSeekB
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_new_game, container, false);
 
-        seekNumPlayers = (SeekBar)v.findViewById(R.id.seekNumPlayers);
+        seekNumPlayers = (SeekBar) v.findViewById(R.id.seekNumPlayers);
         seekNumPlayers.setOnSeekBarChangeListener(this);
-        textNumPlayers = (TextView)v.findViewById(R.id.editNumPlayers);
+        textNumPlayers = (TextView) v.findViewById(R.id.editNumPlayers);
         textNumPlayers.clearFocus();
 
         return v;
