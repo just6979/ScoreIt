@@ -39,12 +39,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
 public class NewGameActivityFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
 
-    SeekBar seekNumPlayers;
-    TextView textNumPlayers;
+    @InjectView(R.id.seekNumPlayers)
+    protected SeekBar seekNumPlayers;
+    @InjectView(R.id.editNumPlayers)
+    protected TextView textNumPlayers;
 
     public NewGameActivityFragment() {
     }
@@ -54,9 +58,9 @@ public class NewGameActivityFragment extends Fragment implements SeekBar.OnSeekB
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_new_game, container, false);
 
-        seekNumPlayers = (SeekBar) v.findViewById(R.id.seekNumPlayers);
+        ButterKnife.inject(this, v);
+
         seekNumPlayers.setOnSeekBarChangeListener(this);
-        textNumPlayers = (TextView) v.findViewById(R.id.editNumPlayers);
         textNumPlayers.clearFocus();
 
         return v;
