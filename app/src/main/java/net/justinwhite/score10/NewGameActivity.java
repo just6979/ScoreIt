@@ -35,65 +35,28 @@ package net.justinwhite.score10;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
+
+import static net.justinwhite.score10.MainActivity.EXTRA_NUM_PLAYERS;
 
 
-public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
-    public static final String EXTRA_NUM_PLAYERS = "net.justinwhite.score10.NUM_PLAYERS_MESSAGE";
-    private static final int INITIAL_NUM_PLAYERS = 4;
+public class NewGameActivity extends Activity {
 
-    private int numPlayers = INITIAL_NUM_PLAYERS;
-
-    @InjectView(R.id.seekNumPlayers)
-    protected SeekBar seekNumPlayers;
-    @InjectView(R.id.textNumPlayers)
-    protected TextView textNumPlayers;
+    @InjectView(R.id.textNewNumPlayers)
+    protected TextView editNumPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_new_game);
 
         ButterKnife.inject(this);
 
-        seekNumPlayers.setOnSeekBarChangeListener(this);
-        seekNumPlayers.setProgress(numPlayers - 2);
-        textNumPlayers.setText(Integer.toString(numPlayers));
-        textNumPlayers.clearFocus();
+        Intent intent = getIntent();
+        int numPlayers = intent.getIntExtra(EXTRA_NUM_PLAYERS, 4);
 
+        editNumPlayers.setText(Integer.toString(numPlayers));
     }
-
-    private void updateNumPlayers(int _numPlayers) {
-        numPlayers = _numPlayers;
-    }
-
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-        if (fromTouch) {
-            updateNumPlayers(progress + 2);
-            textNumPlayers.setText(Integer.toString(numPlayers));
-        }
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @OnClick(R.id.buttonStartGame)
-    protected void StartNewGame(View view) {
-        Intent intent = new Intent(this, NewGameActivity.class);
-        intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
-        startActivity(intent);
-    }
-
 }

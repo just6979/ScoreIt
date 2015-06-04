@@ -29,8 +29,7 @@
   ~ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   ~ POSSIBILITY OF SUCH DAMAGE.
   ~
-  -->
-
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.justinwhite.score10" >
 
@@ -47,6 +46,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".NewGameActivity"
+            android:label="@string/title_activity_game"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.justinwhite.score10.MainActivity" />
         </activity>
     </application>
 
