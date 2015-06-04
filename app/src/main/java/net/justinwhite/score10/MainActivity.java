@@ -34,16 +34,14 @@ package net.justinwhite.score10;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener{
+public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
     @InjectView(R.id.seekNumPlayers)
     protected SeekBar seekNumPlayers;
     @InjectView(R.id.editNumPlayers)
