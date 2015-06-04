@@ -34,13 +34,51 @@ package net.justinwhite.score10;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener{
+    @InjectView(R.id.seekNumPlayers)
+    protected SeekBar seekNumPlayers;
+    @InjectView(R.id.editNumPlayers)
+    protected TextView textNumPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.inject(this);
+
+        seekNumPlayers.setOnSeekBarChangeListener(this);
+        textNumPlayers.clearFocus();
+
     }
+
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+        if (fromTouch) {
+            textNumPlayers.setText(Integer.toString(progress + 2));
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    public void StartNewGame(View view) {
+
+    }
+
 }
