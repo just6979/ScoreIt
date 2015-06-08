@@ -44,8 +44,9 @@ import static net.justinwhite.score10.MainActivity.EXTRA_NUM_PLAYERS;
 
 public class NewGameActivity extends Activity {
 
+    @SuppressWarnings({"unused"})
     @InjectView(R.id.textNewNumPlayers)
-    protected TextView editNumPlayers;
+    TextView editNumPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

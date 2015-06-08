@@ -47,11 +47,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
     static final String EXTRA_NUM_PLAYERS;
-    static final int SEEKBAR_OFFSET;
-
-    static int INITIAL_NUM_PLAYERS;
-    static int MIN_NUM_PLAYERS;
-    static int MAX_NUM_PLAYERS;
+    private static final int SEEKBAR_OFFSET;
 
     static {
         EXTRA_NUM_PLAYERS = "net.justinwhite.score10.NUM_PLAYERS_MESSAGE";
@@ -60,10 +56,12 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
     private int numPlayers;
 
+    @SuppressWarnings({"unused"})
     @InjectView(R.id.seekNumPlayers)
-    protected SeekBar seekNumPlayers;
+    SeekBar seekNumPlayers;
+    @SuppressWarnings({"unused"})
     @InjectView(R.id.labelNumPlayers)
-    protected TextView labelNumPlayers;
+    TextView labelNumPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +69,8 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
-        MIN_NUM_PLAYERS = getResources().getInteger(R.integer.min_num_players);
-        MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);
+        int INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
+        int MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);
 
         numPlayers = INITIAL_NUM_PLAYERS;
 
@@ -116,6 +113,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
     }
 
+    @SuppressWarnings({"unused", "UnusedParameters"})
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame(View view) {
         Intent intent = new Intent(this, NewGameActivity.class);
