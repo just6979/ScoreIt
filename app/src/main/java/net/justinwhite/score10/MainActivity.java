@@ -44,12 +44,16 @@ import butterknife.OnClick;
 
 
 public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
-    public static final String EXTRA_NUM_PLAYERS;
-    private static final int INITIAL_NUM_PLAYERS;
+    static final String EXTRA_NUM_PLAYERS;
+    static final int SEEKBAR_OFFSET;
+
+    static int INITIAL_NUM_PLAYERS;
+    static int MIN_NUM_PLAYERS;
+    static int MAX_NUM_PLAYERS;
 
     static {
         EXTRA_NUM_PLAYERS = "net.justinwhite.score10.NUM_PLAYERS_MESSAGE";
-        INITIAL_NUM_PLAYERS = 4;
+        SEEKBAR_OFFSET = 2;
     }
 
     private int numPlayers;
@@ -59,31 +63,30 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     @InjectView(R.id.labelNumPlayers)
     protected TextView labelNumPlayers;
 
-    public MainActivity() {
-        numPlayers = INITIAL_NUM_PLAYERS;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.inject(this);
 
+        INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
+        MIN_NUM_PLAYERS = this.getResources().getInteger(R.integer.min_num_players);
+        MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);
+
+        numPlayers = INITIAL_NUM_PLAYERS;
+
+        seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
+        seekNumPlayers.setMax(MAX_NUM_PLAYERS - SEEKBAR_OFFSET);
         seekNumPlayers.setOnSeekBarChangeListener(this);
-        seekNumPlayers.setProgress(numPlayers - 2);
+
         labelNumPlayers.setText(Integer.toString(numPlayers));
         labelNumPlayers.clearFocus();
-    }
-
-    private void updateNumPlayers(int _numPlayers) {
-        numPlayers = _numPlayers;
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         if (fromTouch) {
-            updateNumPlayers(progress + 2);
+            numPlayers = progress + SEEKBAR_OFFSET;
             labelNumPlayers.setText(Integer.toString(numPlayers));
         }
     }

@@ -31,9 +31,7 @@
   -->
 
 <resources>
-    <string name="app_name">Score10</string>
-    <string name="start_game_button">Start Game</string>
-    <string name="how_many_players_label">How many players?</string>
-    <string name="title_activity_game">New Game</string>
-    <string name="current_num_players_label">You chose this many players:</string>
+    <integer name="initial_num_players">5</integer>
+    <integer name="max_num_players">8</integer>
+    <integer name="min_num_players">2</integer>
 </resources>
