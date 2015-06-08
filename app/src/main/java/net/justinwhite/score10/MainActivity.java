@@ -44,15 +44,24 @@ import butterknife.OnClick;
 
 
 public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
-    public static final String EXTRA_NUM_PLAYERS = "net.justinwhite.score10.NUM_PLAYERS_MESSAGE";
-    private static final int INITIAL_NUM_PLAYERS = 4;
+    public static final String EXTRA_NUM_PLAYERS;
+    private static final int INITIAL_NUM_PLAYERS;
 
-    private int numPlayers = INITIAL_NUM_PLAYERS;
+    static {
+        EXTRA_NUM_PLAYERS = "net.justinwhite.score10.NUM_PLAYERS_MESSAGE";
+        INITIAL_NUM_PLAYERS = 4;
+    }
+
+    private int numPlayers;
 
     @InjectView(R.id.seekNumPlayers)
     protected SeekBar seekNumPlayers;
     @InjectView(R.id.textNumPlayers)
     protected TextView textNumPlayers;
+
+    public MainActivity() {
+        numPlayers = INITIAL_NUM_PLAYERS;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +81,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         numPlayers = _numPlayers;
     }
 
+    @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         if (fromTouch) {
             updateNumPlayers(progress + 2);
