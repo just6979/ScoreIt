@@ -33,7 +33,9 @@
 package net.justinwhite.score10;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
@@ -70,10 +72,13 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         ButterKnife.inject(this);
 
         INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
-        MIN_NUM_PLAYERS = this.getResources().getInteger(R.integer.min_num_players);
+        MIN_NUM_PLAYERS = getResources().getInteger(R.integer.min_num_players);
         MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);
 
         numPlayers = INITIAL_NUM_PLAYERS;
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        numPlayers = sharedPref.getInt("CURRENT_NUM_PLAYERS", numPlayers);
 
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setMax(MAX_NUM_PLAYERS - SEEKBAR_OFFSET);
@@ -81,6 +86,16 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
         labelNumPlayers.setText(Integer.toString(numPlayers));
         labelNumPlayers.clearFocus();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("CURRENT_NUM_PLAYERS", numPlayers);
+        editor.apply();
     }
 
     @Override
