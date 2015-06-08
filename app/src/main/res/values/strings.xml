@@ -37,4 +37,6 @@
     <string name="initial_num_players">4</string>
     <string name="title_activity_game">New Game</string>
     <string name="current_num_players_label">You chose this many players:</string>
+    <string name="min_num_players">2</string>
+    <string name="max_num_players">8</string>
 </resources>

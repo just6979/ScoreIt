@@ -56,8 +56,8 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
     @InjectView(R.id.seekNumPlayers)
     protected SeekBar seekNumPlayers;
-    @InjectView(R.id.textNumPlayers)
-    protected TextView textNumPlayers;
+    @InjectView(R.id.labelNumPlayers)
+    protected TextView labelNumPlayers;
 
     public MainActivity() {
         numPlayers = INITIAL_NUM_PLAYERS;
@@ -72,9 +72,8 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
         seekNumPlayers.setOnSeekBarChangeListener(this);
         seekNumPlayers.setProgress(numPlayers - 2);
-        textNumPlayers.setText(Integer.toString(numPlayers));
-        textNumPlayers.clearFocus();
-
+        labelNumPlayers.setText(Integer.toString(numPlayers));
+        labelNumPlayers.clearFocus();
     }
 
     private void updateNumPlayers(int _numPlayers) {
@@ -85,7 +84,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         if (fromTouch) {
             updateNumPlayers(progress + 2);
-            textNumPlayers.setText(Integer.toString(numPlayers));
+            labelNumPlayers.setText(Integer.toString(numPlayers));
         }
     }
 

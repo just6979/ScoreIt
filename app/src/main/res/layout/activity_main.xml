@@ -49,13 +49,12 @@
             android:textSize="32sp"
             android:layout_below="@+id/seekNumPlayers"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="32dp"
             />
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/how_many_players_label"
             android:id="@+id/labelHowManyPlayers"
             android:textSize="32sp"
@@ -70,28 +69,45 @@
             android:id="@+id/seekNumPlayers"
             android:progress="2"
             android:max="6"
-            android:layout_below="@+id/textNumPlayers"
+            android:layout_below="@+id/labelNumPlayers"
             android:layout_alignParentStart="true"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
 
-    <EditText
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="2"
-            android:id="@+id/textNumPlayers"
+            android:id="@+id/labelNumPlayers"
             android:text="@string/initial_num_players"
-            android:singleLine="true"
-            android:editable="false"
             android:textSize="32sp"
-            android:inputType="number"
-            android:enabled="true"
             android:layout_below="@+id/labelHowManyPlayers"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            android:selectAllOnFocus="true"
-            android:numeric="integer"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/min_num_players"
+            android:id="@+id/labelMinPlayers"
+            android:textSize="24sp"
+            android:enabled="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/seekNumPlayers"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/max_num_players"
+            android:id="@+id/labelMaxPlayers"
+            android:textSize="24sp"
+            android:enabled="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/seekNumPlayers"
             />
 
 </RelativeLayout>
