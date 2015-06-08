@@ -36,4 +36,5 @@
     <string name="how_many_players_label">How many players?</string>
     <string name="title_activity_game">New Game</string>
     <string name="current_num_players_label">You chose this many players:</string>
+  <string name="current_num_players_pref">CURRENT_NUM_PLAYERS</string>
 </resources>

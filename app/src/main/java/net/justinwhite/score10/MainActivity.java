@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         numPlayers = INITIAL_NUM_PLAYERS;
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        numPlayers = sharedPref.getInt("CURRENT_NUM_PLAYERS", numPlayers);
+        numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), numPlayers);
 
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setMax(MAX_NUM_PLAYERS - SEEKBAR_OFFSET);
@@ -91,7 +91,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("CURRENT_NUM_PLAYERS", numPlayers);
+        editor.putInt(getString(R.string.current_num_players_pref), numPlayers);
         editor.apply();
     }
 
