@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     @InjectView(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
     @SuppressWarnings({"unused"})
-    @InjectView(R.id.labelNumPlayers)
+    @InjectView(R.id.textNumPlayers)
     TextView labelNumPlayers;
 
     @Override

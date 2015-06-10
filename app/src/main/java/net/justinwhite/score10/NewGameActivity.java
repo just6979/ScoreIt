@@ -46,7 +46,7 @@ public class NewGameActivity extends Activity {
 
     @SuppressWarnings({"unused"})
     @InjectView(R.id.textNewNumPlayers)
-    TextView editNumPlayers;
+    TextView textNewNumPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,6 @@ public class NewGameActivity extends Activity {
         Intent intent = getIntent();
         int numPlayers = intent.getIntExtra(EXTRA_NUM_PLAYERS, 4);
 
-        editNumPlayers.setText(Integer.toString(numPlayers));
+        textNewNumPlayers.setText(Integer.toString(numPlayers));
     }
 }
