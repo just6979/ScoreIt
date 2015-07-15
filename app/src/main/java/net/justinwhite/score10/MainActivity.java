@@ -40,8 +40,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 
@@ -57,17 +57,17 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     private int numPlayers;
 
     @SuppressWarnings({"unused"})
-    @InjectView(R.id.seekNumPlayers)
+    @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
     @SuppressWarnings({"unused"})
-    @InjectView(R.id.textNumPlayers)
+    @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         int INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
         int MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);

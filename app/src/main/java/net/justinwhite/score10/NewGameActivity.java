@@ -36,8 +36,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 import static net.justinwhite.score10.MainActivity.EXTRA_NUM_PLAYERS;
 
@@ -45,7 +45,7 @@ import static net.justinwhite.score10.MainActivity.EXTRA_NUM_PLAYERS;
 public class NewGameActivity extends Activity {
 
     @SuppressWarnings({"unused"})
-    @InjectView(R.id.textNewNumPlayers)
+    @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
 
     @Override
@@ -53,7 +53,7 @@ public class NewGameActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
 
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         int numPlayers = intent.getIntExtra(EXTRA_NUM_PLAYERS, 4);
