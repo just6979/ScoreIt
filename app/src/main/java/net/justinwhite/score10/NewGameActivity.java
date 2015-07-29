@@ -54,14 +54,13 @@ public class NewGameActivity extends Activity implements SeekBar.OnSeekBarChange
         SEEKBAR_OFFSET = 2;
     }
 
-    private int numPlayers;
-
     @SuppressWarnings({"unused"})
     @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
     @SuppressWarnings({"unused"})
     @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
+    private int numPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

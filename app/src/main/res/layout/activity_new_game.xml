@@ -34,7 +34,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" android:columnCount="3" android:rowCount="4"
             android:columnOrderPreserved="false"
-            android:nestedScrollingEnabled="false"
             android:useDefaultMargins="false" android:alignmentMode="alignBounds">
     <TextView
             android:layout_width="wrap_content"
