@@ -116,7 +116,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     @SuppressWarnings({"unused", "UnusedParameters"})
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame(View view) {
-        Intent intent = new Intent(this, NewGameActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         startActivity(intent);
     }

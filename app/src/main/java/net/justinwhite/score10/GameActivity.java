@@ -42,7 +42,7 @@ import butterknife.ButterKnife;
 import static net.justinwhite.score10.MainActivity.EXTRA_NUM_PLAYERS;
 
 
-public class NewGameActivity extends Activity {
+public class GameActivity extends Activity {
 
     @SuppressWarnings({"unused"})
     @Bind(R.id.textNewNumPlayers)
@@ -51,7 +51,7 @@ public class NewGameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_game);
+        setContentView(R.layout.activity_game);
 
         ButterKnife.bind(this);
 

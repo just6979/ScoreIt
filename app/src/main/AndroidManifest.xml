@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewGameActivity"
+            android:name=".GameActivity"
             android:label="@string/title_activity_game"
             android:parentActivityName=".MainActivity" >
             <meta-data
