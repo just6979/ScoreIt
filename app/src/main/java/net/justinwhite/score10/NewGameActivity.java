@@ -45,7 +45,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class NewGameActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
     static final String EXTRA_NUM_PLAYERS;
     private static final int SEEKBAR_OFFSET;
 
@@ -66,7 +66,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_new_game);
         ButterKnife.bind(this);
 
         int INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
