@@ -61,7 +61,7 @@ public class NewGameFragment extends Fragment implements SeekBar.OnSeekBarChange
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
-        ButterKnife.bind(this.getActivity());
+        ButterKnife.bind(this, rootView);
 
         MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);
 
