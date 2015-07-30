@@ -32,29 +32,29 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class GameActivity extends Activity {
+public class GameFragment extends Fragment {
 
-    @SuppressWarnings({"unused"})
     @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_game, container, false);
+        ButterKnife.bind(this, rootView);
 
-        ButterKnife.bind(this);
+        int numPlayers = ((MainActivity) getActivity()).getNumPlayers();
+        textNewNumPlayers.setText(Integer.toString(numPlayers));
 
-        Intent intent = getIntent();
-//        int numPlayers = intent.getIntExtra(EXTRA_NUM_PLAYERS, 4);
-
-//        textNewNumPlayers.setText(Integer.toString(numPlayers));
+        return rootView;
     }
 }
