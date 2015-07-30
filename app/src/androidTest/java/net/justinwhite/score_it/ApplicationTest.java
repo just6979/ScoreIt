@@ -1,4 +1,4 @@
-package net.justinwhite.score10;
+package net.justinwhite.score_it;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

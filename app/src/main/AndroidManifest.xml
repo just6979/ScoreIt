@@ -31,7 +31,7 @@
   ~
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.justinwhite.score10" >
+    package="net.justinwhite.score_it" >
 
     <application
         android:allowBackup="true"

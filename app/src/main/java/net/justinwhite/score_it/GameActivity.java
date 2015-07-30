@@ -30,7 +30,7 @@
  *
  */
 
-package net.justinwhite.score10;
+package net.justinwhite.score_it;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -39,7 +39,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static net.justinwhite.score10.NewGameActivity.EXTRA_NUM_PLAYERS;
+import static net.justinwhite.score_it.NewGameActivity.EXTRA_NUM_PLAYERS;
 
 
 public class GameActivity extends Activity {
