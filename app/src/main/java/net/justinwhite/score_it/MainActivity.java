@@ -33,55 +33,34 @@
 package net.justinwhite.score_it;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import android.view.*;
 
+public class MainActivity extends Activity {
+    static int INITIAL_NUM_PLAYERS;
 
-public class NewGameActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
-    static final String EXTRA_NUM_PLAYERS;
-    private static final int SEEKBAR_OFFSET;
-
-    static {
-        EXTRA_NUM_PLAYERS = "net.justinwhite.score10.NUM_PLAYERS_MESSAGE";
-        SEEKBAR_OFFSET = 2;
-    }
-
-    @SuppressWarnings({"unused"})
-    @Bind(R.id.seekNumPlayers)
-    SeekBar seekNumPlayers;
-    @SuppressWarnings({"unused"})
-    @Bind(R.id.textNumPlayers)
-    TextView labelNumPlayers;
-    private int numPlayers;
+    public int numPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_game);
-        ButterKnife.bind(this);
-
-        int INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
-        int MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);
-
-        numPlayers = INITIAL_NUM_PLAYERS;
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), numPlayers);
 
-        seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
-        seekNumPlayers.setMax(MAX_NUM_PLAYERS - SEEKBAR_OFFSET);
-        seekNumPlayers.setOnSeekBarChangeListener(this);
+        INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
 
-        labelNumPlayers.setText(Integer.toString(numPlayers));
-        labelNumPlayers.clearFocus();
+        numPlayers = INITIAL_NUM_PLAYERS;
+
+        setContentView(R.layout.activity_main);
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new NewGameFragment())
+                    .commit();
+        }
     }
 
     @Override
@@ -95,29 +74,40 @@ public class NewGameActivity extends Activity implements SeekBar.OnSeekBarChange
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-        if (fromTouch) {
-            numPlayers = progress + SEEKBAR_OFFSET;
-            labelNumPlayers.setText(Integer.toString(numPlayers));
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class PlaceholderFragment extends Fragment {
+
+        public PlaceholderFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            return rootView;
         }
     }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @SuppressWarnings({"unused", "UnusedParameters"})
-    @OnClick(R.id.buttonStartGame)
-    protected void StartNewGame(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
-        startActivity(intent);
-    }
-
 }

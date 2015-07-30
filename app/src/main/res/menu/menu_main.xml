@@ -30,14 +30,11 @@
   ~
   -->
 
-<resources>
-    <string name="app_name">Score10</string>
-    <string name="start_game_button">Start Game</string>
-    <string name="how_many_players_label">How many players?</string>
-    <string name="title_activity_game">New Game</string>
-    <string name="current_num_players_label">You chose this many players:</string>
-  <string name="current_num_players_pref">CURRENT_NUM_PLAYERS</string>
-    <string name="title_activity_main">ScoreIt</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-</resources>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="net.justinwhite.score_it.MainActivity">
+    <item android:id="@+id/action_settings"
+          android:title="@string/action_settings"
+          android:orderInCategory="100"
+          android:showAsAction="never"/>
+</menu>

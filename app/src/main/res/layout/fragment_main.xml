@@ -30,14 +30,19 @@
   ~
   -->
 
-<resources>
-    <string name="app_name">Score10</string>
-    <string name="start_game_button">Start Game</string>
-    <string name="how_many_players_label">How many players?</string>
-    <string name="title_activity_game">New Game</string>
-    <string name="current_num_players_label">You chose this many players:</string>
-  <string name="current_num_players_pref">CURRENT_NUM_PLAYERS</string>
-    <string name="title_activity_main">ScoreIt</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-</resources>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context=".MainActivity">
+
+    <TextView
+            android:text="@string/hello_world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+</RelativeLayout>

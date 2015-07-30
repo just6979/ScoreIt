@@ -31,10 +31,11 @@
   -->
 
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
+            xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
             android:layout_height="fill_parent" android:columnCount="3" android:rowCount="4"
             android:columnOrderPreserved="false"
-            android:useDefaultMargins="false" android:alignmentMode="alignBounds">
+            android:useDefaultMargins="false" android:alignmentMode="alignBounds" android:id="@+id/NewGameLayout"
+            tools:context=".MainActivity">
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

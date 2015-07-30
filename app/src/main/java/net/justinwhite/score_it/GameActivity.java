@@ -39,9 +39,6 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static net.justinwhite.score_it.NewGameActivity.EXTRA_NUM_PLAYERS;
-
-
 public class GameActivity extends Activity {
 
     @SuppressWarnings({"unused"})
@@ -56,8 +53,8 @@ public class GameActivity extends Activity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        int numPlayers = intent.getIntExtra(EXTRA_NUM_PLAYERS, 4);
+//        int numPlayers = intent.getIntExtra(EXTRA_NUM_PLAYERS, 4);
 
-        textNewNumPlayers.setText(Integer.toString(numPlayers));
+//        textNewNumPlayers.setText(Integer.toString(numPlayers));
     }
 }
