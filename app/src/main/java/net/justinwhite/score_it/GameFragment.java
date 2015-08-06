@@ -40,6 +40,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class GameFragment extends Fragment {
 
@@ -56,5 +57,14 @@ public class GameFragment extends Fragment {
         textNewNumPlayers.setText(Integer.toString(numPlayers));
 
         return rootView;
+    }
+
+    @OnClick(R.id.buttonEndGame)
+    protected void EndGame(View view) {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.container, new NewGameFragment())
+                .commit()
+        ;
+
     }
 }
