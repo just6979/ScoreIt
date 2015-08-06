@@ -98,7 +98,6 @@ public class NewGameFragment extends Fragment implements SeekBar.OnSeekBarChange
         ((MainActivity) getActivity()).setNumPlayers(seekNumPlayers.getProgress() + SEEKBAR_OFFSET);
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, new GameFragment())
-                .addToBackStack("Foo")
                 .commit()
         ;
     }
