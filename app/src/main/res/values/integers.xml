@@ -31,7 +31,6 @@
   -->
 
 <resources>
-    <integer name="initial_num_players">5</integer>
     <integer name="max_num_players">8</integer>
     <integer name="min_num_players">2</integer>
 </resources>
