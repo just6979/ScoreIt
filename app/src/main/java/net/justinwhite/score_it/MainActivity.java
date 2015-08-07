@@ -42,7 +42,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity
         implements GameSetupListener {
-    static int INITIAL_NUM_PLAYERS;
     static final int FRAG_ID_NEW_GAME = 1;
     static final int FRAG_ID_GAME = 2;
 
@@ -54,12 +53,8 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), numPlayers);
+        numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), getResources().getInteger(R.integer.initial_num_players));
         currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id), FRAG_ID_NEW_GAME);
-
-        INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
-
-        numPlayers = INITIAL_NUM_PLAYERS;
 
         Fragment nextFragment;
         switch (currentFragmentID) {

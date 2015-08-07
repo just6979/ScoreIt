@@ -52,12 +52,13 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
         SEEKBAR_OFFSET = 2;
     }
 
+    private GameSetupListener gameSetupListener;
+    private int numPlayers;
+
     @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
     @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
-    private GameSetupListener gameSetupListener;
-    private int numPlayers = 4;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,9 +67,10 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
         ButterKnife.bind(this, rootView);
 
         MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);
-
-        seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setMax(MAX_NUM_PLAYERS - SEEKBAR_OFFSET);
+
+        numPlayers = gameSetupListener.getNumPlayers();
+        seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setOnSeekBarChangeListener(this);
 
         labelNumPlayers.setText(Integer.toString(numPlayers));
@@ -94,6 +96,7 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
         if (fromTouch) {
             numPlayers = progress + SEEKBAR_OFFSET;
             labelNumPlayers.setText(Integer.toString(numPlayers));
+            gameSetupListener.setNumPlayers(numPlayers);
         }
     }
 
@@ -109,7 +112,7 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
 
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame(View view) {
-        gameSetupListener.setNumPlayers(seekNumPlayers.getProgress() + SEEKBAR_OFFSET);
+        gameSetupListener.setNumPlayers(numPlayers);
         Fragment newFragment = new GameFragment();
         gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_GAME);
         getFragmentManager().beginTransaction()
