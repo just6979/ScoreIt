@@ -45,8 +45,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
-    static final int MAX_NUM_PLAYERS = 8;
     private static final int SEEKBAR_OFFSET;
+    private static int MAX_NUM_PLAYERS;
 
     static {
         SEEKBAR_OFFSET = 2;
@@ -65,7 +65,7 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
         ButterKnife.bind(this, rootView);
 
-        seekNumPlayers.setMax(MAX_NUM_PLAYERS - SEEKBAR_OFFSET);
+        seekNumPlayers.setMax(getResources().getInteger(R.integer.max_num_players) - SEEKBAR_OFFSET);
 
         numPlayers = gameSetupListener.getNumPlayers();
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
