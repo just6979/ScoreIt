@@ -48,12 +48,12 @@ public class CreateGameFragment
         extends Fragment
         implements SeekBar.OnSeekBarChangeListener
 {
-    private static final int SEEKBAR_OFFSET = 2;
-
     @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
     @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
+    // effectively constant, but not final because no constructors in Fragments
+    private int SEEKBAR_OFFSET;
     private GameSetupListener gameSetupListener;
     private int numPlayers;
 
@@ -62,7 +62,10 @@ public class CreateGameFragment
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
         ButterKnife.bind(this, rootView);
 
-        seekNumPlayers.setMax(getResources().getInteger(R.integer.max_num_players) - SEEKBAR_OFFSET);
+        int maxNumPlayers = getResources().getInteger(R.integer.max_num_players);
+        SEEKBAR_OFFSET = getResources().getInteger(R.integer.min_num_players);
+
+        seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
 
         numPlayers = gameSetupListener.getNumPlayers();
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);

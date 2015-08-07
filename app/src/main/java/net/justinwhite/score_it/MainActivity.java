@@ -48,6 +48,9 @@ public class MainActivity
     static final int FRAG_ID_GAME = 2;
     static final int INITIAL_NUM_PLAYERS = 4;
 
+    public int MAX_NUM_PLAYERS;
+    public int MIN_NUM_PLAYERS;
+
     private int currentFragmentID;
     private int numPlayers;
 
