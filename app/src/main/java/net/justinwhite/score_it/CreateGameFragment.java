@@ -45,11 +45,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
-    private static final int SEEKBAR_OFFSET;
-
-    static {
-        SEEKBAR_OFFSET = 2;
-    }
+    private static final int SEEKBAR_OFFSET = 2;
 
     @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
