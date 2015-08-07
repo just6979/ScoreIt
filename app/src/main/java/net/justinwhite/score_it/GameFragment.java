@@ -44,10 +44,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GameFragment extends Fragment {
-    private GameSetupListener gameSetupListener;
-
     @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
+    private GameSetupListener gameSetupListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

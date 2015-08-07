@@ -52,13 +52,12 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
         SEEKBAR_OFFSET = 2;
     }
 
-    private GameSetupListener gameSetupListener;
-    private int numPlayers;
-
     @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
     @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
+    private GameSetupListener gameSetupListener;
+    private int numPlayers;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
