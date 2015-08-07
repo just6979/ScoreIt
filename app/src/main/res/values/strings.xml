@@ -41,4 +41,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
   <string name="end_game">End Game</string>
+  <string name="current_fragment_id">CURRENT_FRAGMENT_ID</string>
 </resources>

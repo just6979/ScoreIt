@@ -37,12 +37,17 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity
+        implements GameSetup {
     static int INITIAL_NUM_PLAYERS;
+    static final int FRAG_ID_NEW_GAME = 1;
+    static final int FRAG_ID_GAME = 2;
 
     public int numPlayers;
+    private int currentFragmentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +55,28 @@ public class MainActivity extends Activity {
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), numPlayers);
+        currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id), FRAG_ID_NEW_GAME);
 
         INITIAL_NUM_PLAYERS = this.getResources().getInteger(R.integer.initial_num_players);
 
         numPlayers = INITIAL_NUM_PLAYERS;
 
+        Fragment nextFragment;
+        switch (currentFragmentID) {
+            case FRAG_ID_NEW_GAME:
+                nextFragment = new NewGameFragment();
+                break;
+            case FRAG_ID_GAME:
+                nextFragment = new GameFragment();
+                break;
+            default:
+                nextFragment = new NewGameFragment();
+                break;
+        }
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new NewGameFragment())
+                    .add(R.id.container, nextFragment)
                     .commit();
         }
     }
@@ -70,6 +88,7 @@ public class MainActivity extends Activity {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.current_num_players_pref), numPlayers);
+        editor.putInt(getString(R.string.current_fragment_id), currentFragmentID);
         editor.apply();
     }
 
@@ -102,4 +121,9 @@ public class MainActivity extends Activity {
     public int getNumPlayers() {
         return numPlayers;
     }
+
+    public void setCurrentFragmentID(int newFragmentID) {
+        currentFragmentID = newFragmentID;
+    }
+
 }

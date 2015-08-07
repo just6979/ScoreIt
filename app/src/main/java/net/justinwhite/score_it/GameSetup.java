@@ -32,54 +32,10 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class GameFragment extends Fragment {
-    private GameSetup gameSetup;
-
-    @Bind(R.id.textNewNumPlayers)
-    TextView textNewNumPlayers;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_game, container, false);
-        ButterKnife.bind(this, rootView);
-
-        int numPlayers = ((MainActivity) getActivity()).getNumPlayers();
-        textNewNumPlayers.setText(Integer.toString(numPlayers));
-
-        return rootView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        try {
-            gameSetup = (GameSetup) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }
-
-    @OnClick(R.id.buttonEndGame)
-    protected void EndGame(View view) {
-        Fragment newFragment = new NewGameFragment();
-        gameSetup.setCurrentFragmentID(MainActivity.FRAG_ID_NEW_GAME);
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container, newFragment)
-                .commit()
-        ;
-    }
+public interface GameSetup {
+    public void setNumPlayers(int _numPlayers);
+    public int getNumPlayers();
+    public void setCurrentFragmentID(int newFragmentID);
 }

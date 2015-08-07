@@ -32,6 +32,7 @@
 
 package net.justinwhite.score_it;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class NewGameFragment extends Fragment implements SeekBar.OnSeekBarChange
     SeekBar seekNumPlayers;
     @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
+    private GameSetup gameSetup;
     private int numPlayers = 4;
 
     @Override
@@ -73,6 +75,18 @@ public class NewGameFragment extends Fragment implements SeekBar.OnSeekBarChange
         labelNumPlayers.clearFocus();
 
         return rootView;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            gameSetup = (GameSetup) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
     }
 
     @Override
@@ -95,9 +109,11 @@ public class NewGameFragment extends Fragment implements SeekBar.OnSeekBarChange
 
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame(View view) {
-        ((MainActivity) getActivity()).setNumPlayers(seekNumPlayers.getProgress() + SEEKBAR_OFFSET);
+        gameSetup.setNumPlayers(seekNumPlayers.getProgress() + SEEKBAR_OFFSET);
+        Fragment newFragment = new GameFragment();
+        gameSetup.setCurrentFragmentID(MainActivity.FRAG_ID_GAME);
         getFragmentManager().beginTransaction()
-                .replace(R.id.container, new GameFragment())
+                .replace(R.id.container, newFragment)
                 .commit()
         ;
     }
