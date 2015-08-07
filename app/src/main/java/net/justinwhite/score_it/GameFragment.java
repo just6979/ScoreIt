@@ -44,7 +44,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GameFragment extends Fragment {
-    private GameSetup gameSetup;
+    private GameSetupListener gameSetupListener;
 
     @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
@@ -66,17 +66,17 @@ public class GameFragment extends Fragment {
         super.onAttach(activity);
 
         try {
-            gameSetup = (GameSetup) activity;
+            gameSetupListener = (GameSetupListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
+                    + " must implement GameSetupListener");
         }
     }
 
     @OnClick(R.id.buttonEndGame)
     protected void EndGame(View view) {
         Fragment newFragment = new CreateGameFragment();
-        gameSetup.setCurrentFragmentID(MainActivity.FRAG_ID_NEW_GAME);
+        gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_NEW_GAME);
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, newFragment)
                 .commit()

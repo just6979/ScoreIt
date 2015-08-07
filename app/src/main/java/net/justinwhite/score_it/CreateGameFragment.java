@@ -56,7 +56,7 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
     SeekBar seekNumPlayers;
     @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
-    private GameSetup gameSetup;
+    private GameSetupListener gameSetupListener;
     private int numPlayers = 4;
 
     @Override
@@ -82,10 +82,10 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
         super.onAttach(activity);
 
         try {
-            gameSetup = (GameSetup) activity;
+            gameSetupListener = (GameSetupListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
+                    + " must implement GameSetupListener");
         }
     }
 
@@ -109,9 +109,9 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
 
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame(View view) {
-        gameSetup.setNumPlayers(seekNumPlayers.getProgress() + SEEKBAR_OFFSET);
+        gameSetupListener.setNumPlayers(seekNumPlayers.getProgress() + SEEKBAR_OFFSET);
         Fragment newFragment = new GameFragment();
-        gameSetup.setCurrentFragmentID(MainActivity.FRAG_ID_GAME);
+        gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_GAME);
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, newFragment)
                 .commit()

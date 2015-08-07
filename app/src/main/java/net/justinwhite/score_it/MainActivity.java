@@ -41,7 +41,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends Activity
-        implements GameSetup {
+        implements GameSetupListener {
     static int INITIAL_NUM_PLAYERS;
     static final int FRAG_ID_NEW_GAME = 1;
     static final int FRAG_ID_GAME = 2;

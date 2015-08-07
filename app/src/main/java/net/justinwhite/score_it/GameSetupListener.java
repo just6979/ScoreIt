@@ -32,10 +32,10 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Fragment;
-
-public interface GameSetup {
+public interface GameSetupListener {
     public void setNumPlayers(int _numPlayers);
+
     public int getNumPlayers();
+
     public void setCurrentFragmentID(int newFragmentID);
 }
