@@ -33,9 +33,9 @@
 package net.justinwhite.score_it;
 
 public interface GameSetupListener {
-    public void setNumPlayers(int _numPlayers);
+    void setNumPlayers(int _numPlayers);
 
-    public int getNumPlayers();
+    int getNumPlayers();
 
-    public void setCurrentFragmentID(int newFragmentID);
+    void setCurrentFragmentID(int newFragmentID);
 }
