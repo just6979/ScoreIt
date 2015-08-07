@@ -44,6 +44,7 @@ public class MainActivity extends Activity
         implements GameSetupListener {
     static final int FRAG_ID_CREATE_GAME = 1;
     static final int FRAG_ID_GAME = 2;
+    static final int INITIAL_NUM_PLAYERS = 4;
 
     private int currentFragmentID;
     private int numPlayers;
@@ -53,7 +54,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), getResources().getInteger(R.integer.initial_num_players));
+        numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), INITIAL_NUM_PLAYERS);
         currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id), FRAG_ID_CREATE_GAME);
 
         Fragment nextFragment;
