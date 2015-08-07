@@ -42,11 +42,11 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity
         implements GameSetupListener {
-    static final int FRAG_ID_NEW_GAME = 1;
+    static final int FRAG_ID_CREATE_GAME = 1;
     static final int FRAG_ID_GAME = 2;
 
-    public int numPlayers;
     private int currentFragmentID;
+    private int numPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +54,18 @@ public class MainActivity extends Activity
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), getResources().getInteger(R.integer.initial_num_players));
-        currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id), FRAG_ID_NEW_GAME);
+        currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id), FRAG_ID_CREATE_GAME);
 
         Fragment nextFragment;
         switch (currentFragmentID) {
-            case FRAG_ID_NEW_GAME:
+            case FRAG_ID_CREATE_GAME:
                 nextFragment = new CreateGameFragment();
                 break;
             case FRAG_ID_GAME:
                 nextFragment = new GameFragment();
                 break;
             default:
+                // use CreateGame if invalid/unknown ID
                 nextFragment = new CreateGameFragment();
                 break;
         }
@@ -109,12 +110,16 @@ public class MainActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
 
+    public int getNumPlayers() {
+        return numPlayers;
+    }
+
     public void setNumPlayers(int _numPlayers) {
         numPlayers = _numPlayers;
     }
 
-    public int getNumPlayers() {
-        return numPlayers;
+    public int getCurrentFragmentID() {
+        return currentFragmentID;
     }
 
     public void setCurrentFragmentID(int newFragmentID) {

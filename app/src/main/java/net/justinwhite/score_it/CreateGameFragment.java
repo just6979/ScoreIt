@@ -66,8 +66,7 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
         ButterKnife.bind(this, rootView);
 
-        MAX_NUM_PLAYERS = this.getResources().getInteger(R.integer.max_num_players);
-        seekNumPlayers.setMax(MAX_NUM_PLAYERS - SEEKBAR_OFFSET);
+        seekNumPlayers.setMax(getResources().getInteger(R.integer.max_num_players) - SEEKBAR_OFFSET);
 
         numPlayers = gameSetupListener.getNumPlayers();
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);

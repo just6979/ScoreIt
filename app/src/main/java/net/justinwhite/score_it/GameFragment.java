@@ -76,7 +76,7 @@ public class GameFragment extends Fragment {
     @OnClick(R.id.buttonEndGame)
     protected void EndGame(View view) {
         Fragment newFragment = new CreateGameFragment();
-        gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_NEW_GAME);
+        gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_CREATE_GAME);
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, newFragment)
                 .commit()
