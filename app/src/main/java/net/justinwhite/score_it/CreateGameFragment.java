@@ -44,7 +44,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NewGameFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
+public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
     private static final int SEEKBAR_OFFSET;
     private static int MAX_NUM_PLAYERS;
 

@@ -64,13 +64,13 @@ public class MainActivity extends Activity
         Fragment nextFragment;
         switch (currentFragmentID) {
             case FRAG_ID_NEW_GAME:
-                nextFragment = new NewGameFragment();
+                nextFragment = new CreateGameFragment();
                 break;
             case FRAG_ID_GAME:
                 nextFragment = new GameFragment();
                 break;
             default:
-                nextFragment = new NewGameFragment();
+                nextFragment = new CreateGameFragment();
                 break;
         }
         setContentView(R.layout.activity_main);
