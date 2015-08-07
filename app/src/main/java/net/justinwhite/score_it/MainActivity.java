@@ -46,10 +46,7 @@ public class MainActivity
 {
     static final int FRAG_ID_CREATE_GAME = 1;
     static final int FRAG_ID_GAME = 2;
-    static final int INITIAL_NUM_PLAYERS = 4;
-
-    public int MAX_NUM_PLAYERS;
-    public int MIN_NUM_PLAYERS;
+    static final int DEFAULT_NUM_PLAYERS = 4;
 
     private int currentFragmentID;
     private int numPlayers;
@@ -59,7 +56,7 @@ public class MainActivity
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), INITIAL_NUM_PLAYERS);
+        numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), DEFAULT_NUM_PLAYERS);
         currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id), FRAG_ID_CREATE_GAME);
 
         Fragment nextFragment;
