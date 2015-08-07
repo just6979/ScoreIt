@@ -44,7 +44,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
+public class CreateGameFragment
+        extends Fragment
+        implements SeekBar.OnSeekBarChangeListener
+{
     private static final int SEEKBAR_OFFSET = 2;
 
     @Bind(R.id.seekNumPlayers)
@@ -55,8 +58,7 @@ public class CreateGameFragment extends Fragment implements SeekBar.OnSeekBarCha
     private int numPlayers;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
         ButterKnife.bind(this, rootView);
 

@@ -40,8 +40,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity
-        implements GameSetupListener {
+public class MainActivity
+        extends Activity
+        implements GameSetupListener
+{
     static final int FRAG_ID_CREATE_GAME = 1;
     static final int FRAG_ID_GAME = 2;
     static final int INITIAL_NUM_PLAYERS = 4;

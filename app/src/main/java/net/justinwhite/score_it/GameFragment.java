@@ -43,14 +43,15 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GameFragment extends Fragment {
+public class GameFragment
+        extends Fragment
+{
     @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
     private GameSetupListener gameSetupListener;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_game, container, false);
         ButterKnife.bind(this, rootView);
 
@@ -81,4 +82,5 @@ public class GameFragment extends Fragment {
                 .commit()
         ;
     }
+
 }
