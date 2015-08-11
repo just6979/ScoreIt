@@ -44,6 +44,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import net.justinwhite.score_model.phase_10.Phase10GameModel;
+
 public class CreateGameFragment
         extends Fragment
         implements SeekBar.OnSeekBarChangeListener
@@ -62,8 +64,11 @@ public class CreateGameFragment
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
         ButterKnife.bind(this, rootView);
 
-        int maxNumPlayers = getResources().getInteger(R.integer.max_num_players);
-        SEEKBAR_OFFSET = getResources().getInteger(R.integer.min_num_players);
+//        int maxNumPlayers = getResources().getInteger(R.integer.max_num_players);
+        int maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
+
+//        SEEKBAR_OFFSET = getResources().getInteger(R.integer.min_num_players);
+        SEEKBAR_OFFSET = Phase10GameModel.MIN_PLAYERS;
 
         seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
 
