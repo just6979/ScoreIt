@@ -41,4 +41,8 @@
     <string name="title_activity_main">ScoreIt</string>
     <string name="action_settings">Settings</string>
     <string name="end_game">End Game</string>
+    <string name="dialog_end_game_title">End the game?</string>
+    <string name="dialog_end_game_text">Do you want to end the game?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

@@ -34,6 +34,7 @@ package net.justinwhite.score_it;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GameFragment
-        extends Fragment {
+        extends Fragment
+        implements EndGameDialogFragment.EndGameDialogListener {
 
     @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
@@ -94,12 +96,21 @@ public class GameFragment
 
     @OnClick(R.id.buttonEndGame)
     protected void EndGame(View view) {
+        FragmentManager fm = getActivity().getFragmentManager();
+        EndGameDialogFragment endGameDialog = EndGameDialogFragment.newInstance();
+        endGameDialog.setTargetFragment(this, 0);
+        endGameDialog.show(fm, "end_game_dialog");
+
+    }
+
+    @Override
+    public void EndGameSubmit() {
         Fragment newFragment = CreateGameFragment.newInstance();
         gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_CREATE_GAME);
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, newFragment)
                 .commit()
         ;
-    }
 
+    }
 }
