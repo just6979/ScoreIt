@@ -47,7 +47,7 @@ import butterknife.OnClick;
 
 public class GameFragment
         extends Fragment
-        implements EndGameDialogFragment.EndGameDialogListener {
+        implements YesNoDialogFragment.YesNoDialogListener {
 
     @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
@@ -97,14 +97,17 @@ public class GameFragment
     @OnClick(R.id.buttonEndGame)
     protected void EndGame(View view) {
         FragmentManager fm = getActivity().getFragmentManager();
-        EndGameDialogFragment endGameDialog = EndGameDialogFragment.newInstance();
+        YesNoDialogFragment endGameDialog = YesNoDialogFragment.newInstance(
+                getString(R.string.dialog_end_game_title),
+                getString(R.string.dialog_end_game_text)
+        );
         endGameDialog.setTargetFragment(this, 0);
         endGameDialog.show(fm, "end_game_dialog");
 
     }
 
     @Override
-    public void EndGameSubmit() {
+    public void YesNoSubmit() {
         Fragment newFragment = CreateGameFragment.newInstance();
         gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_CREATE_GAME);
         getFragmentManager().beginTransaction()

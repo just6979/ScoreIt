@@ -38,23 +38,28 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-public class EndGameDialogFragment
+public class YesNoDialogFragment
         extends DialogFragment {
 
-    private EndGameDialogListener callback;
+    private YesNoDialogListener callback;
 
-    public interface EndGameDialogListener {
-        void EndGameSubmit();
+    private String title;
+    private String message;
+
+    public interface YesNoDialogListener {
+        void YesNoSubmit();
     }
 
-    public static EndGameDialogFragment newInstance() {
-        EndGameDialogFragment fragment = new EndGameDialogFragment();
+    public static YesNoDialogFragment newInstance(String _title, String _message) {
+        YesNoDialogFragment fragment = new YesNoDialogFragment();
         Bundle args = new Bundle();
+        args.putString("title", _title);
+        args.putString("message", _message);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public EndGameDialogFragment() {
+    public YesNoDialogFragment() {
         // Required empty public constructor
     }
 
@@ -63,27 +68,34 @@ public class EndGameDialogFragment
         super.onCreate(savedInstanceState);
 
         try {
-            callback = (EndGameDialogListener) getTargetFragment();
+            callback = (YesNoDialogListener) getTargetFragment();
         } catch (ClassCastException e) {
-            throw new ClassCastException("Calling Fragment must implement EndGameDialogListener");
+            throw new ClassCastException("Calling Fragment must implement YesNoDialogListener");
         }
+
+        if (getArguments() != null) {
+            Bundle args = getArguments();
+            title = args.getString("title");
+            message = args.getString("message");
+        }
+
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.dialog_end_game_title)
-                .setMessage(R.string.dialog_end_game_text)
+        builder.setTitle(title)
+                .setMessage(message)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        callback.EndGameSubmit();
+                        callback.YesNoSubmit();
                     }
                 })
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        EndGameDialogFragment.this.getDialog().cancel();
+                        YesNoDialogFragment.this.getDialog().cancel();
                     }
                 });
         return builder.create();
