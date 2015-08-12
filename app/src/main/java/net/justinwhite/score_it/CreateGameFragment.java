@@ -59,6 +59,10 @@ public class CreateGameFragment
     private GameSetupListener gameSetupListener;
     private int numPlayers;
 
+    public CreateGameFragment() {
+        super();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
@@ -115,7 +119,7 @@ public class CreateGameFragment
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame(View view) {
         gameSetupListener.setNumPlayers(numPlayers);
-        Fragment newFragment = new GameFragment();
+        Fragment newFragment = Fragment.instantiate(getActivity(), GameFragment.class.getName());
         gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_GAME);
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, newFragment)
