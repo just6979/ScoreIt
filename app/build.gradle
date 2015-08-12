@@ -35,13 +35,12 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-
     defaultConfig {
         applicationId "net.justinwhite.score10"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName '0.1'
     }
     buildTypes {
         release {
@@ -49,10 +48,16 @@ android {
             minifyEnabled true
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    productFlavors {
+    }
 }
 
 dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:appcompat-v7:22.2.1'
-    compile fileTree(dir: 'libs', include: '*.jar')
+    compile fileTree(include: '*.jar', dir: 'libs')
 }
