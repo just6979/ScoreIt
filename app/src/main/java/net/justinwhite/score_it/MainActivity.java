@@ -57,7 +57,7 @@ public class MainActivity
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), DEFAULT_NUM_PLAYERS);
-        currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id), FRAG_ID_CREATE_GAME);
+        currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id_pref), FRAG_ID_CREATE_GAME);
 
         Fragment nextFragment;
         switch (currentFragmentID) {
@@ -87,7 +87,7 @@ public class MainActivity
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.current_num_players_pref), numPlayers);
-        editor.putInt(getString(R.string.current_fragment_id), currentFragmentID);
+        editor.putInt(getString(R.string.current_fragment_id_pref), currentFragmentID);
         editor.apply();
     }
 
