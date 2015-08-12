@@ -51,8 +51,22 @@ public class GameFragment
     TextView textNewNumPlayers;
     private GameSetupListener gameSetupListener;
 
+    public static GameFragment newInstance() {
+        GameFragment fragment = new GameFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public GameFragment() {
-        super();
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+        }
     }
 
     @Override
@@ -80,7 +94,7 @@ public class GameFragment
 
     @OnClick(R.id.buttonEndGame)
     protected void EndGame(View view) {
-        Fragment newFragment = Fragment.instantiate(getActivity(), CreateGameFragment.class.getName());
+        Fragment newFragment = CreateGameFragment.newInstance();
         gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_CREATE_GAME);
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, newFragment)
