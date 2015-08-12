@@ -36,7 +36,7 @@ android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
     defaultConfig {
-        applicationId "net.justinwhite.score10"
+        applicationId "net.justinwhite.score_it"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
