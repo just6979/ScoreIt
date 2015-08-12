@@ -39,13 +39,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GameFragment
-        extends Fragment
-{
+        extends Fragment {
+
     @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
     private GameSetupListener gameSetupListener;

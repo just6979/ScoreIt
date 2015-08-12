@@ -40,6 +40,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -48,8 +49,8 @@ import net.justinwhite.score_model.phase_10.Phase10GameModel;
 
 public class CreateGameFragment
         extends Fragment
-        implements SeekBar.OnSeekBarChangeListener
-{
+        implements SeekBar.OnSeekBarChangeListener {
+
     @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
     @Bind(R.id.textNumPlayers)

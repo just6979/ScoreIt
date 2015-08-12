@@ -32,7 +32,7 @@
 
 package net.justinwhite.score_it;
 
-public interface GameSetupListener {
+interface GameSetupListener {
     int getNumPlayers();
 
     void setNumPlayers(int _numPlayers);
