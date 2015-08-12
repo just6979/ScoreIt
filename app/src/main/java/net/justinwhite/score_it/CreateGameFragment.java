@@ -64,10 +64,9 @@ public class CreateGameFragment
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
         ButterKnife.bind(this, rootView);
 
-//        int maxNumPlayers = getResources().getInteger(R.integer.max_num_players);
+        // get max & min players from the GameModel
         int maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
-
-//        SEEKBAR_OFFSET = getResources().getInteger(R.integer.min_num_players);
+        // use min players to set seekbar offset since seekbars always have to start at 0
         SEEKBAR_OFFSET = Phase10GameModel.MIN_PLAYERS;
 
         seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
