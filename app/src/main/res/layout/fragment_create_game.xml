@@ -35,10 +35,12 @@
     android:id="@+id/layoutNewGame"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:alignmentMode="alignBounds"
     android:columnCount="3"
-    android:useDefaultMargins="true"
-    tools:context=".MainActivity">
+    android:useDefaultMargins="false"
+    tools:context=".MainActivity"
+    android:alignmentMode="alignBounds"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <TextView
         android:id="@+id/labelPhase10"
