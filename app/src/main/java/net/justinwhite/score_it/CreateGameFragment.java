@@ -89,9 +89,9 @@ public class CreateGameFragment
 
         // get max & min players from the GameModel
         int maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
-        labelMaxPlayers.setText(String.valueOf(maxNumPlayers));
+        labelMaxPlayers.setText(Integer.toString(maxNumPlayers));
         int minNumPLayers = Phase10GameModel.MIN_PLAYERS;
-        labelMinPlayers.setText(String.valueOf(minNumPLayers));
+        labelMinPlayers.setText(Integer.toString(minNumPLayers));
 
         // use min players to set seekbar offset since seekbars always have to start at 0
         SEEKBAR_OFFSET = minNumPLayers;
