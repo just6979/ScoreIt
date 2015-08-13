@@ -80,7 +80,7 @@ public class CreateGameFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_create_game, container, false);
         ButterKnife.bind(this, rootView);
 
         // get max & min players from the GameModel
