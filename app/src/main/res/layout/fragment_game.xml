@@ -41,60 +41,60 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/labelPhase10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/label_phase_10"
-        android:id="@+id/labelPhase10"
         android:layout_columnSpan="4"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/label_phase_10"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp" />
 
     <TextView
         android:id="@+id/labelGameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_game_name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_columnSpan="2"
         android:layout_gravity="center_vertical|right"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp" />
+        android:text="@string/label_game_name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textGameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GameName"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_columnSpan="2"
         android:layout_gravity="left|center_vertical"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp" />
+        android:text="GameName"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textNumPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/current_num_players_label"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_gravity="center_vertical|right"
         android:layout_columnSpan="2"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp" />
+        android:text="@string/current_num_players_label"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textNewNumPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_gravity="left|center_vertical"
         android:layout_columnSpan="2"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp" />
+        android:text="4"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
         android:id="@+id/buttonEndGame"
