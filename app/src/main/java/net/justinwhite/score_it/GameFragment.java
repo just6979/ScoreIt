@@ -41,6 +41,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import net.justinwhite.score_model.phase_10.Phase10GameModel;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -51,7 +53,10 @@ public class GameFragment
 
     @Bind(R.id.textNewNumPlayers)
     TextView textNewNumPlayers;
+    @Bind(R.id.textGameName)
+    TextView textGameName;
     private GameSetupListener gameSetupListener;
+    private Phase10GameModel game;
 
     public static GameFragment newInstance() {
         GameFragment fragment = new GameFragment();
@@ -69,6 +74,7 @@ public class GameFragment
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+        game = new Phase10GameModel();
     }
 
     @Override
@@ -77,6 +83,8 @@ public class GameFragment
         ButterKnife.bind(this, rootView);
 
         int numPlayers = ((MainActivity) getActivity()).getNumPlayers();
+        game.setNumPlayers(numPlayers);
+        textGameName.setText(game.getName());
         textNewNumPlayers.setText(Integer.toString(numPlayers));
 
         return rootView;
