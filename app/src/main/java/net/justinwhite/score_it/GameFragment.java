@@ -73,6 +73,7 @@ public class GameFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            Bundle args = getArguments();
         }
         game = new Phase10GameModel();
     }
