@@ -55,6 +55,10 @@ public class CreateGameFragment
     SeekBar seekNumPlayers;
     @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
+    @Bind(R.id.labelMinPlayers)
+    TextView labelMinPlayers;
+    @Bind(R.id.labelMaxPlayers)
+    TextView labelMaxPlayers;
     // effectively constant, but not final because no constructors in Fragments
     private int SEEKBAR_OFFSET;
     private GameSetupListener gameSetupListener;
@@ -85,9 +89,12 @@ public class CreateGameFragment
 
         // get max & min players from the GameModel
         int maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
-        // use min players to set seekbar offset since seekbars always have to start at 0
-        SEEKBAR_OFFSET = Phase10GameModel.MIN_PLAYERS;
+        labelMaxPlayers.setText(String.valueOf(maxNumPlayers));
+        int minNumPLayers = Phase10GameModel.MIN_PLAYERS;
+        labelMinPlayers.setText(String.valueOf(minNumPLayers));
 
+        // use min players to set seekbar offset since seekbars always have to start at 0
+        SEEKBAR_OFFSET = minNumPLayers;
         seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
 
         numPlayers = gameSetupListener.getNumPlayers();
