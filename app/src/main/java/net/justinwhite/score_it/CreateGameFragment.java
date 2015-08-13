@@ -53,7 +53,7 @@ public class CreateGameFragment
 
     @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
-    @Bind(R.id.labelNumPlayers)
+    @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
     // effectively constant, but not final because no constructors in Fragments
     private int SEEKBAR_OFFSET;

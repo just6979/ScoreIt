@@ -45,4 +45,5 @@
     <string name="dialog_end_game_text">Do you want to end the game?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="label_phase_10">Phase 10</string>
 </resources>

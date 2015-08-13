@@ -41,21 +41,21 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/labelPhase10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Phase 10"
-        android:id="@+id/labelPhase10"
+        android:text="@string/label_phase_10"
         android:layout_row="0"
         android:layout_column="0"
         android:layout_columnSpan="3"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center_horizontal"
-        android:textSize="32dp" />
+        android:textSize="32sp" />
 
     <TextView
-        android:id="@+id/textHowManyPlayers"
+        android:id="@+id/labelHowManyPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
@@ -68,7 +68,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textMinPlayers"
+        android:id="@+id/labelMinPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
@@ -89,7 +89,7 @@
         android:progress="3" />
 
     <TextView
-        android:id="@+id/textMaxPlayers"
+        android:id="@+id/labelMaxPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="2"
@@ -99,7 +99,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/labelNumPlayers"
+        android:id="@+id/textNumPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
