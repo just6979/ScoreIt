@@ -37,35 +37,37 @@
     android:layout_height="fill_parent"
     android:columnCount="4"
     android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:useDefaultMargins="true"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/labelPhase10"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:text="@string/label_phase_10"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="32sp"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical" />
+            android:textSize="32sp" />
 
         <TextView
             android:id="@+id/textGameName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="GameName"
-            tools:ignore="HardcodedText"
-            android:textSize="24sp"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:layout_gravity="center_vertical" />
+            android:text="GameName"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
@@ -73,16 +75,16 @@
         android:id="@+id/listPlayers"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/buttonEndGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/end_game"
-        android:textSize="32sp"
-        android:layout_gravity="center_horizontal" />
+        android:textSize="32sp" />
 
 </LinearLayout>
