@@ -39,6 +39,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10GameModel;
@@ -55,6 +57,8 @@ public class GameFragment
     TextView textNewNumPlayers;
     @Bind(R.id.textGameName)
     TextView textGameName;
+    @Bind(R.id.listPlayers)
+    ListView listView;
     private GameSetupListener gameSetupListener;
     private Phase10GameModel game;
 
@@ -87,6 +91,17 @@ public class GameFragment
         game.setNumPlayers(numPlayers);
         textGameName.setText(game.getName());
         textNewNumPlayers.setText(Integer.toString(numPlayers));
+
+        String players[] = new String[game.getNumPlayers()];
+        for (int i = 0; i < game.getNumPlayers(); i++) {
+            players[i] = game.getPlayer(i).toString();
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                players
+        );
+        listView.setAdapter(adapter);
 
         return rootView;
     }
