@@ -46,7 +46,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/label_phase_10"
         android:id="@+id/labelPhase10"
-        android:layout_row="0"
         android:layout_columnSpan="4"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
@@ -70,7 +69,6 @@
         android:layout_height="wrap_content"
         android:text="GameName"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_row="1"
         android:layout_columnSpan="2"
         android:layout_gravity="left|center_vertical"
         android:layout_marginTop="20dp"
@@ -105,7 +103,6 @@
         android:layout_columnSpan="4"
         android:layout_gravity="fill_horizontal|bottom"
         android:text="@string/end_game"
-        android:textSize="32sp"
-        android:layout_row="3" />
+        android:textSize="32sp" />
 
 </GridLayout>
