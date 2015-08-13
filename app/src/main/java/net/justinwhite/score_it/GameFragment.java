@@ -53,8 +53,6 @@ public class GameFragment
         extends Fragment
         implements YesNoDialogFragment.YesNoDialogListener {
 
-    @Bind(R.id.textNewNumPlayers)
-    TextView textNewNumPlayers;
     @Bind(R.id.textGameName)
     TextView textGameName;
     @Bind(R.id.listPlayers)
@@ -90,7 +88,6 @@ public class GameFragment
         int numPlayers = ((MainActivity) getActivity()).getNumPlayers();
         game.setNumPlayers(numPlayers);
         textGameName.setText(game.getName());
-        textNewNumPlayers.setText(Integer.toString(numPlayers));
 
         String players[] = new String[game.getNumPlayers()];
         for (int i = 0; i < game.getNumPlayers(); i++) {
