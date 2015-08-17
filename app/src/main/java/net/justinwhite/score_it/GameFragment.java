@@ -51,7 +51,7 @@ import butterknife.OnClick;
 
 public class GameFragment
         extends Fragment
-        implements YesNoDialogFragment.YesNoDialogListener, AdapterView.OnItemClickListener {
+        implements YesNoDialogFragment.DialogListener, AdapterView.OnItemClickListener {
 
     @Bind(R.id.textGameName)
     TextView textGameName;
@@ -131,8 +131,7 @@ public class GameFragment
     protected void EndGame(View view) {
         FragmentManager fm = getActivity().getFragmentManager();
         YesNoDialogFragment endGameDialog = YesNoDialogFragment.newInstance(
-                getString(R.string.dialog_end_game_title),
-                getString(R.string.dialog_end_game_text)
+                getString(R.string.dialog_end_game_title)
         );
         endGameDialog.setTargetFragment(this, 0);
         endGameDialog.show(fm, "end_game_dialog");
@@ -140,7 +139,7 @@ public class GameFragment
     }
 
     @Override
-    public void YesNoSubmit() {
+    public void onSubmit() {
         Fragment newFragment = CreateGameFragment.newInstance();
         gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_CREATE_GAME);
         getFragmentManager().beginTransaction()

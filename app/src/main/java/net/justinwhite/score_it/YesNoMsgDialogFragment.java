@@ -38,22 +38,24 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-public class YesNoDialogFragment
+public class YesNoMsgDialogFragment
         extends DialogFragment {
 
     private DialogListener listener;
 
     private String title;
+    private String message;
 
-    public static YesNoDialogFragment newInstance(String _title) {
-        YesNoDialogFragment fragment = new YesNoDialogFragment();
+    public static YesNoMsgDialogFragment newInstance(String _title, String _message) {
+        YesNoMsgDialogFragment fragment = new YesNoMsgDialogFragment();
         Bundle args = new Bundle();
         args.putString("title", _title);
+        args.putString("message", _message);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public YesNoDialogFragment() {
+    public YesNoMsgDialogFragment() {
         // Required empty public constructor
     }
 
@@ -71,6 +73,7 @@ public class YesNoDialogFragment
         if (getArguments() != null) {
             Bundle args = getArguments();
             title = args.getString("title");
+            message = args.getString("message");
         }
 
     }
@@ -79,6 +82,7 @@ public class YesNoDialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(title)
+                .setMessage(message)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -88,7 +92,7 @@ public class YesNoDialogFragment
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        YesNoDialogFragment.this.getDialog().cancel();
+                        YesNoMsgDialogFragment.this.getDialog().cancel();
                     }
                 });
         return builder.create();
