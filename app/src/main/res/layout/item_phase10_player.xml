@@ -42,17 +42,17 @@
         android:id="@+id/textPlayerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player Name" />
+        android:text="@string/Player_Name" />
 
     <TextView
         android:id="@+id/textPlayerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score" />
+        android:text="@string/Score" />
 
     <TextView
         android:id="@+id/textPlayerPhase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phase" />
+        android:text="@string/Phase" />
 </LinearLayout>

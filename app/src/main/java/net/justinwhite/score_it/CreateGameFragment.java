@@ -51,12 +51,16 @@ public class CreateGameFragment
         extends Fragment
         implements SeekBar.OnSeekBarChangeListener {
 
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.seekNumPlayers)
     SeekBar seekNumPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textNumPlayers)
     TextView labelNumPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMinPlayers)
     TextView labelMinPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMaxPlayers)
     TextView labelMaxPlayers;
     // effectively constant, but not final because no constructors in Fragments
@@ -79,7 +83,7 @@ public class CreateGameFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            Bundle args = getArguments();
+            @SuppressWarnings("UnusedAssignment") Bundle args = getArguments();
         }
     }
 
@@ -139,6 +143,7 @@ public class CreateGameFragment
 
     }
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame(View view) {
         gameSetupListener.setNumPlayers(numPlayers);

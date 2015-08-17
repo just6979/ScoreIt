@@ -34,17 +34,18 @@
     <string name="current_num_players_pref">CURRENT_NUM_PLAYERS</string>
     <string name="current_fragment_id_pref">CURRENT_FRAGMENT_ID</string>
 
-    <string name="app_name">ScoreIt</string>
-    <string name="start_game_button">Start Game</string>
-    <string name="how_many_players_label">How many players?</string>
-    <string name="current_num_players_label"># players:</string>
-    <string name="title_activity_main">ScoreIt</string>
-    <string name="end_game">End Game</string>
-    <string name="dialog_end_game_title">End the game?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="label_phase_10">Phase 10</string>
-    <string name="change">Change</string>
-    <string name="cancel">Cancel</string>
-    <string name="change_player_name">Change Player Name</string>
+    <string name="Start_Game">Start Game</string>
+    <string name="How_many_players_question">How many players?</string>
+    <string name="ScoreIt">ScoreIt</string>
+    <string name="End_Game">End Game</string>
+    <string name="End_the_game_question">End the game?</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="Phase_10">Phase 10</string>
+    <string name="Change">Change</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Change_Player_Name">Change Player Name</string>
+    <string name="Player_Name">Player Name</string>
+    <string name="Score">Score</string>
+    <string name="Phase">Phase</string>
 </resources>

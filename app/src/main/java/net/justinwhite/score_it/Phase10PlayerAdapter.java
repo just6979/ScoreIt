@@ -46,19 +46,17 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
+class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
 
     private final List<Phase10PlayerModel> players;
     private final int layoutID;
-    private final Context context;
-    LayoutInflater layoutInflater;
+    private final LayoutInflater layoutInflater;
 
-    public Phase10PlayerAdapter(Context _context, int _layoutID, List<Phase10PlayerModel> _players) {
+    public Phase10PlayerAdapter(Context _context, @SuppressWarnings("SameParameterValue") int _layoutID, List<Phase10PlayerModel> _players) {
         super(_context, _layoutID, _players);
-        context = _context;
         layoutID = _layoutID;
         players = _players;
-        layoutInflater = LayoutInflater.from(context);
+        layoutInflater = LayoutInflater.from(_context);
     }
 
     @Override
@@ -97,6 +95,7 @@ public class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
         return view;
     }
 
+    @SuppressWarnings("unused")
     static class ViewHolder {
         @Bind(R.id.textPlayerName)
         TextView textPlayerName;

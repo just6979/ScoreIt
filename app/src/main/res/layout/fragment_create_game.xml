@@ -50,7 +50,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:text="@string/label_phase_10"
+        android:text="@string/Phase_10"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp" />
 
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/how_many_players_label"
+        android:text="@string/How_many_players_question"
         android:textSize="24sp" />
 
     <LinearLayout
@@ -113,6 +113,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/start_game_button"
+        android:text="@string/Start_Game"
         android:textSize="32sp" />
 </LinearLayout>

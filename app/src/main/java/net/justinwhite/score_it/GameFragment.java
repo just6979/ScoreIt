@@ -57,11 +57,12 @@ public class GameFragment
         LineEditDialog.DialogListener,
         AdapterView.OnItemClickListener {
 
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textGameName)
     TextView textGameName;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.listPlayers)
     ListView listView;
-    private OnPlayerItemInteractionListener listItemClickListener;
     private GameSetupListener gameSetupListener;
     private Phase10GameModel game;
     private Phase10PlayerAdapter adapter;
@@ -81,7 +82,7 @@ public class GameFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            Bundle args = getArguments();
+            @SuppressWarnings("UnusedAssignment") Bundle args = getArguments();
         }
 
         game = new Phase10GameModel();
@@ -115,27 +116,14 @@ public class GameFragment
             throw new ClassCastException(activity.toString()
                     + " must implement GameSetupListener");
         }
-
-        try {
-            listItemClickListener = (OnPlayerItemInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnPlayerItemInteractionListener");
-        }
-
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listItemClickListener = null;
-    }
-
+    @SuppressWarnings("unused")
     @OnClick(R.id.buttonEndGame)
     protected void EndGame(View view) {
         FragmentManager fm = getActivity().getFragmentManager();
         YesNoDialog endGameDialog = YesNoDialog.newInstance(
-                getString(R.string.dialog_end_game_title)
+                getString(R.string.End_the_game_question)
         );
         endGameDialog.setTargetFragment(this, 0);
         endGameDialog.show(fm, "end_game_dialog");
@@ -167,6 +155,7 @@ public class GameFragment
 
     }
 
+    @SuppressWarnings("unused")
     public interface GameSetupListener {
         int getNumPlayers();
 
@@ -177,6 +166,7 @@ public class GameFragment
         void setCurrentFragmentID(int newFragmentID);
     }
 
+    @SuppressWarnings({"unused", "EmptyMethod"})
     public interface OnPlayerItemInteractionListener {
         void onPlayerItemInteraction(int player);
     }

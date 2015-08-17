@@ -32,7 +32,7 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -80,19 +80,19 @@ public class LineEditDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        View dialogView = inflater.inflate(R.layout.dialog_line_edit, null);
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_line_edit, null);
         EditText editLineData = (EditText) dialogView.findViewById(R.id.editLineData);
         editLineData.setText(data);
 
-        builder.setTitle(R.string.change_player_name)
+        builder.setTitle(R.string.Change_Player_Name)
                 .setView(dialogView)
-                .setPositiveButton(R.string.change, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         listener.onSubmit(dialogInterface);
                     }
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         LineEditDialog.this.getDialog().cancel();
@@ -103,16 +103,12 @@ public class LineEditDialog extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         listener = null;
     }
 
+    @SuppressWarnings("EmptyMethod")
     public interface DialogListener {
         void onSubmit(DialogInterface dialog);
     }

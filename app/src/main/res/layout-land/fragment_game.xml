@@ -54,7 +54,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:text="@string/label_phase_10"
+            android:text="@string/Phase_10"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="32sp" />
 
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/end_game"
+        android:text="@string/End_Game"
         android:textSize="32sp" />
 
 </LinearLayout>
