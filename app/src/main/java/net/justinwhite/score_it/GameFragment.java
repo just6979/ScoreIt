@@ -35,7 +35,6 @@ package net.justinwhite.score_it;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +44,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10GameModel;
+import net.justinwhite.score_model.phase_10.Phase10PlayerModel;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -66,6 +66,7 @@ public class GameFragment
     private GameSetupListener gameSetupListener;
     private Phase10GameModel game;
     private Phase10PlayerAdapter adapter;
+    private int chosenPlayer;
 
     public static GameFragment newInstance() {
         GameFragment fragment = new GameFragment();
@@ -141,6 +142,7 @@ public class GameFragment
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        chosenPlayer = position;
         FragmentManager fragmentManager = getActivity().getFragmentManager();
         LineEditDialog changeNameDialog = LineEditDialog.newInstance(
                 game.getPlayer(position).getName()
@@ -151,8 +153,11 @@ public class GameFragment
     }
 
     @Override
-    public void onSubmit(DialogInterface dialog) {
-
+    public void onSubmit(String newName) {
+        Phase10PlayerModel player = game.getPlayer(chosenPlayer);
+        player.setName(newName);
+        game.buildName();
+        textGameName.setText(game.getName());
     }
 
     @SuppressWarnings("unused")

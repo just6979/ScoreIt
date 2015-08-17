@@ -80,8 +80,8 @@ public class LineEditDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_line_edit, null);
-        EditText editLineData = (EditText) dialogView.findViewById(R.id.editLineData);
+        @SuppressLint("InflateParams") final View dialogView = inflater.inflate(R.layout.dialog_line_edit, null);
+        final EditText editLineData = (EditText) dialogView.findViewById(R.id.editLineData);
         editLineData.setText(data);
 
         builder.setTitle(R.string.Change_Player_Name)
@@ -89,7 +89,7 @@ public class LineEditDialog extends DialogFragment {
                 .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.onSubmit(dialogInterface);
+                        listener.onSubmit(editLineData.getText().toString());
                     }
                 })
                 .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
@@ -110,7 +110,7 @@ public class LineEditDialog extends DialogFragment {
 
     @SuppressWarnings("EmptyMethod")
     public interface DialogListener {
-        void onSubmit(DialogInterface dialog);
+        void onSubmit(String newName);
     }
 
 }
