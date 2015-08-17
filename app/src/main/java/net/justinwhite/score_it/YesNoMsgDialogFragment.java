@@ -66,8 +66,8 @@ public class YesNoMsgDialogFragment
         try {
             listener = (DialogListener) getTargetFragment();
         } catch (ClassCastException e) {
-            throw new ClassCastException(getTargetFragment().toString()
-                    + " must implement " + this.getClass().getName());
+            throw new ClassCastException(getTargetFragment().getClass().toString()
+                    + " must implement " + this.getClass().getName() + ".DialogListener");
         }
 
         if (getArguments() != null) {
