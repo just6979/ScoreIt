@@ -38,23 +38,21 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-public class YesNoMsgDialogFragment
+public class YesNoDialog
         extends DialogFragment {
 
     private DialogListener listener;
 
     private String title;
-    private String message;
 
-    public YesNoMsgDialogFragment() {
+    public YesNoDialog() {
         // Required empty public constructor
     }
 
-    public static YesNoMsgDialogFragment newInstance(String _title, String _message) {
-        YesNoMsgDialogFragment fragment = new YesNoMsgDialogFragment();
+    public static YesNoDialog newInstance(String _title) {
+        YesNoDialog fragment = new YesNoDialog();
         Bundle args = new Bundle();
         args.putString("title", _title);
-        args.putString("message", _message);
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,14 +64,13 @@ public class YesNoMsgDialogFragment
         try {
             listener = (DialogListener) getTargetFragment();
         } catch (ClassCastException e) {
-            throw new ClassCastException(getTargetFragment().getClass().toString()
+            throw new ClassCastException(getTargetFragment().getClass().getName()
                     + " must implement " + this.getClass().getName() + ".DialogListener");
         }
 
         if (getArguments() != null) {
             Bundle args = getArguments();
             title = args.getString("title");
-            message = args.getString("message");
         }
 
     }
@@ -82,7 +79,6 @@ public class YesNoMsgDialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(title)
-                .setMessage(message)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -92,7 +88,7 @@ public class YesNoMsgDialogFragment
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        YesNoMsgDialogFragment.this.getDialog().cancel();
+                        YesNoDialog.this.getDialog().cancel();
                     }
                 });
         return builder.create();

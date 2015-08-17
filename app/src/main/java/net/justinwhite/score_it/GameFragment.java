@@ -51,7 +51,7 @@ import butterknife.OnClick;
 
 public class GameFragment
         extends Fragment
-        implements YesNoDialogFragment.DialogListener, AdapterView.OnItemClickListener {
+        implements YesNoDialog.DialogListener, AdapterView.OnItemClickListener {
 
     @Bind(R.id.textGameName)
     TextView textGameName;
@@ -130,12 +130,11 @@ public class GameFragment
     @OnClick(R.id.buttonEndGame)
     protected void EndGame(View view) {
         FragmentManager fm = getActivity().getFragmentManager();
-        YesNoDialogFragment endGameDialog = YesNoDialogFragment.newInstance(
+        YesNoDialog endGameDialog = YesNoDialog.newInstance(
                 getString(R.string.dialog_end_game_title)
         );
         endGameDialog.setTargetFragment(this, 0);
         endGameDialog.show(fm, "end_game_dialog");
-
     }
 
     @Override
