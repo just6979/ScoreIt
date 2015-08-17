@@ -91,18 +91,22 @@ public class MainActivity
         editor.apply();
     }
 
+    @Override
     public int getNumPlayers() {
         return numPlayers;
     }
 
+    @Override
     public void setNumPlayers(int _numPlayers) {
         numPlayers = _numPlayers;
     }
 
+    @Override
     public int getCurrentFragmentID() {
         return currentFragmentID;
     }
 
+    @Override
     public void setCurrentFragmentID(int newFragmentID) {
         currentFragmentID = newFragmentID;
     }
