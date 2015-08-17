@@ -35,6 +35,7 @@ package net.justinwhite.score_it;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,10 @@ import butterknife.OnClick;
 
 public class GameFragment
         extends Fragment
-        implements YesNoDialog.DialogListener, AdapterView.OnItemClickListener {
+        implements
+        YesNoDialog.DialogListener,
+        LineEditDialog.DialogListener,
+        AdapterView.OnItemClickListener {
 
     @Bind(R.id.textGameName)
     TextView textGameName;
@@ -149,9 +153,18 @@ public class GameFragment
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != listItemClickListener) {
-            listItemClickListener.onPlayerItemInteraction(position);
-        }
+        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        LineEditDialog changeNameDialog = LineEditDialog.newInstance(
+                game.getPlayer(position).getName()
+        );
+        changeNameDialog.setTargetFragment(this, 0);
+        changeNameDialog.show(fragmentManager, "change_name_dialog");
+
+    }
+
+    @Override
+    public void onSubmit(DialogInterface dialog) {
+
     }
 
     public interface GameSetupListener {

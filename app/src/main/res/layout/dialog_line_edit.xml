@@ -30,21 +30,19 @@
   ~
   -->
 
-<resources>
-    <string name="current_num_players_pref">CURRENT_NUM_PLAYERS</string>
-    <string name="current_fragment_id_pref">CURRENT_FRAGMENT_ID</string>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="net.justinwhite.score_it.LineEditDialog">
 
-    <string name="app_name">ScoreIt</string>
-    <string name="start_game_button">Start Game</string>
-    <string name="how_many_players_label">How many players?</string>
-    <string name="current_num_players_label"># players:</string>
-    <string name="title_activity_main">ScoreIt</string>
-    <string name="end_game">End Game</string>
-    <string name="dialog_end_game_title">End the game?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="label_phase_10">Phase 10</string>
-    <string name="change">Change</string>
-    <string name="cancel">Cancel</string>
-    <string name="change_player_name">Change Player Name</string>
-</resources>
+    <EditText
+        android:id="@+id/editLineData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
