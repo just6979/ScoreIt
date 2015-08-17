@@ -46,10 +46,6 @@ public class YesNoDialogFragment
     private String title;
     private String message;
 
-    public interface YesNoDialogListener {
-        void YesNoSubmit();
-    }
-
     public static YesNoDialogFragment newInstance(String _title, String _message) {
         YesNoDialogFragment fragment = new YesNoDialogFragment();
         Bundle args = new Bundle();
@@ -99,6 +95,10 @@ public class YesNoDialogFragment
                     }
                 });
         return builder.create();
+    }
+
+    public interface YesNoDialogListener {
+        void YesNoSubmit();
     }
 
 }
