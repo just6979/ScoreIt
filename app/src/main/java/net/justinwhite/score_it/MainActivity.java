@@ -112,7 +112,7 @@ public class MainActivity
     }
 
     @Override
-    public void onPlayerItemInteraction(Phase10PlayerModel player) {
+    public void onPlayerItemInteraction(int position) {
 
     }
 }

@@ -154,9 +154,8 @@ public class GameFragment
         if (null != listItemClickListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            listItemClickListener.onPlayerItemInteraction(game.getPlayer(position));
+            listItemClickListener.onPlayerItemInteraction(position);
         }
     }
 
 }
-

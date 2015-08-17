@@ -32,8 +32,6 @@
 
 package net.justinwhite.score_it;
 
-import net.justinwhite.score_model.phase_10.Phase10PlayerModel;
-
 public interface OnPlayerItemInteractionListener {
-    void onPlayerItemInteraction(Phase10PlayerModel player);
+    void onPlayerItemInteraction(int player);
 }
