@@ -41,7 +41,7 @@ import android.os.Bundle;
 public class YesNoDialogFragment
         extends DialogFragment {
 
-    private YesNoDialogListener callback;
+    private YesNoDialogListener listener;
 
     private String title;
     private String message;
@@ -64,7 +64,7 @@ public class YesNoDialogFragment
         super.onCreate(savedInstanceState);
 
         try {
-            callback = (YesNoDialogListener) getTargetFragment();
+            listener = (YesNoDialogListener) getTargetFragment();
         } catch (ClassCastException e) {
             throw new ClassCastException(getTargetFragment().toString()
                     + " must implement " + this.getClass().getName());
@@ -86,7 +86,7 @@ public class YesNoDialogFragment
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        callback.YesNoSubmit();
+                        listener.YesNoSubmit();
                     }
                 })
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
