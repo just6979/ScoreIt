@@ -35,7 +35,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/phase10_player_item">
 
     <TextView
         android:id="@+id/textPlayerName"

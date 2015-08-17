@@ -37,7 +37,8 @@
     android:columnCount="4"
     android:orientation="vertical"
     android:useDefaultMargins="true"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/game_fragment">
 
     <TextView
         android:id="@+id/labelPhase10"

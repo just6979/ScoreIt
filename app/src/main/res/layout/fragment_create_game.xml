@@ -40,7 +40,8 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:useDefaultMargins="false"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/create_game_fragment">
 
     <TextView
         android:id="@+id/labelPhase10"
