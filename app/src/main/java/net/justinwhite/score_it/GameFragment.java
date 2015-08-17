@@ -158,4 +158,17 @@ public class GameFragment
         }
     }
 
+    public interface GameSetupListener {
+        int getNumPlayers();
+
+        void setNumPlayers(int _numPlayers);
+
+        int getCurrentFragmentID();
+
+        void setCurrentFragmentID(int newFragmentID);
+    }
+
+    public interface OnPlayerItemInteractionListener {
+        void onPlayerItemInteraction(int player);
+    }
 }

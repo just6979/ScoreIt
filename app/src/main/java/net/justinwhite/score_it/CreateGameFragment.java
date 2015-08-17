@@ -61,7 +61,7 @@ public class CreateGameFragment
     TextView labelMaxPlayers;
     // effectively constant, but not final because no constructors in Fragments
     private int SEEKBAR_OFFSET;
-    private GameSetupListener gameSetupListener;
+    private GameFragment.GameSetupListener gameSetupListener;
     private int numPlayers;
 
     public static CreateGameFragment newInstance() {
@@ -113,7 +113,7 @@ public class CreateGameFragment
         super.onAttach(activity);
 
         try {
-            gameSetupListener = (GameSetupListener) activity;
+            gameSetupListener = (GameFragment.GameSetupListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement GameSetupListener");
