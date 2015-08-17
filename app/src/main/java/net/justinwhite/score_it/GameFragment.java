@@ -143,7 +143,7 @@ public class GameFragment
         Fragment newFragment = CreateGameFragment.newInstance();
         gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_CREATE_GAME);
         getFragmentManager().beginTransaction()
-                .replace(R.id.container, newFragment)
+                .replace(R.id.container_main, newFragment)
                 .commit()
         ;
     }

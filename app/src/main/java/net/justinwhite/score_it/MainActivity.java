@@ -73,7 +73,7 @@ public class MainActivity
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, nextFragment)
+                    .add(R.id.container_main, nextFragment)
                     .commit();
         }
     }
