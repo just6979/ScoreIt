@@ -43,6 +43,9 @@ import net.justinwhite.score_model.phase_10.Phase10PlayerModel;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
 
     private final List<Phase10PlayerModel> players;
@@ -75,20 +78,36 @@ public class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
+        ViewHolder holder;
+
         if (view == null) {
-            view = layoutInflater.inflate(layoutID, null);
+            view = layoutInflater.inflate(layoutID, parent, false);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
+        } else {
+            holder = (ViewHolder) view.getTag();
         }
 
         Phase10PlayerModel p = players.get(position);
 
-        TextView textPlayerName = (TextView) view.findViewById(R.id.textPlayerName);
-//        TextView textPlayerScore = (TextView) view.findViewById(R.id.textPlayerScore);
-//        TextView textPlayerPhase = (TextView) view.findViewById(R.id.textPlayerPhase);
-
-        textPlayerName.setText(p.getName());
+        holder.textPlayerName.setText(p.getName());
 //        textPlayerScore.setText(p.getScore());
 //        textPlayerPhase.setText(p.getPhase());
 
         return view;
     }
+
+    static class ViewHolder {
+        @Bind(R.id.textPlayerName)
+        TextView textPlayerName;
+        @Bind(R.id.textPlayerScore)
+        TextView textPlayerScore;
+        @Bind(R.id.textPlayerPhase)
+        TextView textPlayerPhase;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+
 }
