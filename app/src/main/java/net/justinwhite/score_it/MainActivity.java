@@ -38,9 +38,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import net.justinwhite.score_model.phase_10.Phase10PlayerModel;
+
 public class MainActivity
         extends Activity
-        implements GameSetupListener {
+        implements GameSetupListener, OnPlayerItemInteractionListener {
 
     static final int FRAG_ID_CREATE_GAME = 1;
     static final int FRAG_ID_GAME = 2;
@@ -105,4 +107,8 @@ public class MainActivity
         currentFragmentID = newFragmentID;
     }
 
+    @Override
+    public void onPlayerItemInteraction(Phase10PlayerModel player) {
+
+    }
 }

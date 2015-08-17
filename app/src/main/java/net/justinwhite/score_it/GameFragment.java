@@ -39,7 +39,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,14 +51,16 @@ import butterknife.OnClick;
 
 public class GameFragment
         extends Fragment
-        implements YesNoDialogFragment.YesNoDialogListener {
+        implements YesNoDialogFragment.YesNoDialogListener, AdapterView.OnItemClickListener {
 
     @Bind(R.id.textGameName)
     TextView textGameName;
     @Bind(R.id.listPlayers)
     ListView listView;
+    private OnPlayerItemInteractionListener listItemClickListener;
     private GameSetupListener gameSetupListener;
     private Phase10GameModel game;
+    private Phase10PlayerAdapter adapter;
 
     public static GameFragment newInstance() {
         GameFragment fragment = new GameFragment();
@@ -77,7 +79,9 @@ public class GameFragment
         if (getArguments() != null) {
             Bundle args = getArguments();
         }
+
         game = new Phase10GameModel();
+        adapter = new Phase10PlayerAdapter(this.getActivity().getBaseContext(), R.layout.item_phase10_player, game.getPlayerList());
     }
 
     @Override
@@ -89,16 +93,10 @@ public class GameFragment
         game.setNumPlayers(numPlayers);
         textGameName.setText(game.getName());
 
-        String players[] = new String[game.getNumPlayers()];
-        for (int i = 0; i < game.getNumPlayers(); i++) {
-            players[i] = game.getPlayer(i).toString();
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                players
-        );
         listView.setAdapter(adapter);
+
+        // Set OnItemClickListener so we can be notified on item clicks
+        listView.setOnItemClickListener(this);
 
         return rootView;
     }
@@ -113,6 +111,20 @@ public class GameFragment
             throw new ClassCastException(activity.toString()
                     + " must implement GameSetupListener");
         }
+
+        try {
+            listItemClickListener = (OnPlayerItemInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnPlayerItemInteractionListener");
+        }
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listItemClickListener = null;
     }
 
     @OnClick(R.id.buttonEndGame)
@@ -135,6 +147,16 @@ public class GameFragment
                 .replace(R.id.container, newFragment)
                 .commit()
         ;
-
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != listItemClickListener) {
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            listItemClickListener.onPlayerItemInteraction(game.getPlayer(position));
+        }
+    }
+
 }
+
