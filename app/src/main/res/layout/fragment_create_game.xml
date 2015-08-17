@@ -32,6 +32,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_game_fragment"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:alignmentMode="alignBounds"
@@ -40,8 +41,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:useDefaultMargins="false"
-    tools:context=".MainActivity"
-    android:id="@+id/create_game_fragment">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/labelPhase10"

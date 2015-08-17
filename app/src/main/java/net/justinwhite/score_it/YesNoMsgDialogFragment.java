@@ -46,6 +46,10 @@ public class YesNoMsgDialogFragment
     private String title;
     private String message;
 
+    public YesNoMsgDialogFragment() {
+        // Required empty public constructor
+    }
+
     public static YesNoMsgDialogFragment newInstance(String _title, String _message) {
         YesNoMsgDialogFragment fragment = new YesNoMsgDialogFragment();
         Bundle args = new Bundle();
@@ -53,10 +57,6 @@ public class YesNoMsgDialogFragment
         args.putString("message", _message);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public YesNoMsgDialogFragment() {
-        // Required empty public constructor
     }
 
     @Override

@@ -151,8 +151,6 @@ public class GameFragment
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != listItemClickListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
             listItemClickListener.onPlayerItemInteraction(position);
         }
     }

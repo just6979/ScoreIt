@@ -32,13 +32,13 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_fragment"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:columnCount="4"
     android:orientation="vertical"
     android:useDefaultMargins="true"
-    tools:context=".MainActivity"
-    android:id="@+id/game_fragment">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/labelPhase10"
@@ -55,25 +55,25 @@
         android:id="@+id/textGameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GameName"
-        tools:ignore="HardcodedText"
         android:layout_gravity="top|bottom|center_horizontal"
-        android:textSize="24sp" />
+        android:text="GameName"
+        android:textSize="24sp"
+        tools:ignore="HardcodedText" />
 
     <ListView
         android:id="@+id/listPlayers"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/buttonEndGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/end_game"
-        android:textSize="32sp"
-        android:layout_gravity="center_horizontal" />
+        android:textSize="32sp" />
 
 </LinearLayout>

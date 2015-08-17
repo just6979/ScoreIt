@@ -43,9 +43,9 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/labelPhase10"
@@ -54,19 +54,19 @@
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="2"
             android:text="@string/label_phase_10"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="32sp"
-            android:layout_weight="2" />
+            android:textSize="32sp" />
 
         <TextView
             android:id="@+id/labelHowManyPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:text="@string/how_many_players_label"
-            android:textSize="24sp"
-            android:layout_weight="1" />
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -78,31 +78,31 @@
             android:id="@+id/labelMinPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:enabled="false"
             android:text="2"
             android:textSize="24sp"
-            tools:ignore="HardcodedText"
-            android:layout_gravity="center_vertical" />
+            tools:ignore="HardcodedText" />
 
         <SeekBar
             android:id="@+id/seekNumPlayers"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_margin="20dp"
-            android:max="6"
-            android:progress="3"
             android:layout_weight="1"
-            android:layout_gravity="center_vertical" />
+            android:max="6"
+            android:progress="3" />
 
         <TextView
             android:id="@+id/labelMaxPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:enabled="false"
             android:text="8"
             android:textSize="24sp"
-            tools:ignore="HardcodedText"
-            android:layout_gravity="center_vertical" />
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <TextView
@@ -110,16 +110,16 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="fill_vertical|center_horizontal"
+        android:layout_weight="1"
         android:text="4"
         android:textSize="32sp"
-        tools:ignore="HardcodedText"
-        android:layout_weight="1" />
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/start_game_button"
-        android:textSize="32sp"
-        android:layout_gravity="center_horizontal" />
+        android:textSize="32sp" />
 </LinearLayout>

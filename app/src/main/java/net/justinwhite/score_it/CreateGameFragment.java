@@ -64,15 +64,15 @@ public class CreateGameFragment
     private GameFragment.GameSetupListener gameSetupListener;
     private int numPlayers;
 
+    public CreateGameFragment() {
+        // Required empty public constructor
+    }
+
     public static CreateGameFragment newInstance() {
         CreateGameFragment fragment = new CreateGameFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public CreateGameFragment() {
-        // Required empty public constructor
     }
 
     @Override

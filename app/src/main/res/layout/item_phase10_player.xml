@@ -32,11 +32,11 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/phase10_player_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:id="@+id/phase10_player_item">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textPlayerName"

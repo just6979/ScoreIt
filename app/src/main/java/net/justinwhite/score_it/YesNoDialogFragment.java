@@ -45,16 +45,16 @@ public class YesNoDialogFragment
 
     private String title;
 
+    public YesNoDialogFragment() {
+        // Required empty public constructor
+    }
+
     public static YesNoDialogFragment newInstance(String _title) {
         YesNoDialogFragment fragment = new YesNoDialogFragment();
         Bundle args = new Bundle();
         args.putString("title", _title);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public YesNoDialogFragment() {
-        // Required empty public constructor
     }
 
     @Override
