@@ -33,12 +33,10 @@
 package net.justinwhite.score_it;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,8 +48,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GameFragment
-        extends Fragment
+public class ShowGameActivity
+        extends Activity
         implements
         YesNoDialog.DialogListener,
         LineEditDialog.DialogListener,
@@ -61,112 +59,86 @@ public class GameFragment
     @Bind(R.id.textGameName) TextView textGameName;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.listPlayers) ListView listView;
-    private GameSetupListener gameSetupListener;
     private Phase10GameModel game;
-    private Phase10PlayerAdapter adapter;
     private int chosenPlayer;
-
-    public GameFragment() {
-        // Required empty public constructor
-    }
-
-    public static GameFragment newInstance() {
-        GameFragment fragment = new GameFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            @SuppressWarnings("UnusedAssignment") Bundle args = getArguments();
-        }
+
+        setContentView(R.layout.activity_show_game);
+        ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        int numPlayers = intent.getIntExtra(
+                CreateGameActivity.EXTRA_NUM_PLAYERS,
+                CreateGameActivity.DEFAULT_NUM_PLAYERS
+        );
 
         game = new Phase10GameModel();
-        adapter = new Phase10PlayerAdapter(this.getActivity().getBaseContext(), R.layout.item_phase10_player, game.getPlayerList());
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_game, container, false);
-        ButterKnife.bind(this, rootView);
-
-        int numPlayers = ((MainActivity) getActivity()).getNumPlayers();
         game.setNumPlayers(numPlayers);
         textGameName.setText(game.getName());
 
+        Phase10PlayerAdapter adapter = new Phase10PlayerAdapter(
+                this.getBaseContext(),
+                R.layout.item_phase10_player,
+                game.getPlayerList()
+        );
         listView.setAdapter(adapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
         listView.setOnItemClickListener(this);
 
-        return rootView;
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 
-        try {
-            gameSetupListener = (GameSetupListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement GameSetupListener");
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                showExitDialog();
+                return (true);
         }
+        return (super.onOptionsItemSelected(item));
+    }
+
+    private void showExitDialog() {
+        YesNoDialog endGameDialog = YesNoDialog.newInstance(
+                getString(R.string.End_the_game_question)
+        );
+        endGameDialog.show(getFragmentManager(), "end_game_dialog");
     }
 
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonEndGame)
     protected void EndGame(View view) {
-        FragmentManager fm = getActivity().getFragmentManager();
-        YesNoDialog endGameDialog = YesNoDialog.newInstance(
-                getString(R.string.End_the_game_question)
-        );
-        endGameDialog.setTargetFragment(this, 0);
-        endGameDialog.show(fm, "end_game_dialog");
+        showExitDialog();
     }
 
     @Override
-    public void onSubmit() {
-        Fragment newFragment = CreateGameFragment.newInstance();
-        gameSetupListener.setCurrentFragmentID(MainActivity.FRAG_ID_CREATE_GAME);
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container_main, newFragment)
-                .commit()
-        ;
+    public void onYesNoSubmit() {
+        finish();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         chosenPlayer = position;
-        FragmentManager fragmentManager = getActivity().getFragmentManager();
         LineEditDialog changeNameDialog = LineEditDialog.newInstance(
                 game.getPlayer(position).getName()
         );
-        changeNameDialog.setTargetFragment(this, 0);
-        changeNameDialog.show(fragmentManager, "change_name_dialog");
-
+        changeNameDialog.show(getFragmentManager(), "change_name_dialog");
     }
 
     @Override
-    public void onSubmit(String newName) {
+    public void onLineEditSubmit(String newName) {
         Phase10PlayerModel player = game.getPlayer(chosenPlayer);
         player.setName(newName);
         game.buildName();
         textGameName.setText(game.getName());
-    }
-
-    @SuppressWarnings("unused")
-    public interface GameSetupListener {
-        int getNumPlayers();
-
-        void setNumPlayers(int _numPlayers);
-
-        int getCurrentFragmentID();
-
-        void setCurrentFragmentID(int newFragmentID);
     }
 
     @SuppressWarnings({"unused", "EmptyMethod"})

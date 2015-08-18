@@ -30,13 +30,15 @@
   ~
   -->
 
-<LinearLayout android:id="@+id/phase10_player_item"
+<LinearLayout
+    android:id="@+id/phase10_player_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <TextView
         android:id="@+id/textPlayerName"

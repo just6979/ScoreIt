@@ -67,9 +67,9 @@ public class LineEditDialog extends DialogFragment {
             data = getArguments().getString(ARG_DATA);
         }
         try {
-            listener = (DialogListener) getTargetFragment();
+            listener = (DialogListener) getActivity();
         } catch (ClassCastException e) {
-            throw new ClassCastException(getTargetFragment().getClass().getName()
+            throw new ClassCastException(getActivity().getClass().getName()
                     + " must implement " + this.getClass().getName() + ".DialogListener");
         }
     }
@@ -80,7 +80,8 @@ public class LineEditDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        @SuppressLint("InflateParams") final View dialogView = inflater.inflate(R.layout.dialog_line_edit, null);
+        @SuppressLint("InflateParams")
+        final View dialogView = inflater.inflate(R.layout.dialog_line_edit, null);
         final EditText editLineData = (EditText) dialogView.findViewById(R.id.editLineData);
         editLineData.setText(data);
 
@@ -89,7 +90,7 @@ public class LineEditDialog extends DialogFragment {
                 .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.onSubmit(editLineData.getText().toString());
+                        listener.onLineEditSubmit(editLineData.getText().toString());
                     }
                 })
                 .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
@@ -110,7 +111,7 @@ public class LineEditDialog extends DialogFragment {
 
     @SuppressWarnings("EmptyMethod")
     public interface DialogListener {
-        void onSubmit(String newName);
+        void onLineEditSubmit(String newName);
     }
 
 }

@@ -31,41 +31,53 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/create_game_fragment"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:alignmentMode="alignBounds"
-    android:columnCount="3"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:useDefaultMargins="false"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/labelPhase10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/Phase_10"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp" />
-
-    <TextView
-        android:id="@+id/labelHowManyPlayers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/How_many_players_question"
-        android:textSize="24sp" />
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:alignmentMode="alignBounds"
+              android:columnCount="3"
+              android:orientation="vertical"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:useDefaultMargins="false"
+              tools:context=".MainActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/labelPhase10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2"
+            android:text="@string/Phase_10"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp"
+            />
+
+        <TextView
+            android:id="@+id/labelHowManyPlayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@string/How_many_players_question"
+            android:textSize="24sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
         <TextView
             android:id="@+id/labelMinPlayers"
@@ -75,7 +87,8 @@
             android:enabled="false"
             android:text="2"
             android:textSize="24sp"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            />
 
         <SeekBar
             android:id="@+id/seekNumPlayers"
@@ -85,7 +98,8 @@
             android:layout_margin="20dp"
             android:layout_weight="1"
             android:max="6"
-            android:progress="3" />
+            android:progress="3"
+            />
 
         <TextView
             android:id="@+id/labelMaxPlayers"
@@ -95,7 +109,8 @@
             android:enabled="false"
             android:text="8"
             android:textSize="24sp"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            />
     </LinearLayout>
 
     <TextView
@@ -106,7 +121,8 @@
         android:layout_weight="1"
         android:text="4"
         android:textSize="32sp"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        />
 
     <Button
         android:id="@+id/buttonStartGame"
@@ -114,5 +130,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/Start_Game"
-        android:textSize="32sp" />
+        android:textSize="32sp"
+        />
 </LinearLayout>

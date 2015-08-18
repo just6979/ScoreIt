@@ -30,49 +30,42 @@
   ~
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:columnCount="4"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:useDefaultMargins="true"
-    tools:context=".MainActivity">
+<LinearLayout android:id="@+id/game_fragment"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:columnCount="4"
+              android:orientation="vertical"
+              android:useDefaultMargins="true"
+              tools:context=".MainActivity"
+    >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/labelPhase10"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/Phase_10"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32sp"
+        />
 
-        <TextView
-            android:id="@+id/labelPhase10"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:text="@string/Phase_10"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="32sp" />
-
-        <TextView
-            android:id="@+id/textGameName"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="GameName"
-            android:textSize="24sp"
-            tools:ignore="HardcodedText" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textGameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|bottom|center_horizontal"
+        android:text="GameName"
+        android:textSize="24sp"
+        tools:ignore="HardcodedText"
+        />
 
     <ListView
         android:id="@+id/listPlayers"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
@@ -86,6 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/End_Game"
-        android:textSize="32sp" />
+        android:textSize="32sp"
+        />
 
 </LinearLayout>

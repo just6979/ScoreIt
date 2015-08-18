@@ -33,49 +33,62 @@
 package net.justinwhite.score_it;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
-public class MainActivity
+import net.justinwhite.score_model.phase_10.Phase10GameModel;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class CreateGameActivity
         extends Activity
-        implements GameFragment.GameSetupListener, GameFragment.OnPlayerItemInteractionListener {
+        implements SeekBar.OnSeekBarChangeListener {
 
-    static final int FRAG_ID_CREATE_GAME = 1;
-    static final int FRAG_ID_GAME = 2;
-    private static final int DEFAULT_NUM_PLAYERS = 4;
+    public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
 
-    private int currentFragmentID;
+    public static final int DEFAULT_NUM_PLAYERS = 4;
+    private static final int SEEKBAR_OFFSET = Phase10GameModel.MIN_PLAYERS;
+
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.seekNumPlayers) SeekBar seekNumPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.textNumPlayers) TextView labelNumPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.labelMinPlayers) TextView labelMinPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.labelMaxPlayers) TextView labelMaxPlayers;
     private int numPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_create_game);
+        ButterKnife.bind(this);
+
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), DEFAULT_NUM_PLAYERS);
-        currentFragmentID = sharedPref.getInt(getString(R.string.current_fragment_id_pref), FRAG_ID_CREATE_GAME);
 
-        Fragment nextFragment;
-        switch (currentFragmentID) {
-            case FRAG_ID_CREATE_GAME:
-                nextFragment = new CreateGameFragment();
-                break;
-            case FRAG_ID_GAME:
-                nextFragment = new GameFragment();
-                break;
-            default:
-                // use CreateGame if invalid/unknown ID
-                nextFragment = new CreateGameFragment();
-                break;
-        }
-        setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container_main, nextFragment)
-                    .commit();
-        }
+        // get max & min players from the GameModel
+        int maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
+        labelMaxPlayers.setText(Integer.toString(maxNumPlayers));
+        int minNumPLayers = Phase10GameModel.MIN_PLAYERS;
+        labelMinPlayers.setText(Integer.toString(minNumPLayers));
+
+        seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
+
+        seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
+        seekNumPlayers.setOnSeekBarChangeListener(this);
+
+        labelNumPlayers.setText(Integer.toString(numPlayers));
+        labelNumPlayers.clearFocus();
     }
 
     @Override
@@ -85,32 +98,31 @@ public class MainActivity
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.current_num_players_pref), numPlayers);
-        editor.putInt(getString(R.string.current_fragment_id_pref), currentFragmentID);
         editor.apply();
     }
 
     @Override
-    public int getNumPlayers() {
-        return numPlayers;
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+        if (fromTouch) {
+            numPlayers = progress + SEEKBAR_OFFSET;
+            labelNumPlayers.setText(Integer.toString(numPlayers));
+        }
     }
 
     @Override
-    public void setNumPlayers(int _numPlayers) {
-        numPlayers = _numPlayers;
+    public void onStartTrackingTouch(SeekBar seekBar) {
     }
 
     @Override
-    public int getCurrentFragmentID() {
-        return currentFragmentID;
+    public void onStopTrackingTouch(SeekBar seekBar) {
     }
 
-    @Override
-    public void setCurrentFragmentID(int newFragmentID) {
-        currentFragmentID = newFragmentID;
+    @SuppressWarnings("unused")
+    @OnClick(R.id.buttonStartGame)
+    protected void StartNewGame(View view) {
+        Intent intent = new Intent(this, ShowGameActivity.class);
+        intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
+        startActivity(intent);
     }
 
-    @Override
-    public void onPlayerItemInteraction(int position) {
-
-    }
 }

@@ -64,9 +64,9 @@ public class YesNoMsgDialog
         super.onCreate(savedInstanceState);
 
         try {
-            listener = (DialogListener) getTargetFragment();
+            listener = (DialogListener) getActivity();
         } catch (ClassCastException e) {
-            throw new ClassCastException(getTargetFragment().getClass().toString()
+            throw new ClassCastException(getActivity().getClass().toString()
                     + " must implement " + this.getClass().getName() + ".DialogListener");
         }
 
@@ -86,7 +86,7 @@ public class YesNoMsgDialog
                 .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.onSubmit();
+                        listener.onYesNoMsgSubmit();
                     }
                 })
                 .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
@@ -99,7 +99,7 @@ public class YesNoMsgDialog
     }
 
     public interface DialogListener {
-        void onSubmit();
+        void onYesNoMsgSubmit();
     }
 
 }
