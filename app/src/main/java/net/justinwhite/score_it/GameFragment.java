@@ -58,11 +58,9 @@ public class GameFragment
         AdapterView.OnItemClickListener {
 
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.textGameName)
-    TextView textGameName;
+    @Bind(R.id.textGameName) TextView textGameName;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.listPlayers)
-    ListView listView;
+    @Bind(R.id.listPlayers) ListView listView;
     private GameSetupListener gameSetupListener;
     private Phase10GameModel game;
     private Phase10PlayerAdapter adapter;

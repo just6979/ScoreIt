@@ -52,17 +52,13 @@ public class CreateGameFragment
         implements SeekBar.OnSeekBarChangeListener {
 
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.seekNumPlayers)
-    SeekBar seekNumPlayers;
+    @Bind(R.id.seekNumPlayers) SeekBar seekNumPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.textNumPlayers)
-    TextView labelNumPlayers;
+    @Bind(R.id.textNumPlayers) TextView labelNumPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.labelMinPlayers)
-    TextView labelMinPlayers;
+    @Bind(R.id.labelMinPlayers) TextView labelMinPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.labelMaxPlayers)
-    TextView labelMaxPlayers;
+    @Bind(R.id.labelMaxPlayers) TextView labelMaxPlayers;
     // effectively constant, but not final because no constructors in Fragments
     private int SEEKBAR_OFFSET;
     private GameFragment.GameSetupListener gameSetupListener;
