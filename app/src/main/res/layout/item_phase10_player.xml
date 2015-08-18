@@ -30,29 +30,39 @@
   ~
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:id="@+id/phase10_player_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/phase10_player_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textPlayerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Player_Name" />
+        android:padding="10dp"
+        android:text="@string/Player_Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
 
     <TextView
         android:id="@+id/textPlayerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Score" />
+        android:padding="10dp"
+        android:text="@string/Score"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
 
     <TextView
         android:id="@+id/textPlayerPhase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Phase" />
+        android:padding="10dp"
+        android:text="@string/Phase"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+
 </LinearLayout>
