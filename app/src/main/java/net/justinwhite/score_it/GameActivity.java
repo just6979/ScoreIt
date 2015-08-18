@@ -141,8 +141,4 @@ public class GameActivity
         textGameName.setText(game.getName());
     }
 
-    @SuppressWarnings({"unused", "EmptyMethod"})
-    public interface OnPlayerItemInteractionListener {
-        void onPlayerItemInteraction(int player);
-    }
 }
