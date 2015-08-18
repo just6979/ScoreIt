@@ -74,7 +74,7 @@ public class CreateGameActivity
         ButterKnife.bind(this);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        numPlayers = sharedPref.getInt(getString(R.string.current_num_players_pref), DEFAULT_NUM_PLAYERS);
+        numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
 
         // get max & min players from the GameModel
         int maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
@@ -97,7 +97,7 @@ public class CreateGameActivity
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(getString(R.string.current_num_players_pref), numPlayers);
+        editor.putInt(getString(R.string.pref_current_num_players), numPlayers);
         editor.apply();
     }
 

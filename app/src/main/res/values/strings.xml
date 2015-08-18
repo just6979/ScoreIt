@@ -31,8 +31,12 @@
   -->
 
 <resources>
-    <string name="current_num_players_pref">CURRENT_NUM_PLAYERS</string>
-    <string name="current_fragment_id_pref">CURRENT_FRAGMENT_ID</string>
+    <string name="pref_current_num_players">CURRENT_NUM_PLAYERS</string>
+    <string name="pref_current_fragment_id">CURRENT_FRAGMENT_ID</string>
+
+    <string name="default_num_players">4</string>
+    <string name="max_num_players">8</string>
+    <string name="min_num_players">2</string>
 
     <string name="Start_Game">Start Game</string>
     <string name="How_many_players_question">How many players?</string>
@@ -48,4 +52,5 @@
     <string name="Player_Name">Player Name</string>
     <string name="Score">Score</string>
     <string name="Phase">Phase</string>
+    <string name="Game_Name">Game Name</string>
 </resources>

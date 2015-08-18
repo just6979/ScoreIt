@@ -59,9 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|bottom|center_horizontal"
-        android:text="GameName"
+        android:text="@string/Game_Name"
         android:textSize="24sp"
-        tools:ignore="HardcodedText"
         />
 
     <ListView
