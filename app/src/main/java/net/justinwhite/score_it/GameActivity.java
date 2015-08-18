@@ -35,6 +35,7 @@ package net.justinwhite.score_it;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,7 +50,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GameActivity
-        extends Activity
+        extends AppCompatActivity
         implements
         YesNoDialog.DialogListener,
         LineEditDialog.DialogListener,
@@ -79,7 +80,7 @@ public class GameActivity
 
         game = new Phase10GameModel();
         game.setNumPlayers(numPlayers);
-        textGameName.setText("Game: " + game.getName());
+        textGameName.setText(game.getName());
 
         Phase10PlayerAdapter adapter = new Phase10PlayerAdapter(
                 this.getBaseContext(),

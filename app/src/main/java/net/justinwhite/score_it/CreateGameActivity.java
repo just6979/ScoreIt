@@ -37,6 +37,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -48,7 +49,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CreateGameActivity
-        extends Activity
+        extends AppCompatActivity
         implements SeekBar.OnSeekBarChangeListener {
 
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";

@@ -31,7 +31,7 @@
   -->
 
 <LinearLayout
-    android:id="@+id/create_game_fragment"
+    android:id="@+id/layoutCreateGame"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -39,12 +39,11 @@
     android:alignmentMode="alignBounds"
     android:columnCount="3"
     android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:useDefaultMargins="false"
-    tools:context=".MainActivity"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".CreateGameActivity"
     >
 
     <TextView
@@ -52,11 +51,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/Phase_10"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
+        android:textSize="24sp"
         />
 
     <TextView
@@ -65,12 +63,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/How_many_players_question"
-        android:textSize="24sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         >
 
@@ -79,9 +79,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:enabled="false"
             android:text="@string/min_num_players"
-            android:textSize="24sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             />
 
         <SeekBar
@@ -89,7 +88,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="20dp"
             android:layout_weight="1"
             android:max="6"
             android:progress="3"
@@ -100,9 +98,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:enabled="false"
             android:text="@string/max_num_players"
-            android:textSize="24sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             />
     </LinearLayout>
 
@@ -113,7 +110,7 @@
         android:layout_gravity="fill_vertical|center_horizontal"
         android:layout_weight="1"
         android:text="@string/default_num_players"
-        android:textSize="32sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         />
 
     <Button
@@ -122,6 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/Start_Game"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
         />
 </LinearLayout>
