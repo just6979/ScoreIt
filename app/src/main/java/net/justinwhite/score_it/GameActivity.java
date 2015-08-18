@@ -48,7 +48,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ShowGameActivity
+public class GameActivity
         extends Activity
         implements
         YesNoDialog.DialogListener,
@@ -66,7 +66,7 @@ public class ShowGameActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_show_game);
+        setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();

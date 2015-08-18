@@ -52,7 +52,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShowGameActivity"
+            android:name=".GameActivity"
             android:label="@string/ScoreIt"
             android:parentActivityName=".CreateGameActivity"
             >

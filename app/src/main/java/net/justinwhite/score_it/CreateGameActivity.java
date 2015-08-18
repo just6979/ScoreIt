@@ -120,7 +120,7 @@ public class CreateGameActivity
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame(View view) {
-        Intent intent = new Intent(this, ShowGameActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         startActivity(intent);
     }
