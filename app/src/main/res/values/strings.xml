@@ -32,7 +32,6 @@
 
 <resources>
     <string name="pref_current_num_players">CURRENT_NUM_PLAYERS</string>
-    <string name="pref_current_fragment_id">CURRENT_FRAGMENT_ID</string>
 
     <string name="default_num_players">4</string>
     <string name="max_num_players">8</string>
