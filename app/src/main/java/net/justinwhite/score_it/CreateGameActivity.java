@@ -38,7 +38,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -66,7 +65,6 @@ public class CreateGameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMaxPlayers) TextView labelMaxPlayers;
     private int numPlayers;
-    private Toolbar toolbar;
     private int maxNumPlayers;
     private int minNumPLayers;
 
@@ -77,7 +75,7 @@ public class CreateGameActivity
         setContentView(R.layout.activity_create_game);
         ButterKnife.bind(this);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -124,25 +122,28 @@ public class CreateGameActivity
 
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonStartGame)
-    protected void StartNewGame(View view) {
+    protected void StartNewGame() {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
     }
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.labelMinPlayers)
-    protected void setMinPlayerCount(View view) {
+    protected void setMinPlayerCount() {
         seekNumPlayers.setProgress(minNumPLayers - SEEKBAR_OFFSET);
     }
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.labelMaxPlayers)
-    protected void setMaxPlayerCount(View view) {
+    protected void setMaxPlayerCount() {
         seekNumPlayers.setProgress(maxNumPlayers - SEEKBAR_OFFSET);
     }
 
+    @SuppressWarnings("unused")
     @OnClick(R.id.labelHowManyPlayers)
-    protected void setDefaultPlayerCount(View view) {
+    protected void setDefaultPlayerCount() {
         seekNumPlayers.setProgress(DEFAULT_NUM_PLAYERS - SEEKBAR_OFFSET);
     }
 

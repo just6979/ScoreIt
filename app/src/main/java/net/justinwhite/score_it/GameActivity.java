@@ -63,7 +63,6 @@ public class GameActivity
     @Bind(R.id.listPlayers) ListView listView;
     private Phase10GameModel game;
     private int chosenPlayer;
-    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +73,7 @@ public class GameActivity
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         if (actionbar != null) {
