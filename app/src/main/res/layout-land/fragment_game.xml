@@ -72,11 +72,13 @@
 
     <ListView
         android:id="@+id/listPlayers"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:listitem="@android:layout/simple_list_item_1"
+        />
 
     <Button
         android:id="@+id/buttonEndGame"
