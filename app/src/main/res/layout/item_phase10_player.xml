@@ -57,10 +57,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/labelPlayerScore"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/labelPlayerScore"
         android:layout_toRightOf="@+id/labelPlayerScore"
         android:text="@string/Score"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginLeft="4dp"
         />
 
     <TextView
@@ -68,10 +70,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/labelPlayerPhase"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/labelPlayerPhase"
         android:layout_toRightOf="@+id/labelPlayerPhase"
         android:text="@string/Phase"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginLeft="4dp"
         />
 
     <TextView
@@ -80,6 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textPlayerName"
         android:layout_toLeftOf="@+id/textPlayerPhase"
+        android:layout_toStartOf="@+id/textPlayerPhase"
         android:text="@string/Score_colon"
         android:textAppearance="?android:attr/textAppearanceMedium"
         />
@@ -90,6 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textPlayerName"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/textPlayerName"
         android:layout_toRightOf="@+id/textPlayerName"
         android:text="@string/Phase_colon"
         android:textAppearance="?android:attr/textAppearanceMedium"
