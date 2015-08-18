@@ -123,7 +123,7 @@ public class GameActivity
     @Override
     public void onYesNoSubmit() {
         finish();
-        overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
+        overridePendingTransition(R.anim.fade_in_500, R.anim.fade_out_500);
     }
 
     @Override
