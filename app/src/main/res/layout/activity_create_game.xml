@@ -30,7 +30,7 @@
   ~
   -->
 
-<LinearLayout
+<RelativeLayout
     android:id="@+id/layoutCreateGame"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -46,15 +46,17 @@
         layout="@layout/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         />
 
     <TextView
         android:id="@+id/labelPhase10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/Phase_10"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="24sp"
@@ -64,51 +66,67 @@
         android:id="@+id/labelHowManyPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/labelPhase10"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:text="@string/How_many_players_question"
         android:textAppearance="?android:attr/textAppearanceMedium"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/labelMinPlayers"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal"
-        >
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center_vertical"
+        android:text="@string/min_num_players"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="24dp"
+        android:layout_alignTop="@+id/seekNumPlayers"
+        android:layout_alignBottom="@+id/seekNumPlayers"
+        android:layout_marginTop="4dp"
+        />
 
-        <TextView
-            android:id="@+id/labelMinPlayers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/min_num_players"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            />
+    <TextView
+        android:id="@+id/labelMaxPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="24dp"
+        android:text="@string/max_num_players"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/seekNumPlayers"
+        android:layout_alignTop="@+id/seekNumPlayers"
+        android:layout_marginTop="4dp"
+        />
 
-        <SeekBar
-            android:id="@+id/seekNumPlayers"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:max="6"
-            android:progress="3"
-            />
-
-        <TextView
-            android:id="@+id/labelMaxPlayers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/max_num_players"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            />
-    </LinearLayout>
+    <SeekBar
+        android:id="@+id/seekNumPlayers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:max="6"
+        android:progress="3"
+        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@id/labelMinPlayers"
+        android:layout_below="@+id/labelHowManyPlayers"
+        android:layout_marginTop="24dp"
+        android:layout_toStartOf="@id/labelMaxPlayers"
+        android:layout_marginBottom="24dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+        />
 
     <TextView
         android:id="@+id/textNumPlayers"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekNumPlayers"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="fill_vertical|center_horizontal"
         android:layout_weight="1"
         android:text="@string/default_num_players"
@@ -119,10 +137,14 @@
         android:id="@+id/buttonStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:text="@string/Start_Game"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
         />
-</LinearLayout>
+</RelativeLayout>
