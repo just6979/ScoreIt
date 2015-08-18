@@ -39,26 +39,15 @@
     android:columnCount="4"
     android:orientation="vertical"
     android:useDefaultMargins="true"
-    tools:context=".MainActivity"
+    tools:context=".GameActivity"
     >
-
-    <TextView
-        android:id="@+id/labelPhase10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/Phase_10"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
-        />
 
     <TextView
         android:id="@+id/textGameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|bottom|center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
         android:text="@string/Game_Name"
         android:textSize="24sp"
         />
