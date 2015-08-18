@@ -53,4 +53,6 @@
     <string name="Phase">Phase</string>
     <string name="Name">Name</string>
     <string name="Game_colon">Game:</string>
+    <string name="Score_colon">Score:</string>
+    <string name="Phase_colon">Phase:</string>
 </resources>

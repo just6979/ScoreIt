@@ -30,13 +30,14 @@
   ~
   -->
 
-<LinearLayout
+<RelativeLayout
     android:id="@+id/phase10_player_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:padding="8dp"
     tools:context=".ShowGameActivity"
     >
 
@@ -44,7 +45,9 @@
         android:id="@+id/textPlayerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="@string/Player_Name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
@@ -53,18 +56,43 @@
         android:id="@+id/textPlayerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_alignBaseline="@+id/labelPlayerScore"
+        android:layout_toRightOf="@+id/labelPlayerScore"
         android:text="@string/Score"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="4dp"
         />
 
     <TextView
         android:id="@+id/textPlayerPhase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_alignBaseline="@+id/labelPlayerPhase"
+        android:layout_toRightOf="@+id/labelPlayerPhase"
         android:text="@string/Phase"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="4dp"
+        />
+
+    <TextView
+        android:id="@+id/labelPlayerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textPlayerName"
+        android:layout_toLeftOf="@+id/textPlayerPhase"
+        android:text="@string/Score_colon"
         android:textAppearance="?android:attr/textAppearanceMedium"
         />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/labelPlayerPhase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textPlayerName"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/textPlayerName"
+        android:text="@string/Phase_colon"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+
+</RelativeLayout>
