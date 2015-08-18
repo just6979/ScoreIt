@@ -97,12 +97,9 @@ class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
 
     @SuppressWarnings("unused")
     static class ViewHolder {
-        @Bind(R.id.textPlayerName)
-        TextView textPlayerName;
-        @Bind(R.id.textPlayerScore)
-        TextView textPlayerScore;
-        @Bind(R.id.textPlayerPhase)
-        TextView textPlayerPhase;
+        @Bind(R.id.textPlayerName) TextView textPlayerName;
+        @Bind(R.id.textPlayerScore) TextView textPlayerScore;
+        @Bind(R.id.textPlayerPhase) TextView textPlayerPhase;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
