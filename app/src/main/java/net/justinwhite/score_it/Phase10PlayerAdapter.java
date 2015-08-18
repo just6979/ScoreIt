@@ -89,8 +89,8 @@ class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
         Phase10PlayerModel p = players.get(position);
 
         holder.textPlayerName.setText(p.getName());
-        holder.textPlayerScore.setText(String.valueOf(p.getScore()));
-        holder.textPlayerPhase.setText(String.valueOf(p.getPhase()));
+        holder.textPlayerScore.setText("Score: " + p.getScore());
+        holder.textPlayerPhase.setText("Phase: " + p.getPhase());
 
         return view;
     }
