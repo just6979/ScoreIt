@@ -32,12 +32,13 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -66,6 +67,7 @@ public class CreateGameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMaxPlayers) TextView labelMaxPlayers;
     private int numPlayers;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,9 @@ public class CreateGameActivity
 
         setContentView(R.layout.activity_create_game);
         ButterKnife.bind(this);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);

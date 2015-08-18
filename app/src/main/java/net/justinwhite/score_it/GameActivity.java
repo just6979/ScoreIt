@@ -32,10 +32,11 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -62,6 +63,7 @@ public class GameActivity
     @Bind(R.id.listPlayers) ListView listView;
     private Phase10GameModel game;
     private int chosenPlayer;
+    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,13 @@ public class GameActivity
 
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        if (actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+        }
 
         Intent intent = getIntent();
         int numPlayers = intent.getIntExtra(

@@ -30,16 +30,10 @@
   ~ POSSIBILITY OF SUCH DAMAGE.
   ~
   -->
-
-<resources>
-
-    <style name="Theme.MyTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/Primary</item>
-        <item name="colorPrimaryDark">@color/PrimaryDark</item>
-        <item name="colorAccent">@color/Accent</item>
-    </style>
-
-    <color name="Primary">#025</color>
-    <color name="PrimaryDark">#027</color>
-    <color name="Accent">#0A2</color>
-</resources>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:background="@color/Primary"
+                                   android:elevation="4dp"
+    >
+</android.support.v7.widget.Toolbar>
