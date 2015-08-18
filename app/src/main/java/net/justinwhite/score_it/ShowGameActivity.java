@@ -40,6 +40,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.justinwhite.score_model.phase_10.Phase10GameModel;
 import net.justinwhite.score_model.phase_10.Phase10PlayerModel;
@@ -61,6 +62,8 @@ public class ShowGameActivity
     @Bind(R.id.listPlayers) ListView listView;
     private Phase10GameModel game;
     private int chosenPlayer;
+    private int backButtonCount = 0;
+    private Toast toast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,7 +96,18 @@ public class ShowGameActivity
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        if(backButtonCount >= 1)
+        {
+            backButtonCount = 0;
+            toast.cancel();
+            moveTaskToBack(true);
+        }
+        else
+        {
+            toast = Toast.makeText(this, "Press the back button once again to exit.", Toast.LENGTH_LONG);
+            toast.show();
+            backButtonCount++;
+        }
     }
 
     @Override
