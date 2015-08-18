@@ -68,15 +68,15 @@ public class GameFragment
     private Phase10PlayerAdapter adapter;
     private int chosenPlayer;
 
+    public GameFragment() {
+        // Required empty public constructor
+    }
+
     public static GameFragment newInstance() {
         GameFragment fragment = new GameFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public GameFragment() {
-        // Required empty public constructor
     }
 
     @Override
