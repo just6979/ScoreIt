@@ -40,6 +40,10 @@
     android:orientation="vertical"
     android:useDefaultMargins="true"
     tools:context=".GameActivity"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     >
 
     <TextView
@@ -47,17 +51,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
         android:text="@string/Game_Name"
         android:textSize="24sp"
+        android:layout_marginBottom="16dp"
         />
 
     <ListView
         android:id="@+id/listPlayers"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:layout_weight="1"
         tools:listitem="@android:layout/simple_list_item_1"
         />
@@ -69,6 +71,7 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/End_Game"
         android:textSize="32sp"
+        android:layout_marginTop="16dp"
         />
 
 </LinearLayout>
