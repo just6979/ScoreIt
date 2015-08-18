@@ -123,6 +123,7 @@ public class CreateGameActivity
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         startActivity(intent);
+        overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
     }
 
 }

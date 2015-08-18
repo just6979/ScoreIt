@@ -66,6 +66,8 @@ public class GameActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
+
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
 
@@ -88,7 +90,6 @@ public class GameActivity
 
         // Set OnItemClickListener so we can be notified on item clicks
         listView.setOnItemClickListener(this);
-
     }
 
     @Override
@@ -122,6 +123,7 @@ public class GameActivity
     @Override
     public void onYesNoSubmit() {
         finish();
+        overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
     }
 
     @Override
