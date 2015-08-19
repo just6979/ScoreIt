@@ -43,8 +43,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import net.justinwhite.score_model.phase_10.Phase10GameModel;
-import net.justinwhite.score_model.phase_10.Phase10PlayerModel;
+import net.justinwhite.score_model.phase_10.Phase10Game;
+import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -61,7 +61,7 @@ public class GameActivity
     @Bind(R.id.textGameName) TextView textGameName;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.listPlayers) ListView listView;
-    private Phase10GameModel game;
+    private Phase10Game game;
     private int chosenPlayer;
 
     @Override
@@ -86,7 +86,7 @@ public class GameActivity
                 CreateGameActivity.DEFAULT_NUM_PLAYERS
         );
 
-        game = new Phase10GameModel();
+        game = new Phase10Game();
         game.setNumPlayers(numPlayers);
         textGameName.setText(game.getName());
 
@@ -146,7 +146,7 @@ public class GameActivity
 
     @Override
     public void onLineEditSubmit(String newName) {
-        Phase10PlayerModel player = game.getPlayer(chosenPlayer);
+        Phase10Player player = game.getPlayer(chosenPlayer);
         player.setName(newName);
         game.buildName();
         textGameName.setText(game.getName());
