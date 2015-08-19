@@ -32,6 +32,8 @@
 
 apply plugin: 'com.android.application'
 
+def commitCount = Integer.parseInt('git rev-list master --count'.execute().text.trim())
+
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.0'
@@ -39,8 +41,8 @@ android {
         applicationId "net.justinwhite.score_it"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName '0.1'
+        versionCode commitCount
+        versionName '0.' + commitCount
     }
     buildTypes {
         release {
