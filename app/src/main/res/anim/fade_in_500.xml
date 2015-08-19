@@ -29,35 +29,13 @@
   ~ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   ~ POSSIBILITY OF SUCH DAMAGE.
   ~
--->
-<manifest
-    package="net.justinwhite.score_it"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+  -->
 
-    <application
-        android:allowBackup="true"
-        android:fullBackupContent="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/ScoreIt"
-        android:theme="@style/Theme.MyTheme"
-        >
-        <activity
-            android:name=".CreateGameActivity"
-            android:label="@string/ScoreIt"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".GameActivity"
-            android:label="@string/Phase_10"
-            android:parentActivityName=".CreateGameActivity"
-            >
-        </activity>
-    </application>
-
-</manifest>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <alpha xmlns:android="http://schemas.android.com/apk/res/android"
+           android:duration="500"
+           android:fromAlpha="0.0"
+           android:interpolator="@android:anim/accelerate_interpolator"
+           android:toAlpha="1.0"
+        />
+</set>

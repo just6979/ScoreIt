@@ -32,9 +32,11 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,7 +51,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GameActivity
-        extends Activity
+        extends AppCompatActivity
         implements
         YesNoDialog.DialogListener,
         LineEditDialog.DialogListener,
@@ -66,8 +68,17 @@ public class GameActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
+
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        if (actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+        }
 
         Intent intent = getIntent();
         int numPlayers = intent.getIntExtra(
@@ -88,7 +99,6 @@ public class GameActivity
 
         // Set OnItemClickListener so we can be notified on item clicks
         listView.setOnItemClickListener(this);
-
     }
 
     @Override
@@ -122,6 +132,7 @@ public class GameActivity
     @Override
     public void onYesNoSubmit() {
         finish();
+        overridePendingTransition(R.anim.fade_in_500, R.anim.fade_out_500);
     }
 
     @Override

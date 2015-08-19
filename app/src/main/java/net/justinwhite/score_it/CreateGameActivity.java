@@ -32,12 +32,12 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -48,7 +48,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CreateGameActivity
-        extends Activity
+        extends AppCompatActivity
         implements SeekBar.OnSeekBarChangeListener {
 
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
@@ -65,6 +65,8 @@ public class CreateGameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMaxPlayers) TextView labelMaxPlayers;
     private int numPlayers;
+    private int maxNumPlayers;
+    private int minNumPLayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +75,16 @@ public class CreateGameActivity
         setContentView(R.layout.activity_create_game);
         ButterKnife.bind(this);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
 
         // get max & min players from the GameModel
-        int maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
+        maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
         labelMaxPlayers.setText(Integer.toString(maxNumPlayers));
-        int minNumPLayers = Phase10GameModel.MIN_PLAYERS;
+        minNumPLayers = Phase10GameModel.MIN_PLAYERS;
         labelMinPlayers.setText(Integer.toString(minNumPLayers));
 
         seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
@@ -103,10 +108,8 @@ public class CreateGameActivity
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-        if (fromTouch) {
-            numPlayers = progress + SEEKBAR_OFFSET;
-            labelNumPlayers.setText(Integer.toString(numPlayers));
-        }
+        numPlayers = progress + SEEKBAR_OFFSET;
+        labelNumPlayers.setText(Integer.toString(numPlayers));
     }
 
     @Override
@@ -119,10 +122,29 @@ public class CreateGameActivity
 
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonStartGame)
-    protected void StartNewGame(View view) {
+    protected void StartNewGame() {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         startActivity(intent);
+        overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.labelMinPlayers)
+    protected void setMinPlayerCount() {
+        seekNumPlayers.setProgress(minNumPLayers - SEEKBAR_OFFSET);
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.labelMaxPlayers)
+    protected void setMaxPlayerCount() {
+        seekNumPlayers.setProgress(maxNumPlayers - SEEKBAR_OFFSET);
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.labelHowManyPlayers)
+    protected void setDefaultPlayerCount() {
+        seekNumPlayers.setProgress(DEFAULT_NUM_PLAYERS - SEEKBAR_OFFSET);
     }
 
 }
