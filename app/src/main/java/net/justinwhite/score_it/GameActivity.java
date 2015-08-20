@@ -88,7 +88,7 @@ public class GameActivity
 
         game = new Phase10Game();
         game.setNumPlayers(numPlayers);
-        textGameName.setText("Game: " + game.getName());
+        textGameName.setText(game.getName());
 
         Phase10PlayerAdapter adapter = new Phase10PlayerAdapter(
                 this.getBaseContext(),

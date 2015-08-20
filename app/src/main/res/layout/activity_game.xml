@@ -78,14 +78,13 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttonEndGame"
         android:layout_below="@+id/textGameName"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:divider="@null"
         tools:listitem="@layout/item_phase10_player"
-        android:dividerHeight="4dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentStart="false"
         />
 
     <Button

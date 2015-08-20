@@ -40,19 +40,20 @@
     </style>
 
     <style name="MyToolbarStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- *Inverse is for Theme.AppCompat.Light -->
         <!-- Used to for the title of the Toolbar -->
         <item name="android:textColorPrimary">@color/primary_text_default_material_dark</item>
-        <!-- Used to for the title of the Toolbar when parent is Theme.AppCompat.Light -->
-        <item name="android:textColorPrimaryInverse">@color/primary_text_default_material_light</item>
+        <item name="android:textColorPrimaryInverse">@color/primary_text_default_material_light
+        </item>
         <!-- Used to color the text of the action menu icons -->
         <item name="android:textColorSecondary">@color/primary_text_default_material_dark</item>
+        <item name="android:textColorSecondaryInverse">@color/primary_text_default_material_light
+        </item>
         <!-- Used to color the overflow menu icon -->
         <item name="actionMenuTextColor">@color/primary_text_default_material_dark</item>
-        <!-- Color of the Toolbar -->
-        <item name="android:background">@color/Primary</item>
     </style>
 
-    <color name="Primary">#025</color>
-    <color name="PrimaryDark">#027</color>
+    <color name="Primary">#04A</color>
+    <color name="PrimaryDark">#017</color>
     <color name="Accent">#0A2</color>
 </resources>
