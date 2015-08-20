@@ -35,6 +35,7 @@ package net.justinwhite.score_it;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -126,7 +127,10 @@ public class CreateGameActivity
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         startActivity(intent);
-        overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
+        // Check if we're running on Android 5.0 or higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
+        }
     }
 
     @SuppressWarnings("unused")

@@ -33,6 +33,7 @@
 package net.justinwhite.score_it;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -138,7 +139,10 @@ public class GameActivity
     @Override
     public void onYesNoSubmit() {
         finish();
-        overridePendingTransition(R.anim.fade_in_500, R.anim.fade_out_500);
+        // Check if we're running on Android 5.0 or higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            overridePendingTransition(R.anim.fade_in_500, R.anim.fade_out_500);
+        }
     }
 
     @Override
