@@ -154,6 +154,7 @@ public class GameActivity
 
     @Override
     public void onItemClick(View childView, int position) {
+        // TODO: use single click to change score/phase
         chosenPlayer = position;
         LineEditDialog changeNameDialog = LineEditDialog.newInstance(
                 game.getPlayer(chosenPlayer).getName()
@@ -163,6 +164,11 @@ public class GameActivity
 
     @Override
     public void onItemLongPress(View childView, int position) {
+        chosenPlayer = position;
+        LineEditDialog changeNameDialog = LineEditDialog.newInstance(
+                game.getPlayer(chosenPlayer).getName()
+        );
+        changeNameDialog.show(getFragmentManager(), "change_name_dialog");
     }
 
     @Override
