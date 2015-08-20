@@ -41,7 +41,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import net.justinwhite.score_model.phase_10.Phase10GameModel;
+import net.justinwhite.score_model.phase_10.Phase10Game;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -54,7 +54,7 @@ public class CreateGameActivity
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
 
     public static final int DEFAULT_NUM_PLAYERS = 4;
-    private static final int SEEKBAR_OFFSET = Phase10GameModel.MIN_PLAYERS;
+    private static final int SEEKBAR_OFFSET = Phase10Game.MIN_PLAYERS;
 
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.seekNumPlayers) SeekBar seekNumPlayers;
@@ -82,9 +82,9 @@ public class CreateGameActivity
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
 
         // get max & min players from the GameModel
-        maxNumPlayers = Phase10GameModel.MAX_PLAYERS;
+        maxNumPlayers = Phase10Game.MAX_PLAYERS;
         labelMaxPlayers.setText(Integer.toString(maxNumPlayers));
-        minNumPLayers = Phase10GameModel.MIN_PLAYERS;
+        minNumPLayers = Phase10Game.MIN_PLAYERS;
         labelMinPlayers.setText(Integer.toString(minNumPLayers));
 
         seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);

@@ -39,20 +39,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import net.justinwhite.score_model.phase_10.Phase10PlayerModel;
+import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
+class Phase10PlayerAdapter extends ArrayAdapter<Phase10Player> {
 
-    private final List<Phase10PlayerModel> players;
+    private final List<Phase10Player> players;
     private final int layoutID;
     private final LayoutInflater layoutInflater;
 
-    public Phase10PlayerAdapter(Context _context, @SuppressWarnings("SameParameterValue") int _layoutID, List<Phase10PlayerModel> _players) {
+    public Phase10PlayerAdapter(Context _context, @SuppressWarnings("SameParameterValue") int _layoutID, List<Phase10Player> _players) {
         super(_context, _layoutID, _players);
         layoutID = _layoutID;
         players = _players;
@@ -65,7 +65,7 @@ class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
     }
 
     @Override
-    public Phase10PlayerModel getItem(int position) {
+    public Phase10Player getItem(int position) {
         return players.get(position);
     }
 
@@ -86,7 +86,7 @@ class Phase10PlayerAdapter extends ArrayAdapter<Phase10PlayerModel> {
             holder = (ViewHolder) view.getTag();
         }
 
-        Phase10PlayerModel p = players.get(position);
+        Phase10Player p = players.get(position);
 
         holder.textPlayerName.setText(p.getName());
         holder.textPlayerScore.setText(String.valueOf(p.getScore()));

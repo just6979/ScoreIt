@@ -32,15 +32,17 @@
 
 apply plugin: 'com.android.application'
 
+def commitCount = Integer.parseInt('git rev-list master --count'.execute().text.trim())
+
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.0'
     defaultConfig {
         applicationId "net.justinwhite.score_it"
         minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 1
-        versionName '0.1'
+        targetSdkVersion 23
+        versionCode commitCount
+        versionName '0.' + commitCount
     }
     buildTypes {
         release {
@@ -57,7 +59,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile fileTree(include: '*.jar', dir: 'libs')
+    compile files('libs/ScoreModel-v126.jar')
 }
