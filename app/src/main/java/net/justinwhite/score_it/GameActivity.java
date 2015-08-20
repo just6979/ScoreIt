@@ -42,7 +42,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10Game;
@@ -57,7 +56,7 @@ public class GameActivity
         implements
         YesNoDialog.DialogListener,
         LineEditDialog.DialogListener,
-        AdapterView.OnItemClickListener {
+        RecyclerItemClickListener.OnItemClickListener {
 
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textGameName) TextView textGameName;
@@ -65,6 +64,7 @@ public class GameActivity
     @Bind(R.id.listPlayers) RecyclerView recyclerView;
     private Phase10Game game;
     private int chosenPlayer;
+    private Phase10PlayerAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,15 +97,14 @@ public class GameActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        Phase10PlayerAdapter adapter = new Phase10PlayerAdapter(
+        adapter = new Phase10PlayerAdapter(
                 this.getBaseContext(),
                 R.layout.item_phase10_player,
                 game.getPlayerList()
         );
         recyclerView.setAdapter(adapter);
 
-        // Set OnItemClickListener so we can be notified on item clicks
-//        recyclerView.setOnClickListener(this);
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, this));
     }
 
     @Override
@@ -146,18 +145,23 @@ public class GameActivity
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(View childView, int position) {
         chosenPlayer = position;
         LineEditDialog changeNameDialog = LineEditDialog.newInstance(
-                game.getPlayer(position).getName()
+                game.getPlayer(chosenPlayer).getName()
         );
         changeNameDialog.show(getFragmentManager(), "change_name_dialog");
+    }
+
+    @Override
+    public void onItemLongPress(View childView, int position) {
     }
 
     @Override
     public void onLineEditSubmit(String newName) {
         Phase10Player player = game.getPlayer(chosenPlayer);
         player.setName(newName);
+        adapter.notifyDataSetChanged();
         game.buildName();
         textGameName.setText(game.getName());
     }

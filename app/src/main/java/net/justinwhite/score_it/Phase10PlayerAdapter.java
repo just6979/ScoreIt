@@ -51,9 +51,11 @@ class Phase10PlayerAdapter extends RecyclerView.Adapter<net.justinwhite.score_it
     private final List<Phase10Player> players;
     private final int layoutID;
     private final LayoutInflater layoutInflater;
+    private final Context context;
 
     public Phase10PlayerAdapter(Context _context, @SuppressWarnings("SameParameterValue") int _layoutID, List<Phase10Player> _players) {
         super();
+        context = _context;
         layoutID = _layoutID;
         players = _players;
         layoutInflater = LayoutInflater.from(_context);
@@ -70,7 +72,7 @@ class Phase10PlayerAdapter extends RecyclerView.Adapter<net.justinwhite.score_it
     }
 
     @Override
-    public Phase10PlayerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         ViewHolder viewHolder;
 
