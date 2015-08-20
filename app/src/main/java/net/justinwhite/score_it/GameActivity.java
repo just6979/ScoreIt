@@ -33,10 +33,12 @@
 package net.justinwhite.score_it;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -94,7 +96,13 @@ public class GameActivity
 
         recyclerView.setHasFixedSize(true);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        int orientation = getResources().getConfiguration().orientation;
+        RecyclerView.LayoutManager layoutManager;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            layoutManager = new GridLayoutManager(this, 2);
+        } else {
+            layoutManager = new LinearLayoutManager(this);
+        }
         recyclerView.setLayoutManager(layoutManager);
 
         adapter = new Phase10PlayerAdapter(
