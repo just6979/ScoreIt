@@ -32,7 +32,6 @@
 
 package net.justinwhite.score_it;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,14 +48,12 @@ import butterknife.ButterKnife;
 class Phase10PlayerAdapter extends RecyclerView.Adapter<net.justinwhite.score_it.Phase10PlayerAdapter.ViewHolder> {
 
     private final List<Phase10Player> players;
-    private final int layoutID;
-    private final LayoutInflater layoutInflater;
+    private final LayoutInflater inflater;
 
-    public Phase10PlayerAdapter(Context _context, @SuppressWarnings("SameParameterValue") int _layoutID, List<Phase10Player> _players) {
+    public Phase10PlayerAdapter(LayoutInflater _inflater, List<Phase10Player> _players) {
         super();
-        layoutID = _layoutID;
         players = _players;
-        layoutInflater = LayoutInflater.from(_context);
+        inflater = _inflater;
     }
 
     @Override
@@ -74,7 +71,7 @@ class Phase10PlayerAdapter extends RecyclerView.Adapter<net.justinwhite.score_it
         View view;
         ViewHolder viewHolder;
 
-        view = layoutInflater.inflate(layoutID, parent, false);
+        view = inflater.inflate(R.layout.item_phase10_player, parent, false);
         viewHolder = new ViewHolder(view);
         view.setTag(viewHolder);
 

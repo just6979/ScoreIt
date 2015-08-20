@@ -106,8 +106,7 @@ public class GameActivity
         recyclerView.setLayoutManager(layoutManager);
 
         adapter = new Phase10PlayerAdapter(
-                this.getBaseContext(),
-                R.layout.item_phase10_player,
+                getLayoutInflater(),
                 game.getPlayerList()
         );
         recyclerView.setAdapter(adapter);
