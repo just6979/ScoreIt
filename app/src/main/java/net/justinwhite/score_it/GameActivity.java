@@ -58,6 +58,7 @@ public class GameActivity
         implements
         YesNoDialog.DialogListener,
         LineEditDialog.DialogListener,
+        ScoreUpdateDialog.DialogListener,
         RecyclerItemClickListener.OnItemClickListener {
 
     @SuppressWarnings({"WeakerAccess", "unused"})
@@ -154,21 +155,16 @@ public class GameActivity
 
     @Override
     public void onItemClick(View childView, int position) {
-        // TODO: use single click to change score/phase
         chosenPlayer = position;
-        LineEditDialog changeNameDialog = LineEditDialog.newInstance(
-                game.getPlayer(chosenPlayer).getName()
-        );
-        changeNameDialog.show(getFragmentManager(), "change_name_dialog");
+        ScoreUpdateDialog.newInstance(game.getPlayer(position).getName())
+                .show(getFragmentManager(), "change_name_dialog");
     }
 
     @Override
     public void onItemLongPress(View childView, int position) {
         chosenPlayer = position;
-        LineEditDialog changeNameDialog = LineEditDialog.newInstance(
-                game.getPlayer(chosenPlayer).getName()
-        );
-        changeNameDialog.show(getFragmentManager(), "change_name_dialog");
+        LineEditDialog.newInstance(game.getPlayer(chosenPlayer).getName())
+                .show(getFragmentManager(), "change_name_dialog");
     }
 
     @Override
@@ -180,4 +176,13 @@ public class GameActivity
         textGameName.setText(game.getName());
     }
 
+    @Override
+    public void onScoreUpdateSubmit(int newScore, boolean checked) {
+        Phase10Player player = game.getPlayer(chosenPlayer);
+        player.addScore(newScore);
+        if (checked) {
+            player.nextPhase();
+        }
+        adapter.notifyDataSetChanged();
+    }
 }
