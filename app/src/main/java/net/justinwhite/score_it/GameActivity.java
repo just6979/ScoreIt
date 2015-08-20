@@ -36,11 +36,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10Game;
@@ -60,7 +61,7 @@ public class GameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textGameName) TextView textGameName;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.listPlayers) ListView listView;
+    @Bind(R.id.listPlayers) RecyclerView recyclerView;
     private Phase10Game game;
     private int chosenPlayer;
 
@@ -90,15 +91,20 @@ public class GameActivity
         game.setNumPlayers(numPlayers);
         textGameName.setText(game.getName());
 
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
         Phase10PlayerAdapter adapter = new Phase10PlayerAdapter(
                 this.getBaseContext(),
                 R.layout.item_phase10_player,
                 game.getPlayerList()
         );
-        listView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
-        listView.setOnItemClickListener(this);
+//        recyclerView.setOnClickListener(this);
     }
 
     @Override

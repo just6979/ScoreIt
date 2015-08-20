@@ -33,10 +33,10 @@
 package net.justinwhite.score_it;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10Player;
@@ -46,27 +46,22 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-class Phase10PlayerAdapter extends ArrayAdapter<Phase10Player> {
+class Phase10PlayerAdapter extends RecyclerView.Adapter<net.justinwhite.score_it.Phase10PlayerAdapter.ViewHolder> {
 
     private final List<Phase10Player> players;
     private final int layoutID;
     private final LayoutInflater layoutInflater;
 
     public Phase10PlayerAdapter(Context _context, @SuppressWarnings("SameParameterValue") int _layoutID, List<Phase10Player> _players) {
-        super(_context, _layoutID, _players);
+        super();
         layoutID = _layoutID;
         players = _players;
         layoutInflater = LayoutInflater.from(_context);
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return players.size();
-    }
-
-    @Override
-    public Phase10Player getItem(int position) {
-        return players.get(position);
     }
 
     @Override
@@ -75,35 +70,36 @@ class Phase10PlayerAdapter extends ArrayAdapter<Phase10Player> {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        ViewHolder holder;
+    public Phase10PlayerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view;
+        ViewHolder viewHolder;
 
-        if (view == null) {
-            view = layoutInflater.inflate(layoutID, parent, false);
-            holder = new ViewHolder(view);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
+        view = layoutInflater.inflate(layoutID, parent, false);
+        viewHolder = new ViewHolder(view);
+        view.setTag(viewHolder);
 
+        return viewHolder;
+    }
+
+    public void onBindViewHolder(ViewHolder holder, int position) {
         Phase10Player p = players.get(position);
 
         holder.textPlayerName.setText(p.getName());
         holder.textPlayerScore.setText(String.valueOf(p.getScore()));
         holder.textPlayerPhase.setText(String.valueOf(p.getPhase()));
-
-        return view;
     }
 
     @SuppressWarnings("unused")
-    static class ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.textPlayerName) TextView textPlayerName;
         @Bind(R.id.textPlayerScore) TextView textPlayerScore;
         @Bind(R.id.textPlayerPhase) TextView textPlayerPhase;
 
         public ViewHolder(View view) {
+            super(view);
             ButterKnife.bind(this, view);
         }
+
     }
 
 }
