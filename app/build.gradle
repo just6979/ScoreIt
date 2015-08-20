@@ -40,7 +40,7 @@ android {
     defaultConfig {
         applicationId "net.justinwhite.score_it"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode commitCount
         versionName '0.' + commitCount
     }
@@ -59,7 +59,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile files('libs/ScoreModel-v126.jar')
 }
