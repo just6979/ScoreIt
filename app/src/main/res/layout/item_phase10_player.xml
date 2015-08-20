@@ -43,6 +43,7 @@
     card_view:cardPreventCornerOverlap="false"
     card_view:cardUseCompatPadding="true"
     tools:context=".GameActivity"
+    tools:ignore="UnusedAttribute"
     >
 
     <RelativeLayout

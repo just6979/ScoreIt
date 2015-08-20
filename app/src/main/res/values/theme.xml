@@ -51,6 +51,8 @@
         </item>
         <!-- Used to color the overflow menu icon -->
         <item name="actionMenuTextColor">@color/primary_text_default_material_dark</item>
+        <!-- Color of the Toolbar -->
+        <item name="android:background">@color/Primary</item>
     </style>
 
     <color name="Primary">#04A</color>
