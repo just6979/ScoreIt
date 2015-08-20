@@ -31,82 +31,90 @@
   -->
 
 <android.support.v7.widget.CardView
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/phase10_player_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="4dp"
+    card_view:cardCornerRadius="8dp"
+    android:measureAllChildren="false"
+    android:elevation="4dp"
+    tools:context=".GameActivity"
     >
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@color/cardview_light_background"
         >
 
         <TextView
             android:id="@+id/textPlayerName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:text="@string/Player_Name"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/cardview_dark_background"
             />
-        <!--android:textColor="@color/cardview_dark_background"-->
-
-        <TextView
-            android:id="@+id/textPlayerScore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/labelPlayerScore"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/labelPlayerScore"
-            android:layout_toRightOf="@+id/labelPlayerScore"
-            android:text="@string/Score"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            />
-        <!--android:textColor="@color/cardview_dark_background"-->
-
-        <TextView
-            android:id="@+id/textPlayerPhase"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/labelPlayerPhase"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/labelPlayerPhase"
-            android:layout_toRightOf="@+id/labelPlayerPhase"
-            android:text="@string/Phase"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            />
-        <!--android:textColor="@color/cardview_dark_background"-->
 
         <TextView
             android:id="@+id/labelPlayerScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textPlayerName"
-            android:layout_toLeftOf="@+id/textPlayerPhase"
-            android:layout_toStartOf="@+id/textPlayerPhase"
+            android:layout_above="@+id/labelPlayerPhase"
+            android:layout_alignEnd="@+id/labelPlayerPhase"
+            android:layout_alignRight="@+id/labelPlayerPhase"
             android:text="@string/Score_colon"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/cardview_dark_background"
+            />
+
+        <TextView
+            android:id="@+id/textPlayerScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/labelPlayerScore"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/labelPlayerScore"
+            android:text="@string/Score"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/cardview_dark_background"
             />
 
         <TextView
             android:id="@+id/labelPlayerPhase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textPlayerName"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_alignBottom="@+id/textPlayerName"
             android:layout_toEndOf="@+id/textPlayerName"
-            android:layout_toRightOf="@+id/textPlayerName"
             android:text="@string/Phase_colon"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/cardview_dark_background"
+            />
+
+        <TextView
+            android:id="@+id/textPlayerPhase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/labelPlayerPhase"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/labelPlayerPhase"
+            android:text="@string/Phase"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/cardview_dark_background"
             />
 
     </RelativeLayout>
