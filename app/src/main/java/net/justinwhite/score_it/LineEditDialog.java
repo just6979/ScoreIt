@@ -40,6 +40,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 public class LineEditDialog extends DialogFragment {
@@ -100,7 +101,10 @@ public class LineEditDialog extends DialogFragment {
                     }
                 });
 
-        return builder.create();
+        Dialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        return dialog;
     }
 
     @Override
