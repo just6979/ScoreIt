@@ -53,6 +53,7 @@ class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
     /**
      * A click listener for items.
      */
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
 
         /**

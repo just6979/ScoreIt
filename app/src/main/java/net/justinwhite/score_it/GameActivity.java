@@ -60,6 +60,7 @@ public class GameActivity
         LineEditDialog.DialogListener,
         RecyclerItemClickListener.OnItemClickListener {
 
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.toolbar) Toolbar toolbar;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textGameName) TextView textGameName;
