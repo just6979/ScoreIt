@@ -33,7 +33,7 @@
 
 <resources>
 
-    <style name="Theme.MyTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/Primary</item>
         <item name="colorPrimaryDark">@color/PrimaryDark</item>
         <item name="colorAccent">@color/Accent</item>
