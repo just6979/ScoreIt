@@ -60,6 +60,7 @@ public class GameActivity
         LineEditDialog.DialogListener,
         RecyclerItemClickListener.OnItemClickListener {
 
+    @Bind(R.id.toolbar) Toolbar toolbar;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textGameName) TextView textGameName;
     @SuppressWarnings({"WeakerAccess", "unused"})
@@ -77,7 +78,6 @@ public class GameActivity
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         if (actionbar != null) {
