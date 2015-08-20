@@ -16,11 +16,11 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
+class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
 
-    protected OnItemClickListener listener;
+    private final OnItemClickListener listener;
 
-    private GestureDetector gestureDetector;
+    private final GestureDetector gestureDetector;
 
     @Nullable
     private View childView;
@@ -35,7 +35,7 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
     @Override
     public boolean onInterceptTouchEvent(RecyclerView view, MotionEvent event) {
         childView = view.findChildViewUnder(event.getX(), event.getY());
-        childViewPosition = view.getChildPosition(childView);
+        childViewPosition = view.getChildAdapterPosition(childView);
 
         return childView != null && gestureDetector.onTouchEvent(event);
     }
@@ -61,7 +61,7 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
          * @param childView View of the item that was clicked.
          * @param position  Position of the item that was clicked.
          */
-        public void onItemClick(View childView, int position);
+        void onItemClick(View childView, int position);
 
         /**
          * Called when an item is long pressed.
@@ -69,38 +69,38 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
          * @param childView View of the item that was long pressed.
          * @param position  Position of the item that was long pressed.
          */
-        public void onItemLongPress(View childView, int position);
+        void onItemLongPress(View childView, int position);
 
     }
 
-    /**
-     * A simple click listener whose methods can be overridden one by one.
-     */
-    public static abstract class SimpleOnItemClickListener implements OnItemClickListener {
+//    /**
+//     * A simple click listener whose methods can be overridden one by one.
+//     */
+//    public static abstract class SimpleOnItemClickListener implements OnItemClickListener {
+//
+//        /**
+//         * Called when an item is clicked. The default implementation is a no-op.
+//         *
+//         * @param childView View of the item that was clicked.
+//         * @param position  Position of the item that was clicked.
+//         */
+//        public void onItemClick(View childView, int position) {
+//            // Do nothing.
+//        }
+//
+//        /**
+//         * Called when an item is long pressed. The default implementation is a no-op.
+//         *
+//         * @param childView View of the item that was long pressed.
+//         * @param position  Position of the item that was long pressed.
+//         */
+//        public void onItemLongPress(View childView, int position) {
+//            // Do nothing.
+//        }
+//
+//    }
 
-        /**
-         * Called when an item is clicked. The default implementation is a no-op.
-         *
-         * @param childView View of the item that was clicked.
-         * @param position  Position of the item that was clicked.
-         */
-        public void onItemClick(View childView, int position) {
-            // Do nothing.
-        }
-
-        /**
-         * Called when an item is long pressed. The default implementation is a no-op.
-         *
-         * @param childView View of the item that was long pressed.
-         * @param position  Position of the item that was long pressed.
-         */
-        public void onItemLongPress(View childView, int position) {
-            // Do nothing.
-        }
-
-    }
-
-    protected class GestureListener extends GestureDetector.SimpleOnGestureListener {
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onSingleTapUp(MotionEvent event) {
