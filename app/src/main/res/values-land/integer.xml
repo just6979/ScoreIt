@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (c) 2015 Justin White <jw@justinwhite.net>
   ~ All rights reserved.
@@ -31,42 +32,5 @@
   -->
 
 <resources>
-    <string name="pref_current_num_players">CURRENT_NUM_PLAYERS</string>
-
-    <string name="default_num_players">4</string>
-    <string name="max_num_players">8</string>
-    <string name="min_num_players">2</string>
-
-    <string name="Start_Game">Start Game</string>
-    <string name="How_many_players_question">How many players?</string>
-    <string name="ScoreIt">ScoreIt</string>
-    <string name="End_Game">End Game</string>
-    <string name="End_the_game_question">End the game?</string>
-    <string name="Yes">Yes</string>
-    <string name="No">No</string>
-    <string name="Phase_10">Phase 10</string>
-    <string name="Change">Change</string>
-    <string name="Cancel">Cancel</string>
-    <string name="Change_Player_Name">Change Player Name</string>
-    <string name="Player_Name">Player Name</string>
-    <string name="Score">Score</string>
-    <string name="Phase">Phase</string>
-    <string name="Name">Name</string>
-    <string name="Game_colon">Game:</string>
-    <string name="Score_colon">Score:</string>
-    <string name="Phase_colon">Phase:</string>
-    <string name="Got_next_phase_question">Got next phase?</string>
-    <string name="Score_this_hand_colon">Score this hand:</string>
-    <string name="Update_Score_colon">"Update Score: "</string>
-    <string name="zero">0</string>
-    <string name="Phases_colon">Phases:</string>
-
-    <string-array name="phase_selections">
-        <item>All</item>
-        <item>Odd</item>
-        <item>Even</item>
-        <item>First 5</item>
-        <item>Last 5</item>
-        <item>Custom</item>
-    </string-array>
+    <integer name="grid_phases_column_count">10</integer>
 </resources>

@@ -68,9 +68,9 @@
         android:layout_below="@+id/labelPhase10"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
         android:text="@string/How_many_players_question"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="16dp"
         />
 
     <TextView
@@ -125,46 +125,59 @@
         android:id="@+id/textNumPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical|center_horizontal"
-        android:text="@string/default_num_players"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_below="@+id/labelHowManyPlayers"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="fill_vertical|center_horizontal"
         android:layout_marginTop="8dp"
+        android:text="@string/default_num_players"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         />
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/layoutPhases"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Phases:"
-        android:id="@+id/labelPhases"
         android:layout_below="@+id/seekNumPlayers"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        />
+        android:orientation="horizontal"
+        >
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerPhases"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/labelPhases"
-        android:layout_marginTop="16dp"
-        android:spinnerMode="dropdown"
-        />
+        <TextView
+            android:id="@+id/labelPhases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:text="@string/Phases_colon"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerPhases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/labelPhases"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/labelPhases"
+            android:layout_toRightOf="@+id/labelPhases"
+            android:spinnerMode="dropdown"
+            />
+    </RelativeLayout>
 
     <GridLayout
+        android:id="@+id/gridPhases"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutPhases"
         android:layout_centerHorizontal="true"
-        android:columnCount="3"
-        android:id="@+id/gridPhases"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_above="@+id/buttonStartGame"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/spinnerPhases"
+        android:columnCount="@integer/grid_phases_column_count"
         >
 
     </GridLayout>
@@ -173,17 +186,18 @@
         android:id="@+id/buttonStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
+        android:layout_below="@+id/gridPhases"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="32dp"
         android:text="@string/Start_Game"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
-        android:layout_marginTop="16dp"
         />
 
 </RelativeLayout>
