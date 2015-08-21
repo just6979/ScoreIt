@@ -148,19 +148,6 @@ public class CreateGameActivity
         editor.apply();
     }
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-        numPlayers = progress + SEEKBAR_OFFSET;
-        labelNumPlayers.setText(Integer.toString(numPlayers));
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-    }
 
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonStartGame)
@@ -190,6 +177,21 @@ public class CreateGameActivity
     @OnClick(R.id.labelHowManyPlayers)
     protected void setDefaultPlayerCount() {
         seekNumPlayers.setProgress(DEFAULT_NUM_PLAYERS - SEEKBAR_OFFSET);
+    }
+
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+        numPlayers = progress + SEEKBAR_OFFSET;
+        labelNumPlayers.setText(Integer.toString(numPlayers));
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
     }
 
     @Override
