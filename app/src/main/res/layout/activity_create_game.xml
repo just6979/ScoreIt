@@ -30,15 +30,11 @@
   ~
   -->
 
-<RelativeLayout
-    android:id="@+id/layoutCreateGame"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:alignmentMode="alignBounds"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".CreateGameActivity"
     >
 
     <include
@@ -48,156 +44,175 @@
         android:layout_height="wrap_content"
         />
 
-    <TextView
-        android:id="@+id/labelPhase10"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/Phase_10"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="24sp"
-        />
-
-    <TextView
-        android:id="@+id/labelHowManyPlayers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/labelPhase10"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="24dp"
-        android:text="@string/How_many_players_question"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
-
-    <TextView
-        android:id="@+id/labelMinPlayers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/seekNumPlayers"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/seekNumPlayers"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:text="@string/min_num_players"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
-
-    <TextView
-        android:id="@+id/labelMaxPlayers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/seekNumPlayers"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/seekNumPlayers"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:text="@string/max_num_players"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
-
-    <SeekBar
-        android:id="@+id/seekNumPlayers"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textNumPlayers"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@id/labelMinPlayers"
-        android:layout_toStartOf="@id/labelMaxPlayers"
-        android:max="6"
-        android:progress="3"
-        />
-
-    <TextView
-        android:id="@+id/textNumPlayers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/labelHowManyPlayers"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="fill_vertical|center_horizontal"
-        android:layout_marginTop="8dp"
-        android:text="@string/default_num_players"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-
-    <RelativeLayout
-        android:id="@+id/layoutPhases"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/seekNumPlayers"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
         >
 
-        <TextView
-            android:id="@+id/labelPhases"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:text="@string/Phases_colon"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            />
+        <RelativeLayout
+            android:id="@+id/layoutCreateGame"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:alignmentMode="alignBounds"
+            android:orientation="vertical"
+            tools:context=".CreateGameActivity"
+            >
 
-        <Spinner
-            android:id="@+id/spinnerPhases"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/labelPhases"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/labelPhases"
-            android:layout_toRightOf="@+id/labelPhases"
-            android:spinnerMode="dropdown"
-            />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/labelPhase10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/Phase_10"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp"
+                />
 
-    <GridLayout
-        android:id="@+id/gridPhases"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutPhases"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="16dp"
-        android:columnCount="@integer/grid_phases_column_count"
-        >
+            <TextView
+                android:id="@+id/labelHowManyPlayers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelPhase10"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:text="@string/How_many_players_question"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
 
-    </GridLayout>
+            <TextView
+                android:id="@+id/labelMinPlayers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/seekNumPlayers"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/seekNumPlayers"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/min_num_players"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
 
-    <Button
-        android:id="@+id/buttonStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="false"
-        android:layout_below="@+id/gridPhases"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginTop="32dp"
-        android:text="@string/Start_Game"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
-        />
+            <TextView
+                android:id="@+id/labelMaxPlayers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/seekNumPlayers"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/seekNumPlayers"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/max_num_players"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
 
-</RelativeLayout>
+            <SeekBar
+                android:id="@+id/seekNumPlayers"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textNumPlayers"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/labelMinPlayers"
+                android:layout_toStartOf="@id/labelMaxPlayers"
+                android:max="6"
+                android:progress="3"
+                />
+
+            <TextView
+                android:id="@+id/textNumPlayers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelHowManyPlayers"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="fill_vertical|center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="@string/default_num_players"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                />
+
+            <RelativeLayout
+                android:id="@+id/layoutPhases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seekNumPlayers"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/labelPhases"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/Phases_colon"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    />
+
+                <Spinner
+                    android:id="@+id/spinnerPhases"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/labelPhases"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/labelPhases"
+                    android:layout_toRightOf="@+id/labelPhases"
+                    android:spinnerMode="dropdown"
+                    />
+            </RelativeLayout>
+
+            <GridLayout
+                android:id="@+id/gridPhases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutPhases"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="16dp"
+                android:columnCount="@integer/grid_phases_column_count"
+                >
+
+            </GridLayout>
+
+            <Button
+                android:id="@+id/buttonStartGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="false"
+                android:layout_below="@+id/gridPhases"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="32dp"
+                android:text="@string/Start_Game"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="32sp"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
