@@ -62,8 +62,8 @@
 
     <string-array name="phase_selections">
         <item>All</item>
-        <item>Even</item>
         <item>Odd</item>
+        <item>Even</item>
         <item>First 5</item>
         <item>Last 5</item>
         <item>Custom</item>

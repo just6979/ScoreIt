@@ -97,13 +97,13 @@ public class CreateGameActivity
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
 
-        checkIDs = new int[Phase10Game.MAX_PHASE];
-        for (int i = 0; i < Phase10Game.MAX_PHASE; i++) {
+        checkIDs = new int[Phase10Game.MAX_PHASE + 1];
+        for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
             CheckBox check = new CheckBox(this);
             int id = View.generateViewId();
             checkIDs[i] = id;
             check.setId(id);
-            check.setText(String.valueOf(i + 1));
+            check.setText(String.valueOf(i));
             check.setChecked(true);
             check.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -198,20 +198,20 @@ public class CreateGameActivity
 
         String selected = String.valueOf(parent.getItemAtPosition(position));
 
-        for (int i = 0; i < Phase10Game.MAX_PHASE; i++) {
+        for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
             check = (CheckBox) findViewById(checkIDs[i]);
             switch (selected) {
                 case "All":
                     check.setChecked(true);
                     break;
-                case "Even":
+                case "Odd":
                     if ((i % 2) != 0) {
                         check.setChecked(true);
                     } else {
                         check.setChecked(false);
                     }
                     break;
-                case "Odd":
+                case "Even":
                     if ((i % 2) == 0) {
                         check.setChecked(true);
                     } else {
@@ -219,14 +219,14 @@ public class CreateGameActivity
                     }
                     break;
                 case "First 5":
-                    if (i < Phase10Game.MAX_PHASE / 2) {
+                    if (i <= (Phase10Game.MAX_PHASE + 1) / 2) {
                         check.setChecked(true);
                     } else {
                         check.setChecked(false);
                     }
                     break;
                 case "Last 5":
-                    if (i >= Phase10Game.MAX_PHASE / 2) {
+                    if (i > (Phase10Game.MAX_PHASE + 1) / 2) {
                         check.setChecked(true);
                     } else {
                         check.setChecked(false);
