@@ -55,7 +55,6 @@
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/Phase_10"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -71,6 +70,7 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/How_many_players_question"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="16dp"
         />
 
     <TextView
@@ -84,7 +84,6 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="4dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:text="@string/min_num_players"
@@ -102,7 +101,6 @@
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="4dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:text="@string/max_num_players"
@@ -113,11 +111,10 @@
         android:id="@+id/seekNumPlayers"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/labelHowManyPlayers"
+        android:layout_below="@+id/textNumPlayers"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@id/labelMinPlayers"
         android:layout_toStartOf="@id/labelMaxPlayers"
         android:max="6"
@@ -128,12 +125,49 @@
         android:id="@+id/textNumPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/seekNumPlayers"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="fill_vertical|center_horizontal"
         android:text="@string/default_num_players"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/labelHowManyPlayers"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Phases:"
+        android:id="@+id/labelPhases"
+        android:layout_below="@+id/seekNumPlayers"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerPhases"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/labelPhases"
+        android:layout_marginTop="16dp"
+        android:spinnerMode="dropdown"
+        />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:columnCount="3"
+        android:id="@+id/gridPhases"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_above="@+id/buttonStartGame"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/spinnerPhases"
+        >
+
+    </GridLayout>
 
     <Button
         android:id="@+id/buttonStartGame"
@@ -149,5 +183,7 @@
         android:text="@string/Start_Game"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
+        android:layout_marginTop="16dp"
         />
+
 </RelativeLayout>

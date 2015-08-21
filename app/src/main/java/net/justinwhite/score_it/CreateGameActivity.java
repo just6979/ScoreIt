@@ -32,6 +32,7 @@
 
 package net.justinwhite.score_it;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,7 +40,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.GridLayout;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10Game;
@@ -50,7 +57,8 @@ import butterknife.OnClick;
 
 public class CreateGameActivity
         extends AppCompatActivity
-        implements SeekBar.OnSeekBarChangeListener {
+        implements SeekBar.OnSeekBarChangeListener,
+        AdapterView.OnItemSelectedListener {
 
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
 
@@ -65,10 +73,17 @@ public class CreateGameActivity
     @Bind(R.id.labelMinPlayers) TextView labelMinPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMaxPlayers) TextView labelMaxPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.gridPhases) GridLayout gridPhases;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.spinnerPhases) Spinner spinnerPhases;
+
     private int numPlayers;
     private int maxNumPlayers;
     private int minNumPLayers;
+    private int[] checkIDs;
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +96,32 @@ public class CreateGameActivity
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
+
+        checkIDs = new int[Phase10Game.MAX_PHASE];
+        for (int i = 0; i < Phase10Game.MAX_PHASE; i++) {
+            CheckBox check = new CheckBox(this);
+            int id = View.generateViewId();
+            checkIDs[i] = id;
+            check.setId(id);
+            check.setText(String.valueOf(i + 1));
+            check.setChecked(true);
+            check.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    spinnerPhases.setSelection(5);
+                }
+            });
+            gridPhases.addView(check);
+        }
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.phase_selections,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPhases.setAdapter(adapter);
+        spinnerPhases.setOnItemSelectedListener(this);
 
         // get max & min players from the GameModel
         maxNumPlayers = Phase10Game.MAX_PLAYERS;
@@ -149,6 +190,58 @@ public class CreateGameActivity
     @OnClick(R.id.labelHowManyPlayers)
     protected void setDefaultPlayerCount() {
         seekNumPlayers.setProgress(DEFAULT_NUM_PLAYERS - SEEKBAR_OFFSET);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        CheckBox check;
+
+        String selected = String.valueOf(parent.getItemAtPosition(position));
+
+        for (int i = 0; i < Phase10Game.MAX_PHASE; i++) {
+            check = (CheckBox) findViewById(checkIDs[i]);
+            switch (selected) {
+                case "All":
+                    check.setChecked(true);
+                    break;
+                case "Even":
+                    if ((i % 2) != 0) {
+                        check.setChecked(true);
+                    } else {
+                        check.setChecked(false);
+                    }
+                    break;
+                case "Odd":
+                    if ((i % 2) == 0) {
+                        check.setChecked(true);
+                    } else {
+                        check.setChecked(false);
+                    }
+                    break;
+                case "First 5":
+                    if (i < Phase10Game.MAX_PHASE / 2) {
+                        check.setChecked(true);
+                    } else {
+                        check.setChecked(false);
+                    }
+                    break;
+                case "Last 5":
+                    if (i >= Phase10Game.MAX_PHASE / 2) {
+                        check.setChecked(true);
+                    } else {
+                        check.setChecked(false);
+                    }
+                    break;
+                case "Custom":
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 
 }

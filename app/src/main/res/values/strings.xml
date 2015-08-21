@@ -59,4 +59,13 @@
     <string name="Score_this_hand_colon">Score this hand:</string>
     <string name="Update_Score_colon">"Update Score: "</string>
     <string name="zero">0</string>
+
+    <string-array name="phase_selections">
+        <item>All</item>
+        <item>Even</item>
+        <item>Odd</item>
+        <item>First 5</item>
+        <item>Last 5</item>
+        <item>Custom</item>
+    </string-array>
 </resources>
