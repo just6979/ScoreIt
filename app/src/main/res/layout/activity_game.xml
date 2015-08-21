@@ -90,14 +90,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="false"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="16dp"
         android:text="@string/End_Game"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
-        android:layout_marginTop="16dp"
         />
 
 </RelativeLayout>
