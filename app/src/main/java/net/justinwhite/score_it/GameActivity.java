@@ -91,6 +91,7 @@ public class GameActivity
                 CreateGameActivity.EXTRA_NUM_PLAYERS,
                 CreateGameActivity.DEFAULT_NUM_PLAYERS
         );
+        boolean[] phases = intent.getBooleanArrayExtra(CreateGameActivity.EXTRA_PHASES);
 
         game = new Phase10Game();
         game.setNumPlayers(numPlayers);

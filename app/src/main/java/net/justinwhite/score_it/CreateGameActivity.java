@@ -61,6 +61,7 @@ public class CreateGameActivity
         AdapterView.OnItemSelectedListener {
 
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
+    public static final String EXTRA_PHASES = "EXTRA_PHASES";
 
     public static final int DEFAULT_NUM_PLAYERS = 4;
     private static final int SEEKBAR_OFFSET = Phase10Game.MIN_PLAYERS;
@@ -152,9 +153,19 @@ public class CreateGameActivity
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame() {
+        boolean[] phases = new boolean[Phase10Game.MAX_PHASE + 1];
+        CheckBox checkBox;
+        for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
+            checkBox = (CheckBox) findViewById(checkIDs[i]);
+            phases[i] = checkBox.isChecked();
+        }
+
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
+        intent.putExtra(EXTRA_PHASES, phases);
+
         startActivity(intent);
+
         // Check if we're running on Android 5.0 or higher
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
