@@ -36,7 +36,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:columnCount="4"
     android:orientation="vertical"
     tools:context=".GameActivity"
     >
@@ -79,10 +78,9 @@
         android:layout_above="@+id/buttonEndGame"
         android:layout_below="@+id/textGameName"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="8dp"
         android:divider="@null"
         tools:listitem="@layout/item_phase10_player"
         />
@@ -99,6 +97,7 @@
         android:text="@string/End_Game"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
+        android:layout_marginTop="16dp"
         />
 
 </RelativeLayout>

@@ -30,10 +30,10 @@
   ~
   -->
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     >
 
@@ -48,6 +48,14 @@
         android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_above="@+id/buttonStartGame"
         >
 
         <RelativeLayout
@@ -55,7 +63,7 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:alignmentMode="alignBounds"
             android:orientation="vertical"
             tools:context=".CreateGameActivity"
@@ -65,7 +73,6 @@
                 android:id="@+id/labelPhase10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/toolbar"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -81,7 +88,7 @@
                 android:layout_below="@+id/labelPhase10"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/How_many_players_question"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />
@@ -152,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/seekNumPlayers"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 >
 
@@ -189,30 +196,29 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:columnCount="@integer/grid_phases_column_count"
                 >
 
             </GridLayout>
 
-            <Button
-                android:id="@+id/buttonStartGame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="false"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentTop="false"
-                android:layout_below="@+id/gridPhases"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginTop="32dp"
-                android:text="@string/Start_Game"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="32sp"
-                />
-
         </RelativeLayout>
     </ScrollView>
-</LinearLayout>
+
+    <Button
+        android:id="@+id/buttonStartGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/Start_Game"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32sp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
