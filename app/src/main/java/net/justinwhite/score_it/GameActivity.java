@@ -182,7 +182,7 @@ public class GameActivity
         Phase10Player player = game.getPlayer(chosenPlayer);
         player.addScore(newScore);
         if (checked) {
-            player.nextPhase();
+            player.completePhase();
         }
         adapter.notifyDataSetChanged();
     }
