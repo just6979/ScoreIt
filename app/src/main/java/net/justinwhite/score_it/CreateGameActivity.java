@@ -185,7 +185,7 @@ public class CreateGameActivity
     }
 
     @SuppressWarnings("unused")
-    @OnClick(R.id.labelHowManyPlayers)
+    @OnClick({R.id.labelHowManyPlayers, R.id.textNumPlayers})
     protected void setDefaultPlayerCount() {
         seekNumPlayers.setProgress(DEFAULT_NUM_PLAYERS - SEEKBAR_OFFSET);
     }
