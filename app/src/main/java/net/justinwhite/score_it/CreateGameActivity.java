@@ -43,6 +43,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -87,6 +88,8 @@ public class CreateGameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.spinnerPhases) Spinner spinnerPhases;
 
+    private InputMethodManager imm;
+
     private int numPlayers;
     private int maxNumPlayers;
     private int minNumPLayers;
@@ -106,6 +109,8 @@ public class CreateGameActivity
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
 
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
         // get max & min players from the GameModel
         maxNumPlayers = Phase10Game.MAX_PLAYERS;
         minNumPLayers = Phase10Game.MIN_PLAYERS;
@@ -116,18 +121,37 @@ public class CreateGameActivity
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setOnSeekBarChangeListener(this);
         labelNumPlayers.setText(Integer.toString(numPlayers));
-        labelNumPlayers.clearFocus();
 
-        // set up the game name check and edit
-        if (!checkNameIt.isChecked()) {
-            editGameName.setVisibility(View.GONE);
-        }
+        // set up the game name checkbox and edittext
+        editGameName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (v == editGameName && hasFocus) {
+                    imm.showSoftInput(editGameName, InputMethodManager.SHOW_IMPLICIT);
+                } else {
+                    imm.hideSoftInputFromWindow(editGameName.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+            }
+        });
+        checkNameIt.setChecked(false);
+        editGameName.clearFocus();
+        editGameName.setVisibility(View.GONE);
         checkNameIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkNameIt.isChecked()) {
+                    // build game name from numPlayers
+                    String name = "";
+                    for (int i = 1; i <= numPlayers; i++) {
+                        name += "P" + String.valueOf(i);
+                    }
+                    editGameName.setText(name);
+                    // show the edittext & set focus, which will show the keyboard
                     editGameName.setVisibility(View.VISIBLE);
+                    editGameName.requestFocus();
                 } else {
+                    // un-layout the edittext and clear focud, which will hide the keyboard
+                    editGameName.clearFocus();
                     editGameName.setVisibility(View.GONE);
                 }
             }
