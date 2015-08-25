@@ -168,48 +168,10 @@ public class CreateGameActivity
         editor.apply();
     }
 
-
     @SuppressWarnings("unused")
-    @OnClick(R.id.buttonStartGame)
-    protected void StartNewGame() {
-        boolean[] phases = new boolean[Phase10Game.MAX_PHASE + 1];
-        boolean atLeastOnePhase = false;
-        CheckBox checkBox;
-        for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
-            checkBox = (CheckBox) findViewById(checkIDs[i]);
-            phases[i] = checkBox.isChecked();
-            if (!atLeastOnePhase) atLeastOnePhase = phases[i];
-        }
-
-        if (!atLeastOnePhase) {
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle("No Phases");
-            alertDialog.setMessage("No phases selected to play!");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Go Back",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-            return;
-        }
-
-        Intent intent = new Intent(this, GameActivity.class);
-        // always has these extras
-        intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
-        intent.putExtra(EXTRA_PHASES, phases);
-        // maybe has these extras
-        if (checkNameIt.isChecked()) {
-            intent.putExtra(EXTRA_GAME_NAME, editGameName.getText().toString());
-        }
-
-        startActivity(intent);
-
-        // Check if we're running on Android 5.0 or higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
-        }
+    @OnClick({R.id.labelHowManyPlayers, R.id.textNumPlayers})
+    protected void setDefaultPlayerCount() {
+        seekNumPlayers.setProgress(DEFAULT_NUM_PLAYERS - SEEKBAR_OFFSET);
     }
 
     @SuppressWarnings("unused")
@@ -224,10 +186,17 @@ public class CreateGameActivity
         seekNumPlayers.setProgress(maxNumPlayers - SEEKBAR_OFFSET);
     }
 
-    @SuppressWarnings("unused")
-    @OnClick({R.id.labelHowManyPlayers, R.id.textNumPlayers})
-    protected void setDefaultPlayerCount() {
-        seekNumPlayers.setProgress(DEFAULT_NUM_PLAYERS - SEEKBAR_OFFSET);
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+        numPlayers = progress + SEEKBAR_OFFSET;
+        labelNumPlayers.setText(Integer.toString(numPlayers));
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
     }
 
     @SuppressWarnings("unused")
@@ -258,19 +227,6 @@ public class CreateGameActivity
         } else {
             imm.hideSoftInputFromWindow(editGameName.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
-    }
-
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-        numPlayers = progress + SEEKBAR_OFFSET;
-        labelNumPlayers.setText(Integer.toString(numPlayers));
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
     }
 
     @Override
@@ -325,6 +281,50 @@ public class CreateGameActivity
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+    }
+
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.buttonStartGame)
+    protected void StartNewGame() {
+        boolean[] phases = new boolean[Phase10Game.MAX_PHASE + 1];
+        boolean atLeastOnePhase = false;
+        CheckBox checkBox;
+        for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
+            checkBox = (CheckBox) findViewById(checkIDs[i]);
+            phases[i] = checkBox.isChecked();
+            if (!atLeastOnePhase) atLeastOnePhase = phases[i];
+        }
+
+        if (!atLeastOnePhase) {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("No Phases");
+            alertDialog.setMessage("No phases selected to play!");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Go Back",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            return;
+        }
+
+        Intent intent = new Intent(this, GameActivity.class);
+        // always has these extras
+        intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
+        intent.putExtra(EXTRA_PHASES, phases);
+        // maybe has these extras
+        if (checkNameIt.isChecked()) {
+            intent.putExtra(EXTRA_GAME_NAME, editGameName.getText().toString());
+        }
+
+        startActivity(intent);
+
+        // Check if we're running on Android 5.0 or higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
+        }
     }
 
 }
