@@ -60,6 +60,8 @@
     <string name="Update_Score_colon">"Update Score: "</string>
     <string name="zero">0</string>
     <string name="Phases_colon">Phases:</string>
+    <string name="GameName">GameName</string>
+    <string name="Name_this_game_question">Name this game?</string>
 
     <string-array name="phase_selections">
         <item>All</item>

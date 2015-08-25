@@ -46,6 +46,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -63,19 +64,24 @@ public class CreateGameActivity
         AdapterView.OnItemSelectedListener {
 
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
+    public static final String EXTRA_GAME_NAME = "EXTRA_GAME_NAME";
     public static final String EXTRA_PHASES = "EXTRA_PHASES";
 
     public static final int DEFAULT_NUM_PLAYERS = 4;
     private static final int SEEKBAR_OFFSET = Phase10Game.MIN_PLAYERS;
 
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.seekNumPlayers) SeekBar seekNumPlayers;
-    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textNumPlayers) TextView labelNumPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMinPlayers) TextView labelMinPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMaxPlayers) TextView labelMaxPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.seekNumPlayers) SeekBar seekNumPlayers;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.checkNameIt) CheckBox checkNameIt;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.editGameName) EditText editGameName;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.gridPhases) GridLayout gridPhases;
     @SuppressWarnings({"WeakerAccess", "unused"})
@@ -112,8 +118,23 @@ public class CreateGameActivity
         labelNumPlayers.setText(Integer.toString(numPlayers));
         labelNumPlayers.clearFocus();
 
+        // set up the game name check and edit
+        if (!checkNameIt.isChecked()) {
+            editGameName.setVisibility(View.GONE);
+        }
+        checkNameIt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkNameIt.isChecked()) {
+                    editGameName.setVisibility(View.VISIBLE);
+                } else {
+                    editGameName.setVisibility(View.GONE);
+                }
+            }
+        });
+
         // set up the phase selection dropdown
-         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.phase_selections,
                 android.R.layout.simple_spinner_dropdown_item
@@ -123,7 +144,7 @@ public class CreateGameActivity
         spinnerPhases.setOnItemSelectedListener(this);
 
         // set up the phase selection checkboxes
-         checkIDs = new int[Phase10Game.MAX_PHASE + 1];
+        checkIDs = new int[Phase10Game.MAX_PHASE + 1];
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
             CheckBox check = new CheckBox(this);
             int id = View.generateViewId();
@@ -179,8 +200,13 @@ public class CreateGameActivity
         }
 
         Intent intent = new Intent(this, GameActivity.class);
+        // always has these extras
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         intent.putExtra(EXTRA_PHASES, phases);
+        // maybe has these extras
+        if (checkNameIt.isChecked()) {
+            intent.putExtra(EXTRA_GAME_NAME, editGameName.getText().toString());
+        }
 
         startActivity(intent);
 
