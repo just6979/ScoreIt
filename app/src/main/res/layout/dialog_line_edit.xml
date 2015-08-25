@@ -43,5 +43,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:inputType="text"
+        android:selectAllOnFocus="true"
         />
 </RelativeLayout>
