@@ -128,20 +128,6 @@ public class GameActivity
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, this));
     }
 
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case android.R.id.home:
-            showExitDialog();
-            return (true);
-        }
-        return (super.onOptionsItemSelected(item));
-    }
 
     private void showExitDialog() {
         new AlertDialog.Builder(this)
@@ -164,10 +150,19 @@ public class GameActivity
                 .show();
     }
 
-    @SuppressWarnings("unused")
-    @OnClick(R.id.buttonEndGame)
-    protected void onClickEndGame(View view) {
-        showExitDialog();
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            showExitDialog();
+            return (true);
+        }
+        return (super.onOptionsItemSelected(item));
     }
 
     @Override
@@ -238,6 +233,12 @@ public class GameActivity
         // show the keyboard right away
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.buttonEndGame)
+    protected void onClickEndGame(View view) {
+        showExitDialog();
     }
 
 }
