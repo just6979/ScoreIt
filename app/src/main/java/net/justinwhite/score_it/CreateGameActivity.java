@@ -60,11 +60,11 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
+import butterknife.OnItemSelected;
 
 public class CreateGameActivity
         extends AppCompatActivity
-        implements SeekBar.OnSeekBarChangeListener,
-        AdapterView.OnItemSelectedListener {
+        implements SeekBar.OnSeekBarChangeListener {
 
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
     public static final String EXTRA_GAME_NAME = "EXTRA_GAME_NAME";
@@ -86,9 +86,9 @@ public class CreateGameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.editGameName) EditText editGameName;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.gridPhases) GridLayout gridPhases;
-    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.spinnerPhases) Spinner spinnerPhases;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.gridPhases) GridLayout gridPhases;
 
     private InputMethodManager imm;
 
@@ -137,7 +137,6 @@ public class CreateGameActivity
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPhases.setAdapter(adapter);
-        spinnerPhases.setOnItemSelectedListener(this);
 
         // set up the phase selection checkboxes
         checkIDs = new int[Phase10Game.MAX_PHASE + 1];
@@ -229,8 +228,9 @@ public class CreateGameActivity
         }
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    @SuppressWarnings("unused")
+    @OnItemSelected(R.id.spinnerPhases)
+    public void onSpinnerPhasesSelected(AdapterView<?> parent, int position, long id) {
         CheckBox check;
 
         String selected = String.valueOf(parent.getItemAtPosition(position));
@@ -278,11 +278,6 @@ public class CreateGameActivity
             }
         }
     }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-    }
-
 
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonStartGame)
