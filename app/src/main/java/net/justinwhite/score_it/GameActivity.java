@@ -33,6 +33,7 @@
 package net.justinwhite.score_it;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -43,8 +44,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10Game;
@@ -57,7 +61,6 @@ import butterknife.OnClick;
 public class GameActivity
         extends AppCompatActivity
         implements
-        LineEditDialog.DialogListener,
         ScoreUpdateDialog.DialogListener,
         RecyclerItemClickListener.OnItemClickListener
 {
@@ -174,16 +177,37 @@ public class GameActivity
 
     @Override
     public void onItemLongPress(View childView, int position) {
-        chosenPlayer = position;
-        LineEditDialog.newInstance(game.getPlayer(chosenPlayer).getName())
-                      .show(getFragmentManager(), "change_name_dialog");
-    }
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_player_name_change, null);
 
-    @Override
-    public void onLineEditSubmit(String newName) {
-        game.renamePlayer(chosenPlayer, newName);
-        textGameName.setText(game.getName());
-        adapter.notifyDataSetChanged();
+        final int playerIndex = position;
+        String oldName = game.getPlayer(position).getName();
+        final EditText editPlayerName = (EditText) dialogView.findViewById(R.id.editPlayerName);
+        editPlayerName.setText(oldName);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.Change_Player_Name)
+               .setView(dialogView)
+               .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int i) {
+                               String newName = editPlayerName.getText().toString();
+                               game.renamePlayer(playerIndex, newName);
+                               textGameName.setText(game.getName());
+                               adapter.notifyDataSetChanged();
+                           }
+                       }
+               )
+               .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int i) {
+                               dialog.cancel();
+                           }
+                       }
+               );
+        Dialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
     }
 
     @Override
