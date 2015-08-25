@@ -32,6 +32,7 @@
 
 package net.justinwhite.score_it;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -72,12 +73,13 @@ public class GameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.listPlayers) RecyclerView recyclerView;
     private Phase10Game game;
-    private int chosenPlayer;
     private Phase10PlayerAdapter adapter;
+    private LayoutInflater inflater;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        inflater = this.getLayoutInflater();
 
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
@@ -170,73 +172,67 @@ public class GameActivity
 
     @Override
     public void onItemClick(View childView, int position) {
-        LayoutInflater inflater = this.getLayoutInflater();
-
+        @SuppressLint("InflateParams")
+        final View dialogView = inflater.inflate(R.layout.dialog_score_update, null);
         final int playerIndex = position;
         final String playerName = game.getPlayer(playerIndex).getName();
-        final View dialogView = inflater.inflate(R.layout.dialog_score_update, null);
         final EditText editNewScore = (EditText) dialogView.findViewById(R.id.editNewScore);
         final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setTitle(getString(R.string.Update_Score_colon) + playerName)
-               .setView(dialogView)
-               .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialog, int i) {
-                               int newScore = Integer.valueOf(editNewScore.getText().toString());
-                               boolean completedPhase = checkNextPhase.isChecked();
-                               Phase10Player player = game.getPlayer(playerIndex);
-                               player.addScore(newScore);
-                               if (completedPhase) { player.completePhase(); }
-                               adapter.notifyDataSetChanged();
-                           }
-                       }
-               )
-               .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialog, int i) {
-                               dialog.cancel();
-                           }
-                       }
-               );
-        Dialog dialog = builder.create();
+        Dialog dialog = new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.Update_Score_colon) + playerName)
+                .setView(dialogView)
+                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                Phase10Player player = game.getPlayer(playerIndex);
+                                player.addScore(Integer.valueOf(editNewScore.getText().toString()));
+                                if (checkNextPhase.isChecked()) { player.completePhase(); }
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                )
+                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                dialog.cancel();
+                            }
+                        }
+                )
+                .create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
     }
 
     @Override
     public void onItemLongPress(View childView, int position) {
-        LayoutInflater inflater = this.getLayoutInflater();
+        @SuppressLint("InflateParams")
         final View dialogView = inflater.inflate(R.layout.dialog_player_name_change, null);
 
         final int playerIndex = position;
-        String oldName = game.getPlayer(position).getName();
         final EditText editPlayerName = (EditText) dialogView.findViewById(R.id.editPlayerName);
-        editPlayerName.setText(oldName);
+        editPlayerName.setText(game.getPlayer(playerIndex).getName());
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.Change_Player_Name)
-               .setView(dialogView)
-               .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialog, int i) {
-                               String newName = editPlayerName.getText().toString();
-                               game.renamePlayer(playerIndex, newName);
-                               textGameName.setText(game.getName());
-                               adapter.notifyDataSetChanged();
-                           }
-                       }
-               )
-               .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialog, int i) {
-                               dialog.cancel();
-                           }
-                       }
-               );
-        Dialog dialog = builder.create();
+        Dialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.Change_Player_Name)
+                .setView(dialogView)
+                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                game.renamePlayer(playerIndex, editPlayerName.getText().toString());
+                                textGameName.setText(game.getName());
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                )
+                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                dialog.cancel();
+                            }
+                        }
+                )
+                .create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
     }
