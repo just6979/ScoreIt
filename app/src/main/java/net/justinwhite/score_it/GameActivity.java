@@ -178,11 +178,9 @@ public class GameActivity
 
     @Override
     public void onLineEditSubmit(String newName) {
-        Phase10Player player = game.getPlayer(chosenPlayer);
-        player.setName(newName);
-        adapter.notifyDataSetChanged();
-        game.buildName();
+        game.renamePlayer(chosenPlayer, newName);
         textGameName.setText(game.getName());
+        adapter.notifyDataSetChanged();
     }
 
     @Override
