@@ -100,7 +100,30 @@ public class CreateGameActivity
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
 
-        checkIDs = new int[Phase10Game.MAX_PHASE + 1];
+        // get max & min players from the GameModel
+        maxNumPlayers = Phase10Game.MAX_PLAYERS;
+        minNumPLayers = Phase10Game.MIN_PLAYERS;
+        // set up the seekbar and labels
+        labelMinPlayers.setText(Integer.toString(minNumPLayers));
+        labelMaxPlayers.setText(Integer.toString(maxNumPlayers));
+        seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
+        seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
+        seekNumPlayers.setOnSeekBarChangeListener(this);
+        labelNumPlayers.setText(Integer.toString(numPlayers));
+        labelNumPlayers.clearFocus();
+
+        // set up the phase selection dropdown
+         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.phase_selections,
+                android.R.layout.simple_spinner_dropdown_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPhases.setAdapter(adapter);
+        spinnerPhases.setOnItemSelectedListener(this);
+
+        // set up the phase selection checkboxes
+         checkIDs = new int[Phase10Game.MAX_PHASE + 1];
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
             CheckBox check = new CheckBox(this);
             int id = View.generateViewId();
@@ -116,29 +139,6 @@ public class CreateGameActivity
             });
             gridPhases.addView(check);
         }
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.phase_selections,
-                android.R.layout.simple_spinner_dropdown_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPhases.setAdapter(adapter);
-        spinnerPhases.setOnItemSelectedListener(this);
-
-        // get max & min players from the GameModel
-        maxNumPlayers = Phase10Game.MAX_PLAYERS;
-        labelMaxPlayers.setText(Integer.toString(maxNumPlayers));
-        minNumPLayers = Phase10Game.MIN_PLAYERS;
-        labelMinPlayers.setText(Integer.toString(minNumPLayers));
-
-        seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
-
-        seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
-        seekNumPlayers.setOnSeekBarChangeListener(this);
-
-        labelNumPlayers.setText(Integer.toString(numPlayers));
-        labelNumPlayers.clearFocus();
     }
 
     @Override
