@@ -48,6 +48,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -61,7 +62,6 @@ import butterknife.OnClick;
 public class GameActivity
         extends AppCompatActivity
         implements
-        ScoreUpdateDialog.DialogListener,
         RecyclerItemClickListener.OnItemClickListener
 {
 
@@ -170,9 +170,40 @@ public class GameActivity
 
     @Override
     public void onItemClick(View childView, int position) {
-        chosenPlayer = position;
-        ScoreUpdateDialog.newInstance(game.getPlayer(position).getName())
-                         .show(getFragmentManager(), "update_score_dialog");
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        final int playerIndex = position;
+        final String playerName = game.getPlayer(playerIndex).getName();
+        final View dialogView = inflater.inflate(R.layout.dialog_score_update, null);
+        final EditText editNewScore = (EditText) dialogView.findViewById(R.id.editNewScore);
+        final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(getString(R.string.Update_Score_colon) + playerName)
+               .setView(dialogView)
+               .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int i) {
+                               int newScore = Integer.valueOf(editNewScore.getText().toString());
+                               boolean completedPhase = checkNextPhase.isChecked();
+                               Phase10Player player = game.getPlayer(playerIndex);
+                               player.addScore(newScore);
+                               if (completedPhase) { player.completePhase(); }
+                               adapter.notifyDataSetChanged();
+                           }
+                       }
+               )
+               .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int i) {
+                               dialog.cancel();
+                           }
+                       }
+               );
+        Dialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
     }
 
     @Override
@@ -210,11 +241,4 @@ public class GameActivity
         dialog.show();
     }
 
-    @Override
-    public void onScoreUpdateSubmit(int newScore, boolean completedPhase) {
-        Phase10Player player = game.getPlayer(chosenPlayer);
-        player.addScore(newScore);
-        if (completedPhase) { player.completePhase(); }
-        adapter.notifyDataSetChanged();
-    }
 }
