@@ -166,7 +166,7 @@ public class GameActivity
     public void onItemClick(View childView, int position) {
         chosenPlayer = position;
         ScoreUpdateDialog.newInstance(game.getPlayer(position).getName())
-                         .show(getFragmentManager(), "change_name_dialog");
+                         .show(getFragmentManager(), "update_score_dialog");
     }
 
     @Override
