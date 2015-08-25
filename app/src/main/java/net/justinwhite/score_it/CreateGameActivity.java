@@ -33,7 +33,9 @@
 package net.justinwhite.score_it;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -118,7 +120,7 @@ public class CreateGameActivity
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.phase_selections,
-                android.R.layout.simple_spinner_item
+                android.R.layout.simple_spinner_dropdown_item
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPhases.setAdapter(adapter);
@@ -154,10 +156,26 @@ public class CreateGameActivity
     @OnClick(R.id.buttonStartGame)
     protected void StartNewGame() {
         boolean[] phases = new boolean[Phase10Game.MAX_PHASE + 1];
+        boolean atLeastOnePhase = false;
         CheckBox checkBox;
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
             checkBox = (CheckBox) findViewById(checkIDs[i]);
             phases[i] = checkBox.isChecked();
+            if (!atLeastOnePhase) atLeastOnePhase = phases[i];
+        }
+
+        if (!atLeastOnePhase) {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("No Phases");
+            alertDialog.setMessage("No phases selected to play!");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Go Back",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            return;
         }
 
         Intent intent = new Intent(this, GameActivity.class);
@@ -246,8 +264,10 @@ public class CreateGameActivity
                     }
                     break;
                 case "Custom":
+                    check.setChecked(false);
                     break;
                 default:
+                    check.setChecked(true);
                     break;
             }
         }

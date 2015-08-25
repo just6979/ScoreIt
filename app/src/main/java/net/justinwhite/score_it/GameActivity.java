@@ -95,6 +95,7 @@ public class GameActivity
 
         game = new Phase10Game();
         game.setNumPlayers(numPlayers);
+        game.setActivePhases(phases);
         textGameName.setText(game.getName());
 
         recyclerView.setHasFixedSize(true);
