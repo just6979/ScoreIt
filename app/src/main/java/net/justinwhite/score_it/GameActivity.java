@@ -76,8 +76,6 @@ public class GameActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
-
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
 
@@ -156,10 +154,6 @@ public class GameActivity
     @Override
     public void onYesNoSubmit() {
         finish();
-        // Check if we're running on Android 5.0 or higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            overridePendingTransition(R.anim.fade_in_500, R.anim.fade_out_500);
-        }
     }
 
     @Override

@@ -323,10 +323,6 @@ public class CreateGameActivity
             intent.putExtra(EXTRA_GAME_NAME, editGameName.getText().toString());
         }
         startActivity(intent);
-        // Check if we're running on Android 5.0 or higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
-        }
     }
 
 }
