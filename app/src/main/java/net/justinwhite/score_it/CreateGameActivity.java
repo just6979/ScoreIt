@@ -65,14 +65,14 @@ import butterknife.OnItemSelected;
 public class CreateGameActivity
         extends AppCompatActivity
         implements SeekBar.OnSeekBarChangeListener {
-
+    // intent extras for GameActivity
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
     public static final String EXTRA_GAME_NAME = "EXTRA_GAME_NAME";
     public static final String EXTRA_PHASES = "EXTRA_PHASES";
-
+    // constants for building layout and game setup
     public static final int DEFAULT_NUM_PLAYERS = 4;
     private static final int SEEKBAR_OFFSET = Phase10Game.MIN_PLAYERS;
-
+    // important layout widgets
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textNumPlayers) TextView labelNumPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
@@ -89,31 +89,29 @@ public class CreateGameActivity
     @Bind(R.id.spinnerPhases) Spinner spinnerPhases;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.gridPhases) GridLayout gridPhases;
-
-    private InputMethodManager imm;
-
+    // game setup stuff
     private int numPlayers;
     private int maxNumPlayers;
     private int minNumPLayers;
-    private int[] checkIDs;
+    private int[] checkBoxIDs;
     private boolean selectionFromCheckboxes;
+    // others
+    private InputMethodManager imm;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_create_game);
         ButterKnife.bind(this);
-
+        // setup the fancy new material style toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        // read shared prefs
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
-
+        // grab inputmanager for soft keyboard handling
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
         // get max & min players from the GameModel
         maxNumPlayers = Phase10Game.MAX_PLAYERS;
         minNumPLayers = Phase10Game.MIN_PLAYERS;
@@ -124,12 +122,10 @@ public class CreateGameActivity
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setOnSeekBarChangeListener(this);
         labelNumPlayers.setText(Integer.toString(numPlayers));
-
         // set up the game name checkbox and edittext
         checkNameIt.setChecked(false);
         editGameName.clearFocus();
         editGameName.setVisibility(View.GONE);
-
         // set up the phase selection dropdown
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
@@ -138,13 +134,12 @@ public class CreateGameActivity
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPhases.setAdapter(adapter);
-
         // set up the phase selection checkboxes
-        checkIDs = new int[Phase10Game.MAX_PHASE + 1];
+        checkBoxIDs = new int[Phase10Game.MAX_PHASE + 1];
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
             CheckBox check = new CheckBox(this);
             int id = View.generateViewId();
-            checkIDs[i] = id;
+            checkBoxIDs[i] = id;
             check.setId(id);
             check.setText(String.valueOf(i));
             check.setChecked(true);
@@ -162,7 +157,6 @@ public class CreateGameActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.pref_current_num_players), numPlayers);
@@ -202,8 +196,8 @@ public class CreateGameActivity
 
     @SuppressWarnings("unused")
     @OnCheckedChanged(R.id.checkNameIt)
-    public void onCheckNameItChanged(boolean checked) {
-        if (checked) {
+    public void onCheckNameItChanged(boolean isChecked) {
+        if (isChecked) {
             // build game name from numPlayers
             String name = "";
             for (int i = 1; i <= numPlayers; i++) {
@@ -240,48 +234,48 @@ public class CreateGameActivity
         }
         selectionFromCheckboxes = false;
 
-        CheckBox check;
+        CheckBox checkBox;
         String selected = String.valueOf(parent.getItemAtPosition(position));
 
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
-            check = (CheckBox) findViewById(checkIDs[i]);
+            checkBox = (CheckBox) findViewById(checkBoxIDs[i]);
             switch (selected) {
                 case "All":
-                    check.setChecked(true);
+                    checkBox.setChecked(true);
                     break;
                 case "Odd":
                     if ((i % 2) != 0) {
-                        check.setChecked(true);
+                        checkBox.setChecked(true);
                     } else {
-                        check.setChecked(false);
+                        checkBox.setChecked(false);
                     }
                     break;
                 case "Even":
                     if ((i % 2) == 0) {
-                        check.setChecked(true);
+                        checkBox.setChecked(true);
                     } else {
-                        check.setChecked(false);
+                        checkBox.setChecked(false);
                     }
                     break;
                 case "First 5":
                     if (i <= (Phase10Game.MAX_PHASE + 1) / 2) {
-                        check.setChecked(true);
+                        checkBox.setChecked(true);
                     } else {
-                        check.setChecked(false);
+                        checkBox.setChecked(false);
                     }
                     break;
                 case "Last 5":
                     if (i > (Phase10Game.MAX_PHASE + 1) / 2) {
-                        check.setChecked(true);
+                        checkBox.setChecked(true);
                     } else {
-                        check.setChecked(false);
+                        checkBox.setChecked(false);
                     }
                     break;
                 case "Custom":
-                    check.setChecked(false);
+                    checkBox.setChecked(false);
                     break;
                 default:
-                    check.setChecked(true);
+                    checkBox.setChecked(true);
                     break;
             }
         }
@@ -293,12 +287,12 @@ public class CreateGameActivity
         boolean[] phases = new boolean[Phase10Game.MAX_PHASE + 1];
         boolean atLeastOnePhase = false;
         CheckBox checkBox;
+
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
-            checkBox = (CheckBox) findViewById(checkIDs[i]);
+            checkBox = (CheckBox) findViewById(checkBoxIDs[i]);
             phases[i] = checkBox.isChecked();
             if (!atLeastOnePhase) atLeastOnePhase = phases[i];
         }
-
         if (!atLeastOnePhase) {
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle("No Phases");
@@ -321,9 +315,7 @@ public class CreateGameActivity
         if (checkNameIt.isChecked()) {
             intent.putExtra(EXTRA_GAME_NAME, editGameName.getText().toString());
         }
-
         startActivity(intent);
-
         // Check if we're running on Android 5.0 or higher
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             overridePendingTransition(R.anim.fade_in_1000, R.anim.fade_out_1000);
