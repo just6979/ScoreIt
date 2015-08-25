@@ -32,9 +32,10 @@
 
 package net.justinwhite.score_it;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +57,6 @@ import butterknife.OnClick;
 public class GameActivity
         extends AppCompatActivity
         implements
-        YesNoDialog.DialogListener,
         LineEditDialog.DialogListener,
         ScoreUpdateDialog.DialogListener,
         RecyclerItemClickListener.OnItemClickListener
@@ -139,21 +139,30 @@ public class GameActivity
     }
 
     private void showExitDialog() {
-        YesNoDialog endGameDialog = YesNoDialog.newInstance(
-                getString(R.string.End_the_game_question)
-        );
-        endGameDialog.show(getFragmentManager(), "end_game_dialog");
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.End_the_game_question))
+                .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                finish();
+                            }
+                        }
+                )
+                .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                dialog.cancel();
+                            }
+                        }
+                )
+                .create()
+                .show();
     }
 
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonEndGame)
-    protected void EndGame(View view) {
+    protected void onClickEndGame(View view) {
         showExitDialog();
-    }
-
-    @Override
-    public void onYesNoSubmit() {
-        finish();
     }
 
     @Override
