@@ -174,11 +174,12 @@ public class GameActivity
     public void onItemClick(View childView, int position) {
         @SuppressLint("InflateParams")
         final View dialogView = inflater.inflate(R.layout.dialog_score_update, null);
-        final int playerIndex = position;
-        final String playerName = game.getPlayer(playerIndex).getName();
         final EditText editNewScore = (EditText) dialogView.findViewById(R.id.editNewScore);
         final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
-
+        // set data for the dialog and result actions
+        final int playerIndex = position;
+        final String playerName = game.getPlayer(playerIndex).getName();
+        // build and show the dialog
         Dialog dialog = new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.Update_Score_colon) + playerName)
                 .setView(dialogView)
@@ -200,6 +201,7 @@ public class GameActivity
                         }
                 )
                 .create();
+        // show the keyboard right away
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
     }
@@ -208,11 +210,11 @@ public class GameActivity
     public void onItemLongPress(View childView, int position) {
         @SuppressLint("InflateParams")
         final View dialogView = inflater.inflate(R.layout.dialog_player_name_change, null);
-
-        final int playerIndex = position;
         final EditText editPlayerName = (EditText) dialogView.findViewById(R.id.editPlayerName);
+        // set data for the dialog and result actions
+        final int playerIndex = position;
         editPlayerName.setText(game.getPlayer(playerIndex).getName());
-
+        // build and show the dialog
         Dialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.Change_Player_Name)
                 .setView(dialogView)
@@ -233,6 +235,7 @@ public class GameActivity
                         }
                 )
                 .create();
+        // show the keyboard right away
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
     }
