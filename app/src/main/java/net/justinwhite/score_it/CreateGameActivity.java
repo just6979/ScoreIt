@@ -96,6 +96,7 @@ public class CreateGameActivity
     private int maxNumPlayers;
     private int minNumPLayers;
     private int[] checkIDs;
+    private boolean selectionFromCheckboxes;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -151,6 +152,7 @@ public class CreateGameActivity
                 @Override
                 public void onClick(View v) {
                     spinnerPhases.setSelection(5);
+                    selectionFromCheckboxes = true;
                 }
             });
             gridPhases.addView(check);
@@ -231,8 +233,14 @@ public class CreateGameActivity
     @SuppressWarnings("unused")
     @OnItemSelected(R.id.spinnerPhases)
     public void onSpinnerPhasesSelected(AdapterView<?> parent, int position, long id) {
-        CheckBox check;
+        // don't do anything if the spinner was changed programmatically
+        if (selectionFromCheckboxes) {
+            selectionFromCheckboxes = false;
+            return;
+        }
+        selectionFromCheckboxes = false;
 
+        CheckBox check;
         String selected = String.valueOf(parent.getItemAtPosition(position));
 
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
