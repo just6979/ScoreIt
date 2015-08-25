@@ -43,7 +43,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 
-public class LineEditDialog extends DialogFragment {
+public class LineEditDialog
+        extends DialogFragment
+{
     private static final String ARG_DATA = "data";
 
     private String data;
@@ -71,7 +73,8 @@ public class LineEditDialog extends DialogFragment {
             listener = (DialogListener) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().getClass().getName()
-                    + " must implement " + this.getClass().getName() + ".DialogListener");
+                    + " must implement " + this.getClass().getName() + ".DialogListener"
+            );
         }
     }
 
@@ -87,19 +90,21 @@ public class LineEditDialog extends DialogFragment {
         editLineData.setText(data);
 
         builder.setTitle(R.string.Change_Player_Name)
-                .setView(dialogView)
-                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.onLineEditSubmit(editLineData.getText().toString());
-                    }
-                })
-                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        LineEditDialog.this.getDialog().cancel();
-                    }
-                });
+               .setView(dialogView)
+               .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               listener.onLineEditSubmit(editLineData.getText().toString());
+                           }
+                       }
+               )
+               .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               LineEditDialog.this.getDialog().cancel();
+                           }
+                       }
+               );
 
         Dialog dialog = builder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);

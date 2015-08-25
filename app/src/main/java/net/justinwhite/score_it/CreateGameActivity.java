@@ -64,7 +64,8 @@ import butterknife.OnItemSelected;
 
 public class CreateGameActivity
         extends AppCompatActivity
-        implements SeekBar.OnSeekBarChangeListener {
+        implements SeekBar.OnSeekBarChangeListener
+{
     // intent extras for GameActivity
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
     public static final String EXTRA_GAME_NAME = "EXTRA_GAME_NAME";
@@ -109,7 +110,9 @@ public class CreateGameActivity
         setSupportActionBar(toolbar);
         // read shared prefs
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players), DEFAULT_NUM_PLAYERS);
+        numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players),
+                DEFAULT_NUM_PLAYERS
+        );
         // grab inputmanager for soft keyboard handling
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         // get max & min players from the GameModel
@@ -144,12 +147,13 @@ public class CreateGameActivity
             check.setText(String.valueOf(i));
             check.setChecked(true);
             check.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    spinnerPhases.setSelection(5);
-                    selectionFromCheckboxes = true;
-                }
-            });
+                                         @Override
+                                         public void onClick(View v) {
+                                             spinnerPhases.setSelection(5);
+                                             selectionFromCheckboxes = true;
+                                         }
+                                     }
+            );
             gridPhases.addView(check);
         }
     }
@@ -196,7 +200,7 @@ public class CreateGameActivity
 
     @SuppressWarnings("unused")
     @OnCheckedChanged(R.id.checkNameIt)
-    public void onCheckNameItChanged(boolean isChecked) {
+    protected void onCheckNameItChanged(boolean isChecked) {
         if (isChecked) {
             // build game name from numPlayers
             String name = "";
@@ -216,17 +220,19 @@ public class CreateGameActivity
 
     @SuppressWarnings("unused")
     @OnFocusChange(R.id.editGameName)
-    public void onEditGameNameFocusChange(boolean hasFocus) {
+    protected void onEditGameNameFocusChange(boolean hasFocus) {
         if (hasFocus) {
             imm.showSoftInput(editGameName, InputMethodManager.SHOW_IMPLICIT);
         } else {
-            imm.hideSoftInputFromWindow(editGameName.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            imm.hideSoftInputFromWindow(editGameName.getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS
+            );
         }
     }
 
     @SuppressWarnings("unused")
     @OnItemSelected(R.id.spinnerPhases)
-    public void onSpinnerPhasesSelected(AdapterView<?> parent, int position, long id) {
+    protected void onSpinnerPhasesSelected(AdapterView<?> parent, int position, long id) {
         // don't do anything if the spinner was changed programmatically
         if (selectionFromCheckboxes) {
             selectionFromCheckboxes = false;
@@ -240,43 +246,43 @@ public class CreateGameActivity
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
             checkBox = (CheckBox) findViewById(checkBoxIDs[i]);
             switch (selected) {
-                case "All":
+            case "All":
+                checkBox.setChecked(true);
+                break;
+            case "Odd":
+                if ((i % 2) != 0) {
                     checkBox.setChecked(true);
-                    break;
-                case "Odd":
-                    if ((i % 2) != 0) {
-                        checkBox.setChecked(true);
-                    } else {
-                        checkBox.setChecked(false);
-                    }
-                    break;
-                case "Even":
-                    if ((i % 2) == 0) {
-                        checkBox.setChecked(true);
-                    } else {
-                        checkBox.setChecked(false);
-                    }
-                    break;
-                case "First 5":
-                    if (i <= (Phase10Game.MAX_PHASE + 1) / 2) {
-                        checkBox.setChecked(true);
-                    } else {
-                        checkBox.setChecked(false);
-                    }
-                    break;
-                case "Last 5":
-                    if (i > (Phase10Game.MAX_PHASE + 1) / 2) {
-                        checkBox.setChecked(true);
-                    } else {
-                        checkBox.setChecked(false);
-                    }
-                    break;
-                case "Custom":
+                } else {
                     checkBox.setChecked(false);
-                    break;
-                default:
+                }
+                break;
+            case "Even":
+                if ((i % 2) == 0) {
                     checkBox.setChecked(true);
-                    break;
+                } else {
+                    checkBox.setChecked(false);
+                }
+                break;
+            case "First 5":
+                if (i <= (Phase10Game.MAX_PHASE + 1) / 2) {
+                    checkBox.setChecked(true);
+                } else {
+                    checkBox.setChecked(false);
+                }
+                break;
+            case "Last 5":
+                if (i > (Phase10Game.MAX_PHASE + 1) / 2) {
+                    checkBox.setChecked(true);
+                } else {
+                    checkBox.setChecked(false);
+                }
+                break;
+            case "Custom":
+                checkBox.setChecked(false);
+                break;
+            default:
+                checkBox.setChecked(true);
+                break;
             }
         }
     }
@@ -291,7 +297,7 @@ public class CreateGameActivity
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
             checkBox = (CheckBox) findViewById(checkBoxIDs[i]);
             phases[i] = checkBox.isChecked();
-            if (!atLeastOnePhase) atLeastOnePhase = phases[i];
+            if (!atLeastOnePhase) { atLeastOnePhase = phases[i]; }
         }
         if (!atLeastOnePhase) {
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -302,7 +308,8 @@ public class CreateGameActivity
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
-                    });
+                    }
+            );
             alertDialog.show();
             return;
         }

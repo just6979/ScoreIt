@@ -45,7 +45,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-class Phase10PlayerAdapter extends RecyclerView.Adapter<net.justinwhite.score_it.Phase10PlayerAdapter.ViewHolder> {
+class Phase10PlayerAdapter
+        extends RecyclerView.Adapter<net.justinwhite.score_it.Phase10PlayerAdapter.ViewHolder>
+{
 
     private final List<Phase10Player> players;
     private final LayoutInflater inflater;
@@ -87,7 +89,9 @@ class Phase10PlayerAdapter extends RecyclerView.Adapter<net.justinwhite.score_it
     }
 
     @SuppressWarnings("unused")
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder
+            extends RecyclerView.ViewHolder
+    {
         @Bind(R.id.textPlayerName) TextView textPlayerName;
         @Bind(R.id.textPlayerScore) TextView textPlayerScore;
         @Bind(R.id.textPlayerPhase) TextView textPlayerPhase;

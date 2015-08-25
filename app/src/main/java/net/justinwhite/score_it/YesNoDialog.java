@@ -39,7 +39,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 public class YesNoDialog
-        extends DialogFragment {
+        extends DialogFragment
+{
 
     private DialogListener listener;
 
@@ -65,7 +66,8 @@ public class YesNoDialog
             listener = (DialogListener) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().getClass().getName()
-                    + " must implement " + this.getClass().getName() + ".DialogListener");
+                    + " must implement " + this.getClass().getName() + ".DialogListener"
+            );
         }
 
         if (getArguments() != null) {
@@ -79,18 +81,20 @@ public class YesNoDialog
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(title)
-                .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.onYesNoSubmit();
-                    }
-                })
-                .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        YesNoDialog.this.getDialog().cancel();
-                    }
-                });
+               .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               listener.onYesNoSubmit();
+                           }
+                       }
+               )
+               .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               YesNoDialog.this.getDialog().cancel();
+                           }
+                       }
+               );
         return builder.create();
     }
 

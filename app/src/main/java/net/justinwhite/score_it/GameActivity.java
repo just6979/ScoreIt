@@ -59,7 +59,8 @@ public class GameActivity
         YesNoDialog.DialogListener,
         LineEditDialog.DialogListener,
         ScoreUpdateDialog.DialogListener,
-        RecyclerItemClickListener.OnItemClickListener {
+        RecyclerItemClickListener.OnItemClickListener
+{
 
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.toolbar) Toolbar toolbar;
@@ -132,9 +133,9 @@ public class GameActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                showExitDialog();
-                return (true);
+        case android.R.id.home:
+            showExitDialog();
+            return (true);
         }
         return (super.onOptionsItemSelected(item));
     }
@@ -165,14 +166,14 @@ public class GameActivity
     public void onItemClick(View childView, int position) {
         chosenPlayer = position;
         ScoreUpdateDialog.newInstance(game.getPlayer(position).getName())
-                .show(getFragmentManager(), "change_name_dialog");
+                         .show(getFragmentManager(), "change_name_dialog");
     }
 
     @Override
     public void onItemLongPress(View childView, int position) {
         chosenPlayer = position;
         LineEditDialog.newInstance(game.getPlayer(chosenPlayer).getName())
-                .show(getFragmentManager(), "change_name_dialog");
+                      .show(getFragmentManager(), "change_name_dialog");
     }
 
     @Override

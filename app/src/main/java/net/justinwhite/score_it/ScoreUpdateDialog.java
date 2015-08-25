@@ -44,7 +44,9 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-public class ScoreUpdateDialog extends DialogFragment {
+public class ScoreUpdateDialog
+        extends DialogFragment
+{
     private static final String ARG_NAME = "name";
 
     private String name;
@@ -72,7 +74,8 @@ public class ScoreUpdateDialog extends DialogFragment {
             listener = (DialogListener) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().getClass().getName()
-                    + " must implement " + this.getClass().getName() + ".DialogListener");
+                    + " must implement " + this.getClass().getName() + ".DialogListener"
+            );
         }
     }
 
@@ -88,22 +91,24 @@ public class ScoreUpdateDialog extends DialogFragment {
         final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
 
         builder.setTitle(getString(R.string.Update_Score_colon) + name)
-                .setView(dialogView)
-                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.onScoreUpdateSubmit(
-                                Integer.valueOf(editNewScore.getText().toString()),
-                                checkNextPhase.isChecked()
-                        );
-                    }
-                })
-                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        ScoreUpdateDialog.this.getDialog().cancel();
-                    }
-                });
+               .setView(dialogView)
+               .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               listener.onScoreUpdateSubmit(
+                                       Integer.valueOf(editNewScore.getText().toString()),
+                                       checkNextPhase.isChecked()
+                               );
+                           }
+                       }
+               )
+               .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               ScoreUpdateDialog.this.getDialog().cancel();
+                           }
+                       }
+               );
 
         Dialog dialog = builder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
