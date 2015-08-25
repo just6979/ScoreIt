@@ -184,12 +184,10 @@ public class GameActivity
     }
 
     @Override
-    public void onScoreUpdateSubmit(int newScore, boolean checked) {
+    public void onScoreUpdateSubmit(int newScore, boolean completedPhase) {
         Phase10Player player = game.getPlayer(chosenPlayer);
         player.addScore(newScore);
-        if (checked) {
-            player.completePhase();
-        }
+        if (completedPhase) { player.completePhase(); }
         adapter.notifyDataSetChanged();
     }
 }
