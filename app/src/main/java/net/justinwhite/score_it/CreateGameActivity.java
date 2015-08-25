@@ -57,7 +57,9 @@ import net.justinwhite.score_model.phase_10.Phase10Game;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 
 public class CreateGameActivity
         extends AppCompatActivity
@@ -123,39 +125,9 @@ public class CreateGameActivity
         labelNumPlayers.setText(Integer.toString(numPlayers));
 
         // set up the game name checkbox and edittext
-        editGameName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (v == editGameName && hasFocus) {
-                    imm.showSoftInput(editGameName, InputMethodManager.SHOW_IMPLICIT);
-                } else {
-                    imm.hideSoftInputFromWindow(editGameName.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                }
-            }
-        });
         checkNameIt.setChecked(false);
         editGameName.clearFocus();
         editGameName.setVisibility(View.GONE);
-        checkNameIt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkNameIt.isChecked()) {
-                    // build game name from numPlayers
-                    String name = "";
-                    for (int i = 1; i <= numPlayers; i++) {
-                        name += "P" + String.valueOf(i);
-                    }
-                    editGameName.setText(name);
-                    // show the edittext & set focus, which will show the keyboard
-                    editGameName.setVisibility(View.VISIBLE);
-                    editGameName.requestFocus();
-                } else {
-                    // un-layout the edittext and clear focud, which will hide the keyboard
-                    editGameName.clearFocus();
-                    editGameName.setVisibility(View.GONE);
-                }
-            }
-        });
 
         // set up the phase selection dropdown
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -258,8 +230,36 @@ public class CreateGameActivity
         seekNumPlayers.setProgress(DEFAULT_NUM_PLAYERS - SEEKBAR_OFFSET);
     }
 
+    @SuppressWarnings("unused")
+    @OnCheckedChanged(R.id.checkNameIt)
+    public void onCheckNameItChanged(boolean checked) {
+        if (checked) {
+            // build game name from numPlayers
+            String name = "";
+            for (int i = 1; i <= numPlayers; i++) {
+                name += "P" + String.valueOf(i);
+            }
+            editGameName.setText(name);
+            // show the edittext & set focus, which will show the keyboard
+            editGameName.setVisibility(View.VISIBLE);
+            editGameName.requestFocus();
+        } else {
+            // un-layout the edittext and clear focud, which will hide the keyboard
+            editGameName.clearFocus();
+            editGameName.setVisibility(View.GONE);
+        }
+    }
 
-    @Override
+    @SuppressWarnings("unused")
+    @OnFocusChange(R.id.editGameName)
+    public void onEditGameNameFocusChange(boolean hasFocus) {
+        if (hasFocus) {
+            imm.showSoftInput(editGameName, InputMethodManager.SHOW_IMPLICIT);
+        } else {
+            imm.hideSoftInputFromWindow(editGameName.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         numPlayers = progress + SEEKBAR_OFFSET;
         labelNumPlayers.setText(Integer.toString(numPlayers));
