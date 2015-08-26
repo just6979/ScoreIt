@@ -32,9 +32,7 @@
 
 package net.justinwhite.score_it;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -48,13 +46,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10Game;
-import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -62,8 +56,6 @@ import butterknife.OnClick;
 
 public class GameActivity
         extends AppCompatActivity
-        implements
-        RecyclerItemClickListener.OnItemClickListener
 {
 
     @SuppressWarnings({"WeakerAccess", "unused"})
@@ -120,12 +112,19 @@ public class GameActivity
         recyclerView.setLayoutManager(layoutManager);
 
         adapter = new Phase10PlayerAdapter(
+                game,
                 getLayoutInflater(),
                 game.getPlayerList()
         );
+        adapter.registerAdapterDataObserver(
+                new RecyclerView.AdapterDataObserver() {
+                    @Override public void onChanged() {
+                        super.onChanged();
+                        textGameName.setText(game.getName());
+                    }
+                }
+        );
         recyclerView.setAdapter(adapter);
-
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, this));
     }
 
 
@@ -163,76 +162,6 @@ public class GameActivity
             return (true);
         }
         return (super.onOptionsItemSelected(item));
-    }
-
-    @Override
-    public void onItemClick(View childView, int position) {
-        @SuppressLint("InflateParams")
-        final View dialogView = inflater.inflate(R.layout.dialog_score_update, null);
-        final EditText editNewScore = (EditText) dialogView.findViewById(R.id.editNewScore);
-        final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
-        // set data for the dialog and result actions
-        final int playerIndex = position;
-        final String playerName = game.getPlayer(playerIndex).getName();
-        // build and show the dialog
-        Dialog dialog = new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.Update_Score_colon) + playerName)
-                .setView(dialogView)
-                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                Phase10Player player = game.getPlayer(playerIndex);
-                                player.addScore(Integer.valueOf(editNewScore.getText().toString()));
-                                if (checkNextPhase.isChecked()) { player.completePhase(); }
-                                adapter.notifyDataSetChanged();
-                            }
-                        }
-                )
-                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.cancel();
-                            }
-                        }
-                )
-                .create();
-        // show the keyboard right away
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        dialog.show();
-    }
-
-    @Override
-    public void onItemLongPress(View childView, int position) {
-        @SuppressLint("InflateParams")
-        final View dialogView = inflater.inflate(R.layout.dialog_player_name_change, null);
-        final EditText editPlayerName = (EditText) dialogView.findViewById(R.id.editPlayerName);
-        // set data for the dialog and result actions
-        final int playerIndex = position;
-        editPlayerName.setText(game.getPlayer(playerIndex).getName());
-        // build and show the dialog
-        Dialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.Change_Player_Name)
-                .setView(dialogView)
-                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                game.renamePlayer(playerIndex, editPlayerName.getText().toString());
-                                textGameName.setText(game.getName());
-                                adapter.notifyDataSetChanged();
-                            }
-                        }
-                )
-                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.cancel();
-                            }
-                        }
-                )
-                .create();
-        // show the keyboard right away
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        dialog.show();
     }
 
     @SuppressWarnings("unused")
