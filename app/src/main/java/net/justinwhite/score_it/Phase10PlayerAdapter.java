@@ -32,29 +32,18 @@
 
 package net.justinwhite.score_it;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import net.justinwhite.score_model.phase_10.Phase10Game;
 import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 class Phase10PlayerAdapter
-        extends RecyclerView.Adapter<Phase10PlayerAdapter.ViewHolder>
+        extends RecyclerView.Adapter<Phase10PlayerViewHolder>
 {
 
     private final List<Phase10Player> players;
@@ -80,121 +69,23 @@ class Phase10PlayerAdapter
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Phase10PlayerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        ViewHolder viewHolder;
+        Phase10PlayerViewHolder viewHolder;
 
         view = inflater.inflate(R.layout.item_phase10_player, parent, false);
-        viewHolder = new ViewHolder(view, this);
-        view.setTag(viewHolder);
+        viewHolder = new Phase10PlayerViewHolder(view, inflater, this, game);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(Phase10PlayerViewHolder holder, int position) {
         Phase10Player p = players.get(position);
         holder.setPlayerIndex(position);
         holder.textPlayerName.setText(p.getName());
         holder.textPlayerScore.setText(String.valueOf(p.getScore()));
         holder.textPlayerPhase.setText(String.valueOf(p.getPhase()));
-    }
-
-    @SuppressWarnings("unused")
-    public class ViewHolder
-            extends RecyclerView.ViewHolder
-            implements View.OnClickListener, View.OnLongClickListener
-    {
-        private final Phase10PlayerAdapter adapter;
-        private int playerIndex;
-        @Bind(R.id.textPlayerName) TextView textPlayerName;
-        @Bind(R.id.textPlayerScore) TextView textPlayerScore;
-        @Bind(R.id.textPlayerPhase) TextView textPlayerPhase;
-
-        public ViewHolder(View view, Phase10PlayerAdapter _adapter) {
-            super(view);
-            ButterKnife.bind(this, view);
-            adapter = _adapter;
-            view.setOnClickListener(this);
-            view.setOnLongClickListener(this);
-        }
-
-        public void setPlayerIndex(int position) {
-            playerIndex = position;
-        }
-
-        @Override public void onClick(View v) {
-            @SuppressLint("InflateParams")
-            final View dialogView = inflater.inflate(R.layout.dialog_score_update, null);
-            final EditText editNewScore = (EditText) dialogView.findViewById(R.id.editNewScore);
-            final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
-            // set data for the dialog and result actions
-            final String playerName = game.getPlayer(playerIndex).getName();
-            // build and show the dialog
-            Dialog dialog = new AlertDialog.Builder(v.getContext())
-                    .setTitle(v.getResources().getString(R.string.Update_Score_colon) + playerName)
-                    .setView(dialogView)
-                    .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int i) {
-                                    Phase10Player player = game.getPlayer(playerIndex);
-                                    player.addScore(
-                                            Integer.valueOf(editNewScore.getText().toString())
-                                    );
-                                    if (checkNextPhase.isChecked()) { player.completePhase(); }
-                                    adapter.notifyDataSetChanged();
-                                }
-                            }
-                    )
-                    .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int i) {
-                                    dialog.cancel();
-                                }
-                            }
-                    )
-                    .create();
-            // show the keyboard right away
-            dialog.getWindow()
-                  .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-            dialog.show();
-
-        }
-
-        @Override public boolean onLongClick(View v) {
-            @SuppressLint("InflateParams")
-            final View dialogView = inflater.inflate(R.layout.dialog_player_name_change, null);
-            final EditText editPlayerName = (EditText) dialogView.findViewById(R.id.editPlayerName);
-            // set data for the dialog and result actions
-            editPlayerName.setText(game.getPlayer(playerIndex).getName());
-            // build and show the dialog
-            Dialog dialog = new AlertDialog.Builder(v.getContext())
-                    .setTitle(R.string.Change_Player_Name)
-                    .setView(dialogView)
-                    .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int i) {
-                                    game.renamePlayer(playerIndex,
-                                            editPlayerName.getText().toString()
-                                    );
-                                    adapter.notifyDataSetChanged();
-                                }
-                            }
-                    )
-                    .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int i) {
-                                    dialog.cancel();
-                                }
-                            }
-                    )
-                    .create();
-            // show the keyboard right away
-            dialog.getWindow()
-                  .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-            dialog.show();
-            return false;
-        }
     }
 
 }
