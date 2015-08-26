@@ -43,7 +43,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -65,13 +64,10 @@ public class GameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.listPlayers) RecyclerView recyclerView;
     private Phase10Game game;
-    private Phase10PlayerAdapter adapter;
-    private LayoutInflater inflater;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        inflater = this.getLayoutInflater();
 
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
@@ -111,15 +107,14 @@ public class GameActivity
         }
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new Phase10PlayerAdapter(
-                game,
-                getLayoutInflater(),
-                game.getPlayerList()
+        Phase10PlayerAdapter adapter = new Phase10PlayerAdapter(game.getPlayerList(),
+                getLayoutInflater()
         );
         adapter.registerAdapterDataObserver(
                 new RecyclerView.AdapterDataObserver() {
                     @Override public void onChanged() {
                         super.onChanged();
+                        game.buildName();
                         textGameName.setText(game.getName());
                     }
                 }

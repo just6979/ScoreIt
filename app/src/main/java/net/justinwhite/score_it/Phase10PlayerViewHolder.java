@@ -44,7 +44,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import net.justinwhite.score_model.phase_10.Phase10Game;
 import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import butterknife.Bind;
@@ -54,32 +53,32 @@ public class Phase10PlayerViewHolder
         extends RecyclerView.ViewHolder
         implements View.OnClickListener, View.OnLongClickListener
 {
-    protected final LayoutInflater inflater;
-    protected final Phase10PlayerAdapter adapter;
-    private final Phase10Game game;
+    private final LayoutInflater inflater;
+    private final Phase10PlayerAdapter adapter;
 
+    @SuppressWarnings("unused")
     @Bind(R.id.textPlayerName) TextView textPlayerName;
+    @SuppressWarnings("unused")
     @Bind(R.id.textPlayerScore) TextView textPlayerScore;
+    @SuppressWarnings("unused")
     @Bind(R.id.textPlayerPhase) TextView textPlayerPhase;
 
-    private int playerIndex;
+    private Phase10Player player;
 
     public Phase10PlayerViewHolder(
             View _itemView,
             LayoutInflater _inflater,
-            Phase10PlayerAdapter _adapter,
-            Phase10Game _game) {
+            Phase10PlayerAdapter _adapter) {
         super(_itemView);
         inflater = _inflater;
         adapter = _adapter;
-        game = _game;
         ButterKnife.bind(this, _itemView);
         _itemView.setOnClickListener(this);
         _itemView.setOnLongClickListener(this);
     }
 
-    public void setPlayerIndex(int position) {
-        playerIndex = position;
+    public void setPlayer(Phase10Player _player) {
+        player = _player;
     }
 
     @Override public void onClick(View v) {
@@ -88,7 +87,7 @@ public class Phase10PlayerViewHolder
         final EditText editNewScore = (EditText) dialogView.findViewById(R.id.editNewScore);
         final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
         // set data for the dialog and result actions
-        final String playerName = game.getPlayer(playerIndex).getName();
+        final String playerName = player.getName();
         // build and show the dialog
         Dialog dialog = new AlertDialog.Builder(v.getContext())
                 .setTitle(v.getResources().getString(R.string.Update_Score_colon) + playerName)
@@ -96,7 +95,6 @@ public class Phase10PlayerViewHolder
                 .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
-                                Phase10Player player = game.getPlayer(playerIndex);
                                 player.addScore(
                                         Integer.valueOf(editNewScore.getText().toString())
                                 );
@@ -125,7 +123,7 @@ public class Phase10PlayerViewHolder
         final View dialogView = inflater.inflate(R.layout.dialog_player_name_change, null);
         final EditText editPlayerName = (EditText) dialogView.findViewById(R.id.editPlayerName);
         // set data for the dialog and result actions
-        editPlayerName.setText(game.getPlayer(playerIndex).getName());
+        editPlayerName.setText(player.getName());
         // build and show the dialog
         Dialog dialog = new AlertDialog.Builder(v.getContext())
                 .setTitle(R.string.Change_Player_Name)
@@ -133,9 +131,7 @@ public class Phase10PlayerViewHolder
                 .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
-                                game.renamePlayer(playerIndex,
-                                        editPlayerName.getText().toString()
-                                );
+                                player.setName(editPlayerName.getText().toString());
                                 adapter.notifyDataSetChanged();
                             }
                         }

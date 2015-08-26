@@ -37,7 +37,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.justinwhite.score_model.phase_10.Phase10Game;
 import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import java.util.List;
@@ -48,12 +47,9 @@ class Phase10PlayerAdapter
 
     private final List<Phase10Player> players;
     private final LayoutInflater inflater;
-    private final Phase10Game game;
 
-    public Phase10PlayerAdapter(Phase10Game _game, LayoutInflater _inflater,
-                                List<Phase10Player> _players) {
+    public Phase10PlayerAdapter(List<Phase10Player> _players, LayoutInflater _inflater) {
         super();
-        game = _game;
         players = _players;
         inflater = _inflater;
     }
@@ -74,18 +70,18 @@ class Phase10PlayerAdapter
         Phase10PlayerViewHolder viewHolder;
 
         view = inflater.inflate(R.layout.item_phase10_player, parent, false);
-        viewHolder = new Phase10PlayerViewHolder(view, inflater, this, game);
+        viewHolder = new Phase10PlayerViewHolder(view, inflater, this);
 
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(Phase10PlayerViewHolder holder, int position) {
-        Phase10Player p = players.get(position);
-        holder.setPlayerIndex(position);
-        holder.textPlayerName.setText(p.getName());
-        holder.textPlayerScore.setText(String.valueOf(p.getScore()));
-        holder.textPlayerPhase.setText(String.valueOf(p.getPhase()));
+        Phase10Player player = players.get(position);
+        holder.setPlayer(player);
+        holder.textPlayerName.setText(player.getName());
+        holder.textPlayerScore.setText(String.valueOf(player.getScore()));
+        holder.textPlayerPhase.setText(String.valueOf(player.getPhase()));
     }
 
 }
