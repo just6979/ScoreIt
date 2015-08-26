@@ -212,7 +212,7 @@ public class CreateGameActivity
             editGameName.setVisibility(View.VISIBLE);
             editGameName.requestFocus();
         } else {
-            // un-layout the edittext and clear focud, which will hide the keyboard
+            // remove the edittext from layout and clear focus, which will hide the keyboard
             editGameName.clearFocus();
             editGameName.setVisibility(View.GONE);
         }
