@@ -48,13 +48,15 @@
         android:id="@+id/scrollView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
         android:layout_below="@+id/toolbar"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_above="@+id/buttonStartGame"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_alignParentTop="false"
         >
 
         <RelativeLayout
@@ -69,25 +71,12 @@
             >
 
             <TextView
-                android:id="@+id/labelPhase10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:text="@string/Phase_10"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="24sp"
-                />
-
-            <TextView
                 android:id="@+id/labelHowManyPlayers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/labelPhase10"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="@string/How_many_players_question"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />
@@ -229,22 +218,20 @@
 
             </GridLayout>
 
-            <Button
-                android:id="@+id/buttonStartGame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@+id/gridPhases"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginTop="16dp"
-                android:text="@string/Start_Game"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="32sp"
-                />
-
         </RelativeLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/buttonStartGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="@string/Start_Game"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        />
 
 </RelativeLayout>

@@ -60,8 +60,6 @@ public class GameActivity
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.toolbar) Toolbar toolbar;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.textGameName) TextView textGameName;
-    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.listPlayers) RecyclerView recyclerView;
     private Phase10Game game;
 
@@ -77,7 +75,6 @@ public class GameActivity
         if (actionbar != null) {
             actionbar.setDisplayHomeAsUpEnabled(true);
         }
-
         Intent intent = getIntent();
         // always has these extras
         int numPlayers = intent.getIntExtra(
@@ -94,7 +91,8 @@ public class GameActivity
         game = new Phase10Game(numPlayers);
         game.setName(gameName);
         game.setActivePhases(phases);
-        textGameName.setText(game.getName());
+
+        toolbar.setSubtitle(game.getName());
 
         recyclerView.setHasFixedSize(true);
 
@@ -115,7 +113,7 @@ public class GameActivity
                     @Override public void onChanged() {
                         super.onChanged();
                         game.buildName();
-                        textGameName.setText(game.getName());
+                        toolbar.setSubtitle(game.getName());
                     }
                 }
         );

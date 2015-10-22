@@ -108,6 +108,7 @@ public class CreateGameActivity
         // setup the fancy new material style toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setSubtitle(R.string.Phase_10);
         // read shared prefs
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players),
