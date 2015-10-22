@@ -32,9 +32,9 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     >
 
@@ -49,15 +49,15 @@
         android:id="@+id/scrollView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_above="@+id/buttonStartGame"
+        android:layout_alignParentTop="false"
         android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_above="@+id/buttonStartGame"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_alignParentTop="false"
         >
 
         <android.support.percent.PercentRelativeLayout
@@ -85,7 +85,6 @@
             <TextView
                 android:id="@+id/labelMinPlayers"
                 android:layout_width="wrap_content"
-                app:layout_widthPercent="5%"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/seekNumPlayers"
                 android:layout_alignParentLeft="true"
@@ -94,15 +93,15 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="@string/min_num_players"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:gravity="center_vertical|center_horizontal"
+                app:layout_widthPercent="5%"
                 />
 
             <TextView
                 android:id="@+id/labelMaxPlayers"
                 android:layout_width="wrap_content"
-                app:layout_widthPercent="5%"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/seekNumPlayers"
                 android:layout_alignParentEnd="true"
@@ -111,15 +110,15 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="@string/max_num_players"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:gravity="center_vertical|center_horizontal"
+                app:layout_widthPercent="5%"
                 />
 
             <SeekBar
                 android:id="@+id/seekNumPlayers"
                 android:layout_width="fill_parent"
-                app:layout_widthPercent="90%"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textNumPlayers"
                 android:layout_centerHorizontal="true"
@@ -129,6 +128,7 @@
                 android:layout_toStartOf="@id/labelMaxPlayers"
                 android:max="6"
                 android:progress="3"
+                app:layout_widthPercent="90%"
                 />
 
             <TextView
@@ -163,13 +163,13 @@
                 android:layout_alignRight="@+id/seekNumPlayers"
                 android:layout_alignStart="@+id/seekNumPlayers"
                 android:layout_below="@+id/checkNameIt"
-                android:selectAllOnFocus="true"
-                android:text="@string/GameName"
-                android:visibility="visible"
                 android:inputType="text"
                 android:lines="1"
                 android:maxLines="1"
                 android:minLines="1"
+                android:selectAllOnFocus="true"
+                android:text="@string/GameName"
+                android:visibility="visible"
                 />
 
             <RelativeLayout
@@ -227,13 +227,13 @@
         android:id="@+id/buttonStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:text="@string/Start_Game"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
         />
 
 </RelativeLayout>
