@@ -39,7 +39,7 @@ android {
     buildToolsVersion '23.0.1'
     defaultConfig {
         applicationId "net.justinwhite.score_it"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode commitCount
         versionName '0.' + commitCount
@@ -63,5 +63,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:cardview-v7:23.1.0'
     compile 'com.android.support:recyclerview-v7:23.1.0'
+    compile 'com.android.support:percent:23.1.0'
     compile files('libs/ScoreModel.jar')
 }

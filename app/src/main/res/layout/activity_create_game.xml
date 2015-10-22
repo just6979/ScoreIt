@@ -34,6 +34,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     >
 
@@ -59,7 +60,7 @@
         android:layout_alignParentTop="false"
         >
 
-        <RelativeLayout
+        <android.support.percent.PercentRelativeLayout
             android:id="@+id/layoutCreateGame"
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -84,6 +85,7 @@
             <TextView
                 android:id="@+id/labelMinPlayers"
                 android:layout_width="wrap_content"
+                app:layout_widthPercent="5%"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/seekNumPlayers"
                 android:layout_alignParentLeft="true"
@@ -92,15 +94,15 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
                 android:text="@string/min_num_players"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center_vertical|center_horizontal"
                 />
 
             <TextView
                 android:id="@+id/labelMaxPlayers"
                 android:layout_width="wrap_content"
+                app:layout_widthPercent="5%"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/seekNumPlayers"
                 android:layout_alignParentEnd="true"
@@ -109,15 +111,15 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
                 android:text="@string/max_num_players"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center_vertical|center_horizontal"
                 />
 
             <SeekBar
                 android:id="@+id/seekNumPlayers"
                 android:layout_width="fill_parent"
+                app:layout_widthPercent="90%"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textNumPlayers"
                 android:layout_centerHorizontal="true"
@@ -218,7 +220,7 @@
 
             </GridLayout>
 
-        </RelativeLayout>
+        </android.support.percent.PercentRelativeLayout>
     </ScrollView>
 
     <Button
