@@ -30,7 +30,7 @@
  *
  */
 
-package net.justinwhite.score_it;
+package net.justinwhite.score_it.phase_10;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -44,6 +44,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import net.justinwhite.score_it.R;
 import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import butterknife.Bind;
@@ -83,7 +84,7 @@ public class Phase10PlayerViewHolder
 
     @Override public void onClick(View v) {
         @SuppressLint("InflateParams")
-        final View dialogView = inflater.inflate(R.layout.dialog_score_update, null);
+        final View dialogView = inflater.inflate(R.layout.dialog_phase10_score_update, null);
         final EditText editNewScore = (EditText) dialogView.findViewById(R.id.editNewScore);
         final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
         // set data for the dialog and result actions
@@ -120,7 +121,7 @@ public class Phase10PlayerViewHolder
 
     @Override public boolean onLongClick(View v) {
         @SuppressLint("InflateParams")
-        final View dialogView = inflater.inflate(R.layout.dialog_player_name_change, null);
+        final View dialogView = inflater.inflate(R.layout.dialog_phase10_player_name_change, null);
         final EditText editPlayerName = (EditText) dialogView.findViewById(R.id.editPlayerName);
         // set data for the dialog and result actions
         editPlayerName.setText(player.getName());

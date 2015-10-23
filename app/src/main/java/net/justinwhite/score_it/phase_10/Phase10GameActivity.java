@@ -30,7 +30,7 @@
  *
  */
 
-package net.justinwhite.score_it;
+package net.justinwhite.score_it.phase_10;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -45,15 +45,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
+import net.justinwhite.score_it.R;
 import net.justinwhite.score_model.phase_10.Phase10Game;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GameActivity
+public class Phase10GameActivity
         extends AppCompatActivity
 {
 
@@ -67,7 +67,7 @@ public class GameActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_phase10_game);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
@@ -78,14 +78,14 @@ public class GameActivity
         Intent intent = getIntent();
         // always has these extras
         int numPlayers = intent.getIntExtra(
-                CreateGameActivity.EXTRA_NUM_PLAYERS,
-                CreateGameActivity.DEFAULT_NUM_PLAYERS
+                CreatePhase10GameActivity.EXTRA_NUM_PLAYERS,
+                CreatePhase10GameActivity.DEFAULT_NUM_PLAYERS
         );
-        boolean[] phases = intent.getBooleanArrayExtra(CreateGameActivity.EXTRA_PHASES);
+        boolean[] phases = intent.getBooleanArrayExtra(CreatePhase10GameActivity.EXTRA_PHASES);
         // maybe has these extras
         String gameName = "";
-        if (intent.hasExtra(CreateGameActivity.EXTRA_GAME_NAME)) {
-            gameName = intent.getStringExtra(CreateGameActivity.EXTRA_GAME_NAME);
+        if (intent.hasExtra(CreatePhase10GameActivity.EXTRA_GAME_NAME)) {
+            gameName = intent.getStringExtra(CreatePhase10GameActivity.EXTRA_GAME_NAME);
         }
 
         game = new Phase10Game(numPlayers);

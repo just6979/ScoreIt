@@ -30,7 +30,7 @@
  *
  */
 
-package net.justinwhite.score_it;
+package net.justinwhite.score_it.phase_10;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -53,6 +53,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import net.justinwhite.score_it.R;
 import net.justinwhite.score_model.phase_10.Phase10Game;
 
 import butterknife.Bind;
@@ -62,11 +63,11 @@ import butterknife.OnClick;
 import butterknife.OnFocusChange;
 import butterknife.OnItemSelected;
 
-public class CreateGameActivity
+public class CreatePhase10GameActivity
         extends AppCompatActivity
         implements SeekBar.OnSeekBarChangeListener
 {
-    // intent extras for GameActivity
+    // intent extras for Phase10GameActivity
     public static final String EXTRA_NUM_PLAYERS = "EXTRA_NUM_PLAYERS";
     public static final String EXTRA_GAME_NAME = "EXTRA_GAME_NAME";
     public static final String EXTRA_PHASES = "EXTRA_PHASES";
@@ -103,7 +104,7 @@ public class CreateGameActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_game);
+        setContentView(R.layout.activity_create_phase10_game);
         ButterKnife.bind(this);
         // setup the fancy new material style toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -315,7 +316,7 @@ public class CreateGameActivity
             return;
         }
 
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, Phase10GameActivity.class);
         // always has these extras
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         intent.putExtra(EXTRA_PHASES, phases);

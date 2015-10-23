@@ -30,18 +30,19 @@
  *
  */
 
-package net.justinwhite.score_it;
+package net.justinwhite.score_it.phase_10;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.justinwhite.score_it.R;
 import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import java.util.List;
 
-class Phase10PlayerAdapter
+public class Phase10PlayerAdapter
         extends RecyclerView.Adapter<Phase10PlayerViewHolder>
 {
 
