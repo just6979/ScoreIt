@@ -40,6 +40,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -76,6 +77,8 @@ public class CreatePhase10GameActivity
     private static final int SEEKBAR_OFFSET = Phase10Game.MIN_PLAYERS;
     // important layout widgets
     @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.toolbar) Toolbar toolbar;
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textNumPlayers) TextView labelNumPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.labelMinPlayers) TextView labelMinPlayers;
@@ -107,9 +110,12 @@ public class CreatePhase10GameActivity
         setContentView(R.layout.activity_create_phase10_game);
         ButterKnife.bind(this);
         // setup the fancy new material style toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle(R.string.Phase_10);
+        ActionBar actionbar = getSupportActionBar();
+        if (actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setSubtitle(R.string.Create_Game);
+        }
         // read shared prefs
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players),
