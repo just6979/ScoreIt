@@ -42,7 +42,7 @@ import net.justinwhite.score_model.phase_10.Phase10Player;
 
 import java.util.List;
 
-public class Phase10PlayerAdapter
+class Phase10PlayerAdapter
         extends RecyclerView.Adapter<Phase10PlayerViewHolder>
 {
 

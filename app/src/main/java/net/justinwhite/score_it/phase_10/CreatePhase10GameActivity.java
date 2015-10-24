@@ -127,12 +127,12 @@ public class CreatePhase10GameActivity
         maxNumPlayers = Phase10Game.MAX_PLAYERS;
         minNumPLayers = Phase10Game.MIN_PLAYERS;
         // set up the seekbar and labels
-        labelMinPlayers.setText(Integer.toString(minNumPLayers));
-        labelMaxPlayers.setText(Integer.toString(maxNumPlayers));
+        labelMinPlayers.setText(String.format("%d", minNumPLayers));
+        labelMaxPlayers.setText(String.format("%d", maxNumPlayers));
         seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setOnSeekBarChangeListener(this);
-        labelNumPlayers.setText(Integer.toString(numPlayers));
+        labelNumPlayers.setText(String.format("%d", numPlayers));
         // set up the game name checkbox and edittext
         checkNameIt.setChecked(false);
         editGameName.clearFocus();
@@ -195,7 +195,7 @@ public class CreatePhase10GameActivity
 
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         numPlayers = progress + SEEKBAR_OFFSET;
-        labelNumPlayers.setText(Integer.toString(numPlayers));
+        labelNumPlayers.setText(String.format("%d", numPlayers));
     }
 
     @Override

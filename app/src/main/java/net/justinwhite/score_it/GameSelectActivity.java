@@ -48,8 +48,9 @@ public class GameSelectActivity
         extends AppCompatActivity
 {
 
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.toolbar)
-    Toolbar toolbar;
+    public Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
