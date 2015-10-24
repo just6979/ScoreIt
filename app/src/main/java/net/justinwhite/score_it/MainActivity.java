@@ -32,22 +32,17 @@
 
 package net.justinwhite.score_it;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import net.justinwhite.score_it.phase_10.CreatePhase10GameActivity;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity
         extends AppCompatActivity
 {
-
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.toolbar)
     public Toolbar toolbar;
@@ -65,10 +60,4 @@ public class MainActivity
         }
     }
 
-    @SuppressWarnings("unused")
-    @OnClick(R.id.buttonSelectGame)
-    protected void StartNewGame() {
-        Intent intent = new Intent(this, CreatePhase10GameActivity.class);
-        startActivity(intent);
-    }
 }
