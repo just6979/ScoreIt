@@ -34,28 +34,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".MainActivity"
     >
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/buttonStartGame"
-        android:layout_alignParentTop="false"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="false"
         >
 
         <android.support.percent.PercentRelativeLayout
             android:id="@+id/layoutCreateGame"
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alignmentMode="alignBounds"
             android:orientation="vertical"
@@ -105,7 +103,7 @@
 
             <SeekBar
                 android:id="@+id/seekNumPlayers"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textNumPlayers"
                 android:layout_centerHorizontal="true"
@@ -155,6 +153,7 @@
                 android:selectAllOnFocus="true"
                 android:text="@string/GameName"
                 android:visibility="visible"
+                tools:ignore="LabelFor"
                 />
 
             <RelativeLayout
@@ -208,14 +207,14 @@
 
     <Button
         android:id="@+id/buttonStartGame"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="false"
         android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="8dp"
         android:text="@string/Start_Game"
         android:textSize="24sp"
-        android:layout_alignParentStart="false"
-        android:layout_marginTop="8dp"
-        android:layout_alignParentBottom="true"
         />
 
 </RelativeLayout>
