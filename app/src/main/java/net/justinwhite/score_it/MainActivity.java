@@ -34,6 +34,7 @@ package net.justinwhite.score_it;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -58,10 +59,10 @@ public class MainActivity
         ButterKnife.bind(this);
         // setup the fancy new material style toolbar
         setSupportActionBar(toolbar);
-//        ActionBar actionbar = getSupportActionBar();
-//        if (actionbar != null) {
-//            actionbar.setIcon(R.mipmap.ic_launcher);
-//        }
+        ActionBar actionbar = getSupportActionBar();
+        if (actionbar != null) {
+            actionbar.setIcon(R.mipmap.ic_launcher);
+        }
     }
 
     @SuppressWarnings("unused")
