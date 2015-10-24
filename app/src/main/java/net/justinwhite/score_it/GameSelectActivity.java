@@ -61,7 +61,7 @@ public class GameSelectActivity
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         if (actionbar != null) {
-            actionbar.setDisplayHomeAsUpEnabled(false);
+            actionbar.setIcon(R.mipmap.ic_launcher);
         }
 
     }
