@@ -36,7 +36,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context="net.justinwhite.score_it.MainActivity"
+    tools:context="net.justinwhite.score_it.GameSelectActivity"
     >
 
     <include
@@ -67,12 +67,12 @@
             >
 
             <TextView
+                android:id="@+id/textWhichGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/Which_Game_question"
-                android:id="@+id/textWhichGame"
                 android:layout_centerHorizontal="true"
+                android:text="@string/Which_Game_question"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 />
 
             <RadioGroup
@@ -84,12 +84,12 @@
                 >
 
                 <RadioButton
+                    android:id="@+id/radioPhase10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Phase_10"
-                    android:id="@+id/radioPhase10"
                     android:layout_gravity="center_horizontal"
                     android:checked="true"
+                    android:text="@string/Phase_10"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     />
             </RadioGroup>

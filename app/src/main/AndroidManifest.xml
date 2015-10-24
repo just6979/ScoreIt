@@ -43,7 +43,7 @@
         android:theme="@style/Theme.MyTheme"
         >
         <activity
-            android:name=".MainActivity"
+            android:name=".GameSelectActivity"
             android:label="@string/ScoreIt"
             >
             <intent-filter>
@@ -54,7 +54,7 @@
         <activity
             android:name=".phase_10.CreatePhase10GameActivity"
             android:label="@string/Score_It_dash_Phase_10"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".GameSelectActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

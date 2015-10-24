@@ -44,7 +44,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity
+public class GameSelectActivity
         extends AppCompatActivity
 {
 
@@ -54,7 +54,7 @@ public class MainActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game_select);
         ButterKnife.bind(this);
         // setup the fancy new material style toolbar
         setSupportActionBar(toolbar);
