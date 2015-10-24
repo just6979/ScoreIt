@@ -58,6 +58,7 @@
         android:inputType="number"
         android:selectAllOnFocus="true"
         android:text="@string/zero"
+        tools:ignore="LabelFor"
         />
 
     <CheckBox
