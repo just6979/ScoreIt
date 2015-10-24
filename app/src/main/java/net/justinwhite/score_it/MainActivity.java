@@ -34,7 +34,6 @@ package net.justinwhite.score_it;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -44,7 +43,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GameSelectActivity
+public class MainActivity
         extends AppCompatActivity
 {
 
@@ -55,15 +54,14 @@ public class GameSelectActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_select);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         // setup the fancy new material style toolbar
         setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        if (actionbar != null) {
-            actionbar.setIcon(R.mipmap.ic_launcher);
-        }
-
+//        ActionBar actionbar = getSupportActionBar();
+//        if (actionbar != null) {
+//            actionbar.setIcon(R.mipmap.ic_launcher);
+//        }
     }
 
     @SuppressWarnings("unused")

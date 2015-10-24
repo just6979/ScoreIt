@@ -30,40 +30,24 @@
  *
  */
 
-apply plugin: 'com.android.application'
+package net.justinwhite.score_it;
 
-def commitCount = Integer.parseInt('git rev-list master --count'.execute().text.trim())
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.1'
-    defaultConfig {
-        applicationId "net.justinwhite.score_it"
-        minSdkVersion 17
-        targetSdkVersion 23
-        versionCode commitCount
-        versionName '0.' + commitCount
-    }
-    buildTypes {
-        release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            minifyEnabled true
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
-    productFlavors {
-    }
-}
+public class GameSelectFragment
+        extends Fragment
+{
 
-dependencies {
-    compile files('libs/ScoreModel.jar')
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.android.support:cardview-v7:23.1.0'
-    compile 'com.android.support:recyclerview-v7:23.1.0'
-    compile 'com.android.support:percent:23.1.0'
-    compile 'com.android.support:design:23.1.0'
+    public GameSelectFragment() {
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_game_select, container, false);
+    }
 }
