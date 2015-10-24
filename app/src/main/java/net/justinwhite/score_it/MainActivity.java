@@ -47,6 +47,8 @@ public class MainActivity
     @Bind(R.id.toolbar)
     public Toolbar toolbar;
 
+    ActionBar actionbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +56,23 @@ public class MainActivity
         ButterKnife.bind(this);
         // setup the fancy new material style toolbar
         setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
+        actionbar = getSupportActionBar();
         if (actionbar != null) {
             actionbar.setIcon(R.mipmap.ic_launcher);
+            actionbar.setDisplayHomeAsUpEnabled(true);
         }
+        GameSelectFragment frag = new GameSelectFragment();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, frag)
+                .commit()
+        ;
+
     }
 
+    public void startNewGame(int game_ID) {
+        if (actionbar != null) {
+            actionbar.setSubtitle(R.string.Create_Game);
+        }
+    }
 }

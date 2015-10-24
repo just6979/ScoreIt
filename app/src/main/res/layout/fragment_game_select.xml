@@ -36,7 +36,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context="net.justinwhite.score_it.MainActivity"
+    tools:context=".MainActivity"
     >
 
     <ScrollView
@@ -44,13 +44,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/buttonSelectGame"
-        android:layout_alignParentTop="false"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         >
 
         <RelativeLayout
@@ -95,10 +89,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:text="@string/Select_Game"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
+        android:layout_marginTop="16dp"
         />
 
 </RelativeLayout>

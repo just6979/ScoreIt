@@ -52,20 +52,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".phase_10.CreatePhase10GameActivity"
-            android:label="@string/Score_It_dash_Phase_10"
-            android:parentActivityName=".MainActivity"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".phase_10.Phase10GameActivity"
             android:label="@string/Phase_10"
-            android:parentActivityName=".phase_10.CreatePhase10GameActivity"
             >
         </activity>
     </application>

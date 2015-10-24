@@ -33,17 +33,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    tools:context=".MainActivity"
     >
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -51,13 +46,8 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/buttonStartGame"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         >
 
         <android.support.percent.PercentRelativeLayout
@@ -222,10 +212,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:text="@string/Start_Game"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
+        android:layout_marginTop="16dp"
         />
 
 </RelativeLayout>
