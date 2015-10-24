@@ -64,6 +64,7 @@
     <string name="Select_Game">Select Game</string>
     <string name="Rummy">Rummy</string>
     <string name="Uno">Uno</string>
+    <string name="Go_Back">Go Back</string>
 
     <string-array name="phase_selections">
         <item>All</item>

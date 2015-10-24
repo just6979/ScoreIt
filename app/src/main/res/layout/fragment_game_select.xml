@@ -53,10 +53,8 @@
         android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonSelectGame"
         android:layout_below="@+id/textWhichGame"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         >
 
@@ -92,15 +90,5 @@
                 />
         </RadioGroup>
     </ScrollView>
-
-    <Button
-        android:id="@+id/buttonSelectGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/Select_Game"
-        android:textSize="24sp"
-        />
 
 </RelativeLayout>

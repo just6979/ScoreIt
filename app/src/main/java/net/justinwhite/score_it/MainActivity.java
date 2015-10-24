@@ -32,28 +32,41 @@
 
 package net.justinwhite.score_it;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import net.justinwhite.score_it.phase_10.CreatePhase10GameFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity
         extends AppCompatActivity
         implements FragmentManager.OnBackStackChangedListener
 {
+    private static final int FRAG_ID_DEFAULT = 0;
+    private static final int FRAG_ID_GAME_SELECT = 1;
+    private static final int FRAG_ID_CREATE_PHASE_10_GAME = 2;
+    private static final int FRAG_ID_PHASE_10_GAME = 3;
+
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.toolbar)
     public Toolbar toolbar;
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @Bind(R.id.buttonBigButton)
+    public Button buttonBigButton;
 
     private ActionBar actionbar;
     private FragmentManager fragmentManager;
+
+    private int curFrag = FRAG_ID_DEFAULT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +81,7 @@ public class MainActivity
         }
         fragmentManager = getFragmentManager();
         fragmentManager.addOnBackStackChangedListener(this);
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, new GameSelectFragment())
-                .commit()
-        ;
+        displayFragment();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -109,15 +118,34 @@ public class MainActivity
         return fragmentManager.getBackStackEntryCount() == 0;
     }
 
-    public void startNewGame() {
-        CreatePhase10GameFragment frag = new CreatePhase10GameFragment();
+    @OnClick(R.id.buttonBigButton)
+    private void displayFragment() {
+        Fragment frag;
+
+        switch (curFrag) {
+        case FRAG_ID_DEFAULT:
+        default:
+            frag = new GameSelectFragment();
+            curFrag = FRAG_ID_GAME_SELECT;
+            toolbar.setSubtitle(null);
+            buttonBigButton.setText(R.string.Select_Game);
+            break;
+        case FRAG_ID_GAME_SELECT:
+            frag = new CreatePhase10GameFragment();
+            curFrag = FRAG_ID_CREATE_PHASE_10_GAME;
+            toolbar.setSubtitle("Phase 10");
+            buttonBigButton.setText(R.string.Go_Back);
+            break;
+
+        }
+
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, frag)
                 .addToBackStack("Create Phase 10 Game")
                 .commit()
         ;
-        toolbar.setSubtitle("Phase 10");
+        fragmentManager.executePendingTransactions();
     }
 
 

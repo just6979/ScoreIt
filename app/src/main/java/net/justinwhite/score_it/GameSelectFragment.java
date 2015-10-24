@@ -39,7 +39,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class GameSelectFragment
         extends Fragment
@@ -56,9 +55,4 @@ public class GameSelectFragment
         return view;
     }
 
-    @SuppressWarnings("unused")
-    @OnClick(R.id.buttonSelectGame)
-    public void startNewGame() {
-        ((MainActivity) getActivity()).startNewGame();
-    }
 }
