@@ -48,6 +48,7 @@
         android:layout_alignParentTop="false"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="false"
         >
 
         <android.support.percent.PercentRelativeLayout
@@ -207,15 +208,14 @@
 
     <Button
         android:id="@+id/buttonStartGame"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center_horizontal"
         android:text="@string/Start_Game"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
-        android:layout_marginTop="16dp"
+        android:textSize="24sp"
+        android:layout_alignParentStart="false"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentBottom="true"
         />
 
 </RelativeLayout>

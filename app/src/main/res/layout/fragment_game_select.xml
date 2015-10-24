@@ -62,7 +62,7 @@
                 />
 
             <RadioGroup
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/textWhichGame"
                 android:layout_centerHorizontal="true"
@@ -73,10 +73,26 @@
                     android:id="@+id/radioPhase10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:checked="true"
                     android:text="@string/Phase_10"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Rummy"
+                    android:id="@+id/radioRummy"
+                    android:checked="false"
+                    android:enabled="false"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Uno"
+                    android:id="@+id/radioUno"
+                    android:checked="false"
+                    android:enabled="false"
                     />
             </RadioGroup>
         </RelativeLayout>
@@ -84,13 +100,14 @@
 
     <Button
         android:id="@+id/buttonSelectGame"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center_horizontal"
-        android:text="@string/Select_Game"
         android:layout_marginTop="16dp"
+        android:text="@string/Select_Game"
+        android:textSize="24sp"
         />
 
 </RelativeLayout>

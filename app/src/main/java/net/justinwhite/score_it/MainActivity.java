@@ -32,22 +32,28 @@
 
 package net.justinwhite.score_it;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+
+import net.justinwhite.score_it.phase_10.CreatePhase10GameFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity
         extends AppCompatActivity
+        implements FragmentManager.OnBackStackChangedListener
 {
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.toolbar)
     public Toolbar toolbar;
 
-    ActionBar actionbar;
+    private ActionBar actionbar;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,21 +64,61 @@ public class MainActivity
         setSupportActionBar(toolbar);
         actionbar = getSupportActionBar();
         if (actionbar != null) {
-            actionbar.setIcon(R.mipmap.ic_launcher);
-            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setLogo(R.mipmap.ic_launcher);
         }
-        GameSelectFragment frag = new GameSelectFragment();
-        getFragmentManager()
+        fragmentManager = getFragmentManager();
+        fragmentManager.addOnBackStackChangedListener(this);
+        fragmentManager
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, frag)
+                .replace(R.id.fragmentContainer, new GameSelectFragment())
                 .commit()
         ;
-
     }
 
-    public void startNewGame(int game_ID) {
-        if (actionbar != null) {
-            actionbar.setSubtitle(R.string.Create_Game);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            if (!backStackEmpty()) {
+                fragmentManager.popBackStack();
+            }
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
         }
     }
+
+    public void onBackPressed() {
+        if (backStackEmpty()) {
+            this.finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        boolean hasBackStack = !backStackEmpty();
+        actionbar.setDisplayHomeAsUpEnabled(hasBackStack);
+        actionbar.setDisplayShowHomeEnabled(!hasBackStack);
+        if (!hasBackStack) {
+            toolbar.setSubtitle(null);
+        }
+    }
+
+    private boolean backStackEmpty() {
+        return fragmentManager.getBackStackEntryCount() == 0;
+    }
+
+    public void startNewGame() {
+        CreatePhase10GameFragment frag = new CreatePhase10GameFragment();
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, frag)
+                .addToBackStack("Create Phase 10 Game")
+                .commit()
+        ;
+        toolbar.setSubtitle("Phase 10");
+    }
+
+
 }

@@ -38,8 +38,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.justinwhite.score_it.phase_10.CreatePhase10GameFragment;
-
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -60,13 +58,7 @@ public class GameSelectFragment
 
     @SuppressWarnings("unused")
     @OnClick(R.id.buttonSelectGame)
-    protected void StartNewGame() {
-        CreatePhase10GameFragment frag = new CreatePhase10GameFragment();
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, frag)
-                .commit()
-        ;
+    public void startNewGame() {
+        ((MainActivity) getActivity()).startNewGame();
     }
-
 }
