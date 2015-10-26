@@ -54,7 +54,6 @@ public class MainActivity
     private static final int FRAG_ID_DEFAULT = 0;
     private static final int FRAG_ID_GAME_SELECT = 1;
     private static final int FRAG_ID_CREATE_PHASE_10_GAME = 2;
-    private static final int FRAG_ID_PHASE_10_GAME = 3;
 
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.toolbar)
@@ -119,7 +118,7 @@ public class MainActivity
     }
 
     @OnClick(R.id.buttonBigButton)
-    private void displayFragment() {
+    public void displayFragment() {
         Fragment frag;
 
         switch (curFrag) {
@@ -128,13 +127,11 @@ public class MainActivity
             frag = new GameSelectFragment();
             curFrag = FRAG_ID_GAME_SELECT;
             toolbar.setSubtitle(null);
-            buttonBigButton.setText(R.string.Select_Game);
             break;
         case FRAG_ID_GAME_SELECT:
             frag = new CreatePhase10GameFragment();
             curFrag = FRAG_ID_CREATE_PHASE_10_GAME;
-            toolbar.setSubtitle("Phase 10");
-            buttonBigButton.setText(R.string.Go_Back);
+            toolbar.setSubtitle(R.string.Score_Phase_10);
             break;
 
         }
@@ -142,7 +139,7 @@ public class MainActivity
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, frag)
-                .addToBackStack("Create Phase 10 Game")
+                .addToBackStack(null)
                 .commit()
         ;
         fragmentManager.executePendingTransactions();

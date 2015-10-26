@@ -45,7 +45,7 @@
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/buttonBigButton"
         android:layout_below="@+id/toolbar"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -58,12 +58,12 @@
         android:id="@+id/buttonBigButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginTop="8dp"
-        android:text="@string/Select_Game"
-        android:textSize="24sp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Select_Game_Type"
+        android:layout_alignParentBottom="true"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         />
 
 </RelativeLayout>
