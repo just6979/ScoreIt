@@ -39,5 +39,6 @@
     android:elevation="8sp"
     android:theme="@style/MyToolbarStyle"
     tools:ignore="UnusedAttribute"
+    tools:showIn="@layout/activity_main"
     >
 </android.support.v7.widget.Toolbar>

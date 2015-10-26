@@ -59,7 +59,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:text="@string/How_many_players_question"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             />
 
         <TextView
@@ -128,6 +128,7 @@
             android:layout_marginTop="8dp"
             android:checked="false"
             android:text="@string/Name_this_game_question"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             />
 
         <EditText
@@ -143,6 +144,7 @@
             android:minLines="1"
             android:selectAllOnFocus="true"
             android:text="@string/GameName"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:visibility="visible"
             tools:ignore="LabelFor"
             />
@@ -164,7 +166,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
                 android:text="@string/Phases_colon"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 />
 
             <Spinner

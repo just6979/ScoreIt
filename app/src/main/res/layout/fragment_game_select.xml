@@ -39,10 +39,11 @@
     tools:context=".MainActivity"
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         >
 
         <TextView
@@ -50,13 +51,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Which_Game_question"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             />
 
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textWhichGame"
             android:layout_marginTop="8dp"
             >
 
@@ -66,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="@string/Phase_10"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 />
 
             <RadioButton
@@ -75,6 +76,7 @@
                 android:checked="false"
                 android:enabled="false"
                 android:text="@string/Rummy"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 />
 
             <RadioButton
@@ -84,8 +86,9 @@
                 android:checked="false"
                 android:enabled="false"
                 android:text="@string/Uno"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 />
         </RadioGroup>
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>
 
