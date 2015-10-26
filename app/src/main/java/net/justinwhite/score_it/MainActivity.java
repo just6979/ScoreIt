@@ -32,7 +32,6 @@
 
 package net.justinwhite.score_it;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -64,22 +63,27 @@ public class MainActivity
     private ActionBar actionbar;
     private FragmentManager fragmentManager;
 
-    private int curFrag;
+    private int curFrag = FRAG_ID_GAME_SELECT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         // setup the fancy new material style toolbar
         setSupportActionBar(toolbar);
         actionbar = getSupportActionBar();
         if (actionbar != null) {
             actionbar.setLogo(R.mipmap.ic_launcher);
+            actionbar.setDisplayShowHomeEnabled(true);
         }
+
         fragmentManager = getFragmentManager();
         fragmentManager.addOnBackStackChangedListener(this);
-        displayFragment(FRAG_ID_GAME_SELECT);
+        if (savedInstanceState == null) {
+            displayFragment(curFrag);
+        }
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -104,12 +108,10 @@ public class MainActivity
 
     @Override
     public void onBackStackChanged() {
-        boolean hasBackStack = !backStackEmpty();
-        actionbar.setDisplayHomeAsUpEnabled(hasBackStack);
-        actionbar.setDisplayShowHomeEnabled(!hasBackStack);
-        if (!hasBackStack) {
-            toolbar.setSubtitle(null);
+        if (backStackEmpty()) {
+            curFrag = FRAG_ID_GAME_SELECT;
         }
+        updateLayout();
     }
 
     private boolean backStackEmpty() {
@@ -126,32 +128,46 @@ public class MainActivity
         }
     }
 
-    public void displayFragment(int newFragID) {
-        Fragment frag;
-
+    private void displayFragment(int newFragID) {
         switch (newFragID) {
         default:
         case FRAG_ID_GAME_SELECT:
-            frag = new GameSelectFragment();
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, new GameSelectFragment())
+                    .commit()
+            ;
             curFrag = FRAG_ID_GAME_SELECT;
-            toolbar.setSubtitle(null);
-            buttonBigButton.setText(R.string.Select_Game_Type);
             break;
         case FRAG_ID_CREATE_PHASE_10_GAME:
-            frag = new CreatePhase10GameFragment();
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, new CreatePhase10GameFragment())
+                    .addToBackStack(null)
+                    .commit()
+            ;
             curFrag = FRAG_ID_CREATE_PHASE_10_GAME;
-            toolbar.setSubtitle(R.string.Score_Phase_10);
-            buttonBigButton.setText(R.string.Start_Phase_10);
             break;
         }
 
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, frag)
-                .addToBackStack(null)
-                .commit()
-        ;
         fragmentManager.executePendingTransactions();
+        updateLayout();
+    }
+
+    private void updateLayout() {
+        switch (curFrag) {
+        default:
+        case FRAG_ID_GAME_SELECT:
+            toolbar.setSubtitle(null);
+            actionbar.setDisplayHomeAsUpEnabled(false);
+            buttonBigButton.setText(R.string.Select_Game_Type);
+            break;
+        case FRAG_ID_CREATE_PHASE_10_GAME:
+            toolbar.setSubtitle(R.string.Phase_10);
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            buttonBigButton.setText(R.string.Start_Phase_10);
+            break;
+        }
     }
 
 }
