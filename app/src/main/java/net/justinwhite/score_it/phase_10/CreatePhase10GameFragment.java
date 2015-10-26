@@ -289,9 +289,7 @@ public class CreatePhase10GameFragment
         }
     }
 
-    @SuppressWarnings("unused")
-    @OnClick(R.id.buttonStartGame)
-    protected void StartNewGame() {
+    public void CreateNewGame() {
         boolean[] phases = new boolean[Phase10Game.MAX_PHASE + 1];
         boolean atLeastOnePhase = false;
         CheckBox checkBox;

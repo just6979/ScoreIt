@@ -51,7 +51,6 @@ public class MainActivity
         extends AppCompatActivity
         implements FragmentManager.OnBackStackChangedListener
 {
-    private static final int FRAG_ID_DEFAULT = 0;
     private static final int FRAG_ID_GAME_SELECT = 1;
     private static final int FRAG_ID_CREATE_PHASE_10_GAME = 2;
 
@@ -65,7 +64,7 @@ public class MainActivity
     private ActionBar actionbar;
     private FragmentManager fragmentManager;
 
-    private int curFrag = FRAG_ID_DEFAULT;
+    private int curFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +79,7 @@ public class MainActivity
         }
         fragmentManager = getFragmentManager();
         fragmentManager.addOnBackStackChangedListener(this);
-        displayFragment();
+        displayFragment(FRAG_ID_GAME_SELECT);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -118,22 +117,32 @@ public class MainActivity
     }
 
     @OnClick(R.id.buttonBigButton)
-    public void displayFragment() {
+    public void onClickBigButton() {
+        if (curFrag == FRAG_ID_GAME_SELECT) {
+            displayFragment(FRAG_ID_CREATE_PHASE_10_GAME);
+        } else if (curFrag == FRAG_ID_CREATE_PHASE_10_GAME) {
+            ((CreatePhase10GameFragment) fragmentManager.findFragmentById(R.id.fragmentContainer
+            )).CreateNewGame();
+        }
+    }
+
+    public void displayFragment(int newFragID) {
         Fragment frag;
 
-        switch (curFrag) {
-        case FRAG_ID_DEFAULT:
+        switch (newFragID) {
         default:
+        case FRAG_ID_GAME_SELECT:
             frag = new GameSelectFragment();
             curFrag = FRAG_ID_GAME_SELECT;
             toolbar.setSubtitle(null);
+            buttonBigButton.setText(R.string.Select_Game_Type);
             break;
-        case FRAG_ID_GAME_SELECT:
+        case FRAG_ID_CREATE_PHASE_10_GAME:
             frag = new CreatePhase10GameFragment();
             curFrag = FRAG_ID_CREATE_PHASE_10_GAME;
             toolbar.setSubtitle(R.string.Score_Phase_10);
+            buttonBigButton.setText(R.string.Start_Phase_10);
             break;
-
         }
 
         fragmentManager
@@ -144,6 +153,5 @@ public class MainActivity
         ;
         fragmentManager.executePendingTransactions();
     }
-
 
 }

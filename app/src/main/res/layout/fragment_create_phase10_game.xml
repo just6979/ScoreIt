@@ -203,15 +203,4 @@
         </android.support.percent.PercentRelativeLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/buttonStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="bottom|center_horizontal"
-        android:text="@string/Start_Phase_10"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        />
-
 </RelativeLayout>
