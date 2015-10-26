@@ -83,6 +83,8 @@ public class MainActivity
         fragmentManager.addOnBackStackChangedListener(this);
         if (savedInstanceState == null) {
             displayFragment(curFrag);
+            // skip over GameSelect while doing Phase 10 development
+            displayFragment(FRAG_ID_CREATE_PHASE_10_GAME);
         }
     }
 
