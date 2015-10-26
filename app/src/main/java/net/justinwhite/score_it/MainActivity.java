@@ -76,7 +76,6 @@ public class MainActivity
         actionbar = getSupportActionBar();
         if (actionbar != null) {
             actionbar.setLogo(R.mipmap.ic_launcher);
-            actionbar.setDisplayShowHomeEnabled(true);
         }
 
         fragmentManager = getFragmentManager();
@@ -161,11 +160,13 @@ public class MainActivity
         default:
         case FRAG_ID_GAME_SELECT:
             toolbar.setSubtitle(null);
+            actionbar.setDisplayShowHomeEnabled(true);
             actionbar.setDisplayHomeAsUpEnabled(false);
             buttonBigButton.setText(R.string.Select_Game_Type);
             break;
         case FRAG_ID_CREATE_PHASE_10_GAME:
             toolbar.setSubtitle(R.string.Phase_10);
+            actionbar.setDisplayShowHomeEnabled(false);
             actionbar.setDisplayHomeAsUpEnabled(true);
             buttonBigButton.setText(R.string.Start_Phase_10);
             break;
