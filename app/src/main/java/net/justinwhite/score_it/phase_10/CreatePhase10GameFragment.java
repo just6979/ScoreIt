@@ -57,6 +57,10 @@ import android.widget.TextView;
 import net.justinwhite.score_it.R;
 import net.justinwhite.score_model.phase_10.Phase10Game;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
@@ -100,6 +104,7 @@ public class CreatePhase10GameFragment
     private boolean selectionFromCheckboxes;
     // others
     private InputMethodManager imm;
+    private boolean customName;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -128,6 +133,8 @@ public class CreatePhase10GameFragment
         labelNumPlayers.setText(String.format("%d", numPlayers));
         // set up the game name checkbox and edittext
         checkNameIt.setChecked(false);
+        customName = false;
+        buildName();
         editGameName.clearFocus();
         editGameName.setVisibility(View.GONE);
         // set up the phase selection dropdown
@@ -190,6 +197,7 @@ public class CreatePhase10GameFragment
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         numPlayers = progress + SEEKBAR_OFFSET;
         labelNumPlayers.setText(String.format("%d", numPlayers));
+        buildName();
     }
 
     @Override
@@ -204,19 +212,23 @@ public class CreatePhase10GameFragment
     @OnCheckedChanged(R.id.checkNameIt)
     protected void onCheckNameItChanged(boolean isChecked) {
         if (isChecked) {
-            // build game name from numPlayers
-            String name = "";
-            for (int i = 1; i <= numPlayers; i++) {
-                name += "P" + String.valueOf(i);
-            }
-            editGameName.setText(name);
+            customName = true;
             // show the edittext & set focus, which will show the keyboard
             editGameName.setVisibility(View.VISIBLE);
             editGameName.requestFocus();
         } else {
+            customName = false;
+            buildName();
             // remove the edittext from layout and clear focus, which will hide the keyboard
             editGameName.clearFocus();
             editGameName.setVisibility(View.GONE);
+        }
+    }
+
+    private void buildName() {
+        if (!customName) {
+            String name = DateFormat.getDateTimeInstance().format(new Date());
+            editGameName.setText(name);
         }
     }
 
