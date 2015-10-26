@@ -227,7 +227,7 @@ public class CreatePhase10GameFragment
 
     private void buildName() {
         if (!customName) {
-            String name = DateFormat.getDateTimeInstance().format(new Date());
+            String name = Phase10Game.buildName();
             editGameName.setText(name);
         }
     }
