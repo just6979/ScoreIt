@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (c) 2015 Justin White <jw@justinwhite.net>
   ~ All rights reserved.
@@ -29,33 +28,42 @@
   ~ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   ~ POSSIBILITY OF SUCH DAMAGE.
   ~
--->
-<manifest package="net.justinwhite.score_it"
-          xmlns:android="http://schemas.android.com/apk/res/android"
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
     >
 
-    <application
-        android:allowBackup="true"
-        android:fullBackupContent="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/ScoreIt"
-        android:theme="@style/Theme.MyTheme"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonBigButton"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         >
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/ScoreIt"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+    </FrameLayout>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".phase_10.Phase10GameActivity"
-            android:label="@string/Phase_10"
-            >
-        </activity>
-    </application>
+    <Button
+        android:id="@+id/buttonBigButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/Select_Game_Type"
+        android:textSize="24sp"
+        />
 
-</manifest>
+</RelativeLayout>

@@ -32,44 +32,27 @@
 
 package net.justinwhite.score_it;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import net.justinwhite.score_it.phase_10.CreatePhase10GameActivity;
-
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class GameSelectActivity
-        extends AppCompatActivity
+public class GameSelectFragment
+        extends Fragment
 {
 
-    @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.toolbar)
-    public Toolbar toolbar;
+    public GameSelectFragment() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_select);
-        ButterKnife.bind(this);
-        // setup the fancy new material style toolbar
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        if (actionbar != null) {
-            actionbar.setIcon(R.mipmap.ic_launcher);
-        }
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_game_select, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
-    @SuppressWarnings("unused")
-    @OnClick(R.id.buttonSelectGame)
-    protected void StartNewGame() {
-        Intent intent = new Intent(this, CreatePhase10GameActivity.class);
-        startActivity(intent);
-    }
 }

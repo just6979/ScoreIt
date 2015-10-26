@@ -30,48 +30,62 @@
   ~
   -->
 
-<RelativeLayout
-    android:id="@+id/layoutGame"
+<ScrollView
+    android:id="@+id/scrollView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    tools:context=".GameActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
     >
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:gravity="center_horizontal"
+        >
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/listPlayers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonEndGame"
-        android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:divider="@null"
-        tools:listitem="@layout/item_phase10_player"
-        />
+        <TextView
+            android:id="@+id/textWhichGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Which_Game_question"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
 
-    <Button
-        android:id="@+id/buttonEndGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:text="@string/End_Game"
-        android:textSize="24sp"
-        android:layout_marginTop="8dp"
-        />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textWhichGame"
+            android:layout_marginTop="8dp"
+            >
 
-</RelativeLayout>
+            <RadioButton
+                android:id="@+id/radioPhase10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/Phase_10"
+                />
+
+            <RadioButton
+                android:id="@+id/radioRummy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:enabled="false"
+                android:text="@string/Rummy"
+                />
+
+            <RadioButton
+                android:id="@+id/radioUno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:enabled="false"
+                android:text="@string/Uno"
+                />
+        </RadioGroup>
+    </RelativeLayout>
+</ScrollView>
+

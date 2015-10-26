@@ -59,10 +59,11 @@ android {
 }
 
 dependencies {
+    compile files('libs/ScoreModel.jar')
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:cardview-v7:23.1.0'
     compile 'com.android.support:recyclerview-v7:23.1.0'
     compile 'com.android.support:percent:23.1.0'
-    compile files('libs/ScoreModel.jar')
+    compile 'com.android.support:design:23.1.0'
 }

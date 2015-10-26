@@ -78,14 +78,14 @@ public class Phase10GameActivity
         Intent intent = getIntent();
         // always has these extras
         int numPlayers = intent.getIntExtra(
-                CreatePhase10GameActivity.EXTRA_NUM_PLAYERS,
-                CreatePhase10GameActivity.DEFAULT_NUM_PLAYERS
+                CreatePhase10GameFragment.EXTRA_NUM_PLAYERS,
+                CreatePhase10GameFragment.DEFAULT_NUM_PLAYERS
         );
-        boolean[] phases = intent.getBooleanArrayExtra(CreatePhase10GameActivity.EXTRA_PHASES);
+        boolean[] phases = intent.getBooleanArrayExtra(CreatePhase10GameFragment.EXTRA_PHASES);
         // maybe has these extras
         String gameName = "";
-        if (intent.hasExtra(CreatePhase10GameActivity.EXTRA_GAME_NAME)) {
-            gameName = intent.getStringExtra(CreatePhase10GameActivity.EXTRA_GAME_NAME);
+        if (intent.hasExtra(CreatePhase10GameFragment.EXTRA_GAME_NAME)) {
+            gameName = intent.getStringExtra(CreatePhase10GameFragment.EXTRA_GAME_NAME);
         }
 
         game = new Phase10Game(numPlayers);

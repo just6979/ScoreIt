@@ -60,10 +60,14 @@
     <string name="Phases_colon">Phases:</string>
     <string name="GameName">GameName</string>
     <string name="Name_this_game_question">Name this game?</string>
-    <string name="Create_Game">Create Game</string>
     <string name="Which_Game_question">Which Game?</string>
     <string name="Select_Game">Select Game</string>
-    <string name="Score_It_dash_Phase_10">Score It - Phase 10</string>
+    <string name="Rummy">Rummy</string>
+    <string name="Uno">Uno</string>
+    <string name="Go_Back">Go Back</string>
+    <string name="Select_Game_Type">Select Game Type</string>
+    <string name="Score_Phase_10">Score Phase 10</string>
+    <string name="Start_Phase_10">Start Phase 10</string>
 
     <string-array name="phase_selections">
         <item>All</item>

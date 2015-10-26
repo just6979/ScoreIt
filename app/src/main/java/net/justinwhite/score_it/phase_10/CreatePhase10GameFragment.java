@@ -34,16 +34,16 @@ package net.justinwhite.score_it.phase_10;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -64,8 +64,8 @@ import butterknife.OnClick;
 import butterknife.OnFocusChange;
 import butterknife.OnItemSelected;
 
-public class CreatePhase10GameActivity
-        extends AppCompatActivity
+public class CreatePhase10GameFragment
+        extends Fragment
         implements SeekBar.OnSeekBarChangeListener
 {
     // intent extras for Phase10GameActivity
@@ -76,8 +76,6 @@ public class CreatePhase10GameActivity
     public static final int DEFAULT_NUM_PLAYERS = 4;
     private static final int SEEKBAR_OFFSET = Phase10Game.MIN_PLAYERS;
     // important layout widgets
-    @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.toolbar) Toolbar toolbar;
     @SuppressWarnings({"WeakerAccess", "unused"})
     @Bind(R.id.textNumPlayers) TextView labelNumPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
@@ -105,24 +103,19 @@ public class CreatePhase10GameActivity
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_phase10_game);
-        ButterKnife.bind(this);
+        View view = inflater.inflate(R.layout.fragment_create_phase10_game, container, false);
+        ButterKnife.bind(this, view);
         // setup the fancy new material style toolbar
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        if (actionbar != null) {
-            actionbar.setDisplayHomeAsUpEnabled(true);
-            actionbar.setSubtitle(R.string.Create_Game);
-        }
         // read shared prefs
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         numPlayers = sharedPref.getInt(getString(R.string.pref_current_num_players),
                 DEFAULT_NUM_PLAYERS
         );
         // grab inputmanager for soft keyboard handling
-        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         // get max & min players from the GameModel
         maxNumPlayers = Phase10Game.MAX_PLAYERS;
         minNumPLayers = Phase10Game.MIN_PLAYERS;
@@ -139,7 +132,7 @@ public class CreatePhase10GameActivity
         editGameName.setVisibility(View.GONE);
         // set up the phase selection dropdown
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
+                getActivity(),
                 R.array.phase_selections,
                 android.R.layout.simple_spinner_dropdown_item
         );
@@ -148,7 +141,7 @@ public class CreatePhase10GameActivity
         // set up the phase selection checkboxes
         checkBoxIDs = new int[Phase10Game.MAX_PHASE + 1];
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
-            CheckBox check = new CheckBox(this);
+            CheckBox check = new CheckBox(getActivity());
             int id = View.generateViewId();
             checkBoxIDs[i] = id;
             check.setId(id);
@@ -164,12 +157,13 @@ public class CreatePhase10GameActivity
             );
             gridPhases.addView(check);
         }
+        return view;
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.pref_current_num_players), numPlayers);
         editor.apply();
@@ -252,7 +246,7 @@ public class CreatePhase10GameActivity
         String selected = String.valueOf(parent.getItemAtPosition(position));
 
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
-            checkBox = (CheckBox) findViewById(checkBoxIDs[i]);
+            checkBox = (CheckBox) getActivity().findViewById(checkBoxIDs[i]);
             switch (selected) {
             case "All":
                 checkBox.setChecked(true);
@@ -295,20 +289,18 @@ public class CreatePhase10GameActivity
         }
     }
 
-    @SuppressWarnings("unused")
-    @OnClick(R.id.buttonStartGame)
-    protected void StartNewGame() {
+    public void CreateNewGame() {
         boolean[] phases = new boolean[Phase10Game.MAX_PHASE + 1];
         boolean atLeastOnePhase = false;
         CheckBox checkBox;
 
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
-            checkBox = (CheckBox) findViewById(checkBoxIDs[i]);
+            checkBox = (CheckBox) getActivity().findViewById(checkBoxIDs[i]);
             phases[i] = checkBox.isChecked();
             if (!atLeastOnePhase) { atLeastOnePhase = phases[i]; }
         }
         if (!atLeastOnePhase) {
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
             alertDialog.setTitle("No Phases");
             alertDialog.setMessage("No phases selected to play!");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Go Back",
@@ -322,7 +314,7 @@ public class CreatePhase10GameActivity
             return;
         }
 
-        Intent intent = new Intent(this, Phase10GameActivity.class);
+        Intent intent = new Intent(getActivity(), Phase10GameActivity.class);
         // always has these extras
         intent.putExtra(EXTRA_NUM_PLAYERS, numPlayers);
         intent.putExtra(EXTRA_PHASES, phases);
@@ -330,7 +322,7 @@ public class CreatePhase10GameActivity
         if (checkNameIt.isChecked()) {
             intent.putExtra(EXTRA_GAME_NAME, editGameName.getText().toString());
         }
-        startActivity(intent);
+        getActivity().startActivity(intent);
     }
 
 }
