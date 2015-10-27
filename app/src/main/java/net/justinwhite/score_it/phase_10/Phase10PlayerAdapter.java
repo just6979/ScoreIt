@@ -82,7 +82,7 @@ class Phase10PlayerAdapter
         holder.setPlayer(player);
         holder.textPlayerName.setText(player.getName());
         holder.textPlayerScore.setText(String.valueOf(player.getScore()));
-        holder.textPlayerPhase.setText(String.valueOf(player.getPhase()));
+        holder.textPlayerPhase.setText(String.valueOf(player.currentPhaseNumber()));
     }
 
 }

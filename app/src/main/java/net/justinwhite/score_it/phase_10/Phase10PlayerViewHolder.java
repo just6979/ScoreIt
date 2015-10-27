@@ -99,7 +99,7 @@ public class Phase10PlayerViewHolder
                                 player.addScore(
                                         Integer.valueOf(editNewScore.getText().toString())
                                 );
-                                if (checkNextPhase.isChecked()) { player.completePhase(); }
+                                if (checkNextPhase.isChecked()) { player.completeCurrentPhase(); }
                                 adapter.notifyDataSetChanged();
                             }
                         }
