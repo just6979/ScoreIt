@@ -47,6 +47,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import net.justinwhite.score_it.R;
+import net.justinwhite.score_model.Game;
 import net.justinwhite.score_model.phase_10.Phase10Game;
 
 import butterknife.Bind;
@@ -88,9 +89,19 @@ public class Phase10GameActivity
             gameName = intent.getStringExtra(CreatePhase10GameFragment.EXTRA_GAME_NAME);
         }
 
+        // convert boolean[] to Phase[] since Kotlin doesn't like the boolean[]
+        Phase10Game.Phase[] newPhases = new Phase10Game.Phase[Phase10Game.MAX_PHASE + 1];
+        for (int i = 0; i <= Phase10Game.MAX_PHASE; i++) {
+            if (phases[i]) {
+                newPhases[i] = Phase10Game.Phase.ACTIVE;
+            } else {
+                newPhases[i] = Phase10Game.Phase.INACTIVE;
+            }
+        }
+
         game = new Phase10Game(numPlayers);
         game.setName(gameName);
-        game.setActivePhases(phases);
+        game.setActivePhases(newPhases);
 
         toolbar.setSubtitle(game.getName());
 
@@ -112,7 +123,7 @@ public class Phase10GameActivity
                 new RecyclerView.AdapterDataObserver() {
                     @Override public void onChanged() {
                         super.onChanged();
-                        game.buildName();
+                        Game.Companion.buildName();
                         toolbar.setSubtitle(game.getName());
                     }
                 }

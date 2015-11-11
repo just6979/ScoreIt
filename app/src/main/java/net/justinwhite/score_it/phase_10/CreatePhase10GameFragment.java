@@ -55,6 +55,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import net.justinwhite.score_it.R;
+import net.justinwhite.score_model.Game;
 import net.justinwhite.score_model.phase_10.Phase10Game;
 
 import java.text.DateFormat;
@@ -227,7 +228,7 @@ public class CreatePhase10GameFragment
 
     private void buildName() {
         if (!customName) {
-            String name = Phase10Game.buildName();
+            String name = Game.Companion.buildName();
             editGameName.setText(name);
         }
     }
