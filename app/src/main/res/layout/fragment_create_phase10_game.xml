@@ -69,13 +69,11 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/seekNumPlayers"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/seekNumPlayers"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginStart="@dimen/activity_small_margin"
             android:text="@string/min_num_players"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_widthPercent="5%"
+            android:gravity="center_horizontal"
             />
 
         <TextView
@@ -84,13 +82,11 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/seekNumPlayers"
             android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/seekNumPlayers"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginEnd="@dimen/activity_small_margin"
             android:text="@string/max_num_players"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_widthPercent="5%"
+            android:gravity="center_horizontal"
             />
 
         <SeekBar
@@ -100,7 +96,7 @@
             android:layout_below="@+id/textNumPlayers"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/activity_small_margin"
             android:layout_toEndOf="@id/labelMinPlayers"
             android:layout_toStartOf="@id/labelMaxPlayers"
             android:max="6"
@@ -115,7 +111,7 @@
             android:layout_below="@+id/labelHowManyPlayers"
             android:layout_centerHorizontal="true"
             android:layout_gravity="fill_vertical|center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/activity_small_margin"
             android:text="@string/default_num_players"
             android:textAppearance="?android:attr/textAppearanceLarge"
             />
@@ -126,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/seekNumPlayers"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/activity_small_margin"
             android:checked="false"
             android:text="@string/Name_this_game_question"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -156,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/editGameName"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/activity_small_margin"
             android:orientation="horizontal"
             >
 
@@ -177,7 +173,7 @@
                 android:layout_alignTop="@+id/labelPhases"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/activity_small_margin"
                 android:layout_toEndOf="@+id/labelPhases"
                 android:spinnerMode="dropdown"
                 />
@@ -190,7 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutPhases"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/activity_medium_margin"
             android:columnCount="@integer/grid_phases_column_count"
             >
 
