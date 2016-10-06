@@ -42,8 +42,8 @@ android {
         applicationId "net.justinwhite.score_it"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 1
-        versionName '1.0 r' + commitCount
+        versionCode commitCount
+        versionName '0.1 r' + commitCount
 
     }
     buildTypes {
