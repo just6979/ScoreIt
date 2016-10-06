@@ -61,6 +61,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/How_many_players_question"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginBottom="@dimen/activity_big_margin"
             />
 
         <TextView
@@ -93,15 +94,13 @@
             android:id="@+id/seekNumPlayers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textNumPlayers"
+            android:layout_below="@+id/labelHowManyPlayers"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/activity_small_margin"
             android:layout_toEndOf="@id/labelMinPlayers"
             android:layout_toStartOf="@id/labelMaxPlayers"
             android:max="6"
             android:progress="3"
-            app:layout_widthPercent="90%"
             android:paddingBottom="2dip"
             android:layout_marginBottom="@dimen/activity_small_margin"
             />
@@ -110,21 +109,20 @@
             android:id="@+id/textNumPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/labelHowManyPlayers"
+            android:layout_below="@+id/seekNumPlayers"
             android:layout_centerHorizontal="true"
             android:layout_gravity="fill_vertical|center_horizontal"
-            android:layout_marginTop="@dimen/activity_small_margin"
             android:text="@string/default_num_players"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginBottom="@dimen/activity_big_margin"
             />
 
         <CheckBox
             android:id="@+id/checkNameIt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/seekNumPlayers"
+            android:layout_below="@+id/textNumPlayers"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/activity_small_margin"
             android:checked="false"
             android:text="@string/Name_this_game_question"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -154,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/editGameName"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/activity_small_margin"
+            android:layout_marginTop="@dimen/activity_big_margin"
             android:orientation="horizontal"
             >
 
