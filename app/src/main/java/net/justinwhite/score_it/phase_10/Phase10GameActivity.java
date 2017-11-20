@@ -135,19 +135,9 @@ public class Phase10GameActivity
     private void showExitDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.End_the_game_question))
-                .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                finish();
-                            }
-                        }
+                .setPositiveButton(R.string.Yes, (dialog, i) -> finish()
                 )
-                .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.cancel();
-                            }
-                        }
+                .setNegativeButton(R.string.No, (dialog, i) -> dialog.cancel()
                 )
                 .create()
                 .show();

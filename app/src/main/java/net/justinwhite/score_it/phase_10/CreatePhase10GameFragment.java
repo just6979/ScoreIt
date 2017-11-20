@@ -61,6 +61,7 @@ import net.justinwhite.score_model.phase_10.Phase10Game;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -126,12 +127,12 @@ public class CreatePhase10GameFragment
         maxNumPlayers = Phase10Game.MAX_PLAYERS;
         minNumPLayers = Phase10Game.MIN_PLAYERS;
         // set up the seekbar and labels
-        labelMinPlayers.setText(String.format("%d", minNumPLayers));
-        labelMaxPlayers.setText(String.format("%d", maxNumPlayers));
+        labelMinPlayers.setText(String.format(Locale.getDefault(),"%d", minNumPLayers));
+        labelMaxPlayers.setText(String.format(Locale.getDefault(),"%d", maxNumPlayers));
         seekNumPlayers.setMax(maxNumPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setProgress(numPlayers - SEEKBAR_OFFSET);
         seekNumPlayers.setOnSeekBarChangeListener(this);
-        labelNumPlayers.setText(String.format("%d", numPlayers));
+        labelNumPlayers.setText(String.format(Locale.getDefault(),"%d", numPlayers));
         // set up the game name checkbox and edittext
         checkNameIt.setChecked(false);
         customName = false;
@@ -155,13 +156,10 @@ public class CreatePhase10GameFragment
             check.setId(id);
             check.setText(String.valueOf(i));
             check.setChecked(true);
-            check.setOnClickListener(new View.OnClickListener() {
-                                         @Override
-                                         public void onClick(View v) {
-                                             spinnerPhases.setSelection(5);
-                                             selectionFromCheckboxes = true;
-                                         }
-                                     }
+            check.setOnClickListener(v -> {
+                spinnerPhases.setSelection(5);
+                selectionFromCheckboxes = true;
+            }
             );
             gridPhases.addView(check);
         }
@@ -197,7 +195,7 @@ public class CreatePhase10GameFragment
 
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         numPlayers = progress + SEEKBAR_OFFSET;
-        labelNumPlayers.setText(String.format("%d", numPlayers));
+        labelNumPlayers.setText(String.format(Locale.getDefault(),"%d", numPlayers));
         buildName();
     }
 
@@ -259,7 +257,7 @@ public class CreatePhase10GameFragment
         String selected = String.valueOf(parent.getItemAtPosition(position));
 
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
-            checkBox = (CheckBox) getActivity().findViewById(checkBoxIDs[i]);
+            checkBox = getActivity().findViewById(checkBoxIDs[i]);
             switch (selected) {
             case "All":
                 checkBox.setChecked(true);
@@ -308,7 +306,7 @@ public class CreatePhase10GameFragment
         CheckBox checkBox;
 
         for (int i = 1; i <= Phase10Game.MAX_PHASE; i++) {
-            checkBox = (CheckBox) getActivity().findViewById(checkBoxIDs[i]);
+            checkBox = getActivity().findViewById(checkBoxIDs[i]);
             phases[i] = checkBox.isChecked();
             if (!atLeastOnePhase) { atLeastOnePhase = phases[i]; }
         }
@@ -317,11 +315,7 @@ public class CreatePhase10GameFragment
             alertDialog.setTitle("No Phases");
             alertDialog.setMessage("No phases selected to play!");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Go Back",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    }
+                    (dialog, which) -> dialog.dismiss()
             );
             alertDialog.show();
             return;

@@ -85,31 +85,23 @@ public class Phase10PlayerViewHolder
     @Override public void onClick(View v) {
         @SuppressLint("InflateParams")
         final View dialogView = inflater.inflate(R.layout.dialog_phase10_score_update, null);
-        final EditText editNewScore = (EditText) dialogView.findViewById(R.id.editNewScore);
-        final CheckBox checkNextPhase = (CheckBox) dialogView.findViewById(R.id.checkNextPhase);
+        final EditText editNewScore = dialogView.findViewById(R.id.editNewScore);
+        final CheckBox checkNextPhase = dialogView.findViewById(R.id.checkNextPhase);
         // set data for the dialog and result actions
         final String playerName = player.getName();
         // build and show the dialog
         Dialog dialog = new AlertDialog.Builder(v.getContext())
                 .setTitle(v.getResources().getString(R.string.Update_Score_colon) + playerName)
                 .setView(dialogView)
-                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                player.addScore(
-                                        Integer.valueOf(editNewScore.getText().toString())
-                                );
-                                if (checkNextPhase.isChecked()) { player.completeCurrentPhase(); }
-                                adapter.notifyDataSetChanged();
-                            }
-                        }
+                .setPositiveButton(R.string.Change, (dialog12, i) -> {
+                    player.addScore(
+                            Integer.valueOf(editNewScore.getText().toString())
+                    );
+                    if (checkNextPhase.isChecked()) { player.completeCurrentPhase(); }
+                    adapter.notifyDataSetChanged();
+                }
                 )
-                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.cancel();
-                            }
-                        }
+                .setNegativeButton(R.string.Cancel, (dialog1, i) -> dialog1.cancel()
                 )
                 .create();
         // show the keyboard right away
@@ -122,27 +114,19 @@ public class Phase10PlayerViewHolder
     @Override public boolean onLongClick(View v) {
         @SuppressLint("InflateParams")
         final View dialogView = inflater.inflate(R.layout.dialog_phase10_player_name_change, null);
-        final EditText editPlayerName = (EditText) dialogView.findViewById(R.id.editPlayerName);
+        final EditText editPlayerName = dialogView.findViewById(R.id.editPlayerName);
         // set data for the dialog and result actions
         editPlayerName.setText(player.getName());
         // build and show the dialog
         Dialog dialog = new AlertDialog.Builder(v.getContext())
                 .setTitle(R.string.Change_Player_Name)
                 .setView(dialogView)
-                .setPositiveButton(R.string.Change, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                player.setName(editPlayerName.getText().toString());
-                                adapter.notifyDataSetChanged();
-                            }
-                        }
+                .setPositiveButton(R.string.Change, (dialog12, i) -> {
+                    player.setName(editPlayerName.getText().toString());
+                    adapter.notifyDataSetChanged();
+                }
                 )
-                .setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.cancel();
-                            }
-                        }
+                .setNegativeButton(R.string.Cancel, (dialog1, i) -> dialog1.cancel()
                 )
                 .create();
         // show the keyboard right away
