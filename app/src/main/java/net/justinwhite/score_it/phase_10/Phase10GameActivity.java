@@ -50,7 +50,7 @@ import net.justinwhite.score_it.R;
 import net.justinwhite.score_model.Game;
 import net.justinwhite.score_model.phase_10.Phase10Game;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -59,9 +59,9 @@ public class Phase10GameActivity
 {
 
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.listPlayers) RecyclerView recyclerView;
+    @BindView(R.id.listPlayers) RecyclerView recyclerView;
     private Phase10Game game;
 
     @Override

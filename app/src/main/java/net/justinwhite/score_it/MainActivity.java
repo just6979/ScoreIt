@@ -42,7 +42,7 @@ import android.widget.Button;
 
 import net.justinwhite.score_it.phase_10.CreatePhase10GameFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -54,10 +54,10 @@ public class MainActivity
     private static final int FRAG_ID_CREATE_PHASE_10_GAME = 2;
 
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     public Toolbar toolbar;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.buttonBigButton)
+    @BindView(R.id.buttonBigButton)
     public Button buttonBigButton;
 
     private ActionBar actionbar;

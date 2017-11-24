@@ -36,7 +36,6 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -58,12 +57,9 @@ import net.justinwhite.score_it.R;
 import net.justinwhite.score_model.Game;
 import net.justinwhite.score_model.phase_10.Phase10Game;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
@@ -83,21 +79,21 @@ public class CreatePhase10GameFragment
     private static final int SEEKBAR_OFFSET = Phase10Game.MIN_PLAYERS;
     // important layout widgets
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.textNumPlayers) TextView labelNumPlayers;
+    @BindView(R.id.textNumPlayers) TextView labelNumPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.labelMinPlayers) TextView labelMinPlayers;
+    @BindView(R.id.labelMinPlayers) TextView labelMinPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.labelMaxPlayers) TextView labelMaxPlayers;
+    @BindView(R.id.labelMaxPlayers) TextView labelMaxPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.seekNumPlayers) SeekBar seekNumPlayers;
+    @BindView(R.id.seekNumPlayers) SeekBar seekNumPlayers;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.checkNameIt) CheckBox checkNameIt;
+    @BindView(R.id.checkNameIt) CheckBox checkNameIt;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.editGameName) EditText editGameName;
+    @BindView(R.id.editGameName) EditText editGameName;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.spinnerPhases) Spinner spinnerPhases;
+    @BindView(R.id.spinnerPhases) Spinner spinnerPhases;
     @SuppressWarnings({"WeakerAccess", "unused"})
-    @Bind(R.id.gridPhases) GridLayout gridPhases;
+    @BindView(R.id.gridPhases) GridLayout gridPhases;
     // game setup stuff
     private int numPlayers;
     private int maxNumPlayers;

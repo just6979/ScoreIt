@@ -35,7 +35,6 @@ package net.justinwhite.score_it.phase_10;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +46,7 @@ import android.widget.TextView;
 import net.justinwhite.score_it.R;
 import net.justinwhite.score_model.phase_10.Phase10Player;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class Phase10PlayerViewHolder
@@ -58,11 +57,11 @@ public class Phase10PlayerViewHolder
     private final Phase10PlayerAdapter adapter;
 
     @SuppressWarnings("unused")
-    @Bind(R.id.textPlayerName) TextView textPlayerName;
+    @BindView(R.id.textPlayerName) TextView textPlayerName;
     @SuppressWarnings("unused")
-    @Bind(R.id.textPlayerScore) TextView textPlayerScore;
+    @BindView(R.id.textPlayerScore) TextView textPlayerScore;
     @SuppressWarnings("unused")
-    @Bind(R.id.textPlayerPhase) TextView textPlayerPhase;
+    @BindView(R.id.textPlayerPhase) TextView textPlayerPhase;
 
     private Phase10Player player;
 
