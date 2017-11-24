@@ -33,6 +33,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+def commitCount = Integer.parseInt('git rev-list master --count'.execute().text.trim())
+
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.3'

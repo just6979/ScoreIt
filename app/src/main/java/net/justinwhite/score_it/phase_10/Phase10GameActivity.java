@@ -33,7 +33,6 @@
 package net.justinwhite.score_it.phase_10;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
