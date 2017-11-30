@@ -37,7 +37,6 @@
     <string name="max_num_players">8</string>
     <string name="min_num_players">2</string>
 
-    <string name="Start_Game">Start Game</string>
     <string name="How_many_players_question">How many players?</string>
     <string name="ScoreIt">ScoreIt</string>
     <string name="End_Game">End Game</string>
@@ -61,12 +60,9 @@
     <string name="GameName">GameName</string>
     <string name="Name_this_game_question">Name this game?</string>
     <string name="Which_Game_question">Which Game?</string>
-    <string name="Select_Game">Select Game</string>
     <string name="Rummy">Rummy</string>
     <string name="Uno">Uno</string>
-    <string name="Go_Back">Go Back</string>
     <string name="Select_Game_Type">Select Game Type</string>
-    <string name="Score_Phase_10">Score Phase 10</string>
     <string name="Start_Phase_10">Start Phase 10</string>
 
     <string-array name="phase_selections">

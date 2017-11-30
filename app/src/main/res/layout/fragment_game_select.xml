@@ -47,7 +47,6 @@
         >
 
         <TextView
-            android:id="@+id/textWhichGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Which_Game_question"
@@ -61,7 +60,6 @@
             >
 
             <RadioButton
-                android:id="@+id/radioPhase10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -70,7 +68,6 @@
                 />
 
             <RadioButton
-                android:id="@+id/radioRummy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -80,7 +77,6 @@
                 />
 
             <RadioButton
-                android:id="@+id/radioUno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"

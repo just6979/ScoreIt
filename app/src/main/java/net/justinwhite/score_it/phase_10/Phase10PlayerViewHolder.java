@@ -65,7 +65,7 @@ public class Phase10PlayerViewHolder
 
     private Phase10Player player;
 
-    public Phase10PlayerViewHolder(
+    Phase10PlayerViewHolder(
             View _itemView,
             LayoutInflater _inflater,
             Phase10PlayerAdapter _adapter) {
@@ -77,7 +77,7 @@ public class Phase10PlayerViewHolder
         _itemView.setOnLongClickListener(this);
     }
 
-    public void setPlayer(Phase10Player _player) {
+    void setPlayer(Phase10Player _player) {
         player = _player;
     }
 

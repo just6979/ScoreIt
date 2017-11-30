@@ -49,7 +49,7 @@ class Phase10PlayerAdapter
     private final List<Phase10Player> players;
     private final LayoutInflater inflater;
 
-    public Phase10PlayerAdapter(List<Phase10Player> _players, LayoutInflater _inflater) {
+    Phase10PlayerAdapter(List<Phase10Player> _players, LayoutInflater _inflater) {
         super();
         players = _players;
         inflater = _inflater;
