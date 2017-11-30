@@ -1,0 +1,3 @@
+[submodule "ext/ScoreModel"]
+	path = ext/ScoreModel
+	url = git@github.com:just6979/ScoreModel.git

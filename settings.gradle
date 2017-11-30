@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':ScoreModel'
+project(':ScoreModel').projectDir = new File('ext/ScoreModel/ScoreModel')

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ScoreIt.iml" filepath="$PROJECT_DIR$/ScoreIt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ext/ScoreModel/ScoreModel/ScoreModel.iml" filepath="$PROJECT_DIR$/ext/ScoreModel/ScoreModel/ScoreModel.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
