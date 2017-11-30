@@ -30,7 +30,7 @@
  *
  */
 
-package net.justinwhite.score_it.phase_10;
+package net.justinwhite.scoreit.phase10;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -45,9 +45,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import net.justinwhite.score_it.R;
-import net.justinwhite.score_model.Game;
-import net.justinwhite.score_model.phase_10.Phase10Game;
+import net.justinwhite.scoreit.R;
+import net.justinwhite.scoremodel.Game;
+import net.justinwhite.scoremodel.phase10.Phase10Game;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

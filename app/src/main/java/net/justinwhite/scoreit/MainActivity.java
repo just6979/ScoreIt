@@ -30,7 +30,7 @@
  *
  */
 
-package net.justinwhite.score_it;
+package net.justinwhite.scoreit;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -40,7 +40,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import net.justinwhite.score_it.phase_10.CreatePhase10GameFragment;
+import net.justinwhite.scoreit.phase10.CreatePhase10GameFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

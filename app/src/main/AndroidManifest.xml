@@ -30,7 +30,7 @@
   ~ POSSIBILITY OF SUCH DAMAGE.
   ~
 -->
-<manifest package="net.justinwhite.score_it"
+<manifest package="net.justinwhite.scoreit"
           xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
@@ -42,7 +42,7 @@
         android:theme="@style/Theme.MyTheme"
         >
         <activity
-            android:name=".MainActivity"
+            android:name="net.justinwhite.scoreit.MainActivity"
             android:label="@string/ScoreIt"
             >
             <intent-filter>
@@ -53,7 +53,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".phase_10.Phase10GameActivity"
+            android:name="net.justinwhite.scoreit.phase10.Phase10GameActivity"
             android:label="@string/Phase_10"
             >
         </activity>

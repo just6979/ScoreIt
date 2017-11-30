@@ -30,7 +30,7 @@
  *
  */
 
-package net.justinwhite.score_it;
+package net.justinwhite.scoreit;
 
 import android.app.Fragment;
 import android.os.Bundle;

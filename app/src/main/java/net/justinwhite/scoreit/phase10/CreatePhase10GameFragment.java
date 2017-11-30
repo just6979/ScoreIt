@@ -30,7 +30,7 @@
  *
  */
 
-package net.justinwhite.score_it.phase_10;
+package net.justinwhite.scoreit.phase10;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -53,9 +53,9 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import net.justinwhite.score_it.R;
-import net.justinwhite.score_model.Game;
-import net.justinwhite.score_model.phase_10.Phase10Game;
+import net.justinwhite.scoreit.R;
+import net.justinwhite.scoremodel.Game;
+import net.justinwhite.scoremodel.phase10.Phase10Game;
 
 import java.util.Locale;
 
