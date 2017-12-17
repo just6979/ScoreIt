@@ -37,10 +37,10 @@ def commitCount = Integer.parseInt('git rev-list master --count'.execute().text.
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    buildToolsVersion '27.0.2'
     defaultConfig {
         applicationId "net.justinwhite.score_it"
-        minSdkVersion 17
+        minSdkVersion 22
         targetSdkVersion 27
         versionCode commitCount
         versionName '0.1 r' + commitCount
