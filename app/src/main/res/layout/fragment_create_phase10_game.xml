@@ -32,22 +32,25 @@
 
 <ScrollView
     android:id="@+id/scrollView"
+    style="@android:style/Widget.Material.ScrollView"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_alignParentStart="true"
     android:fadeScrollbars="false"
+    android:fillViewport="true"
     tools:context=".MainActivity"
     >
 
-    <android.support.percent.PercentRelativeLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/rootLayout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alignmentMode="alignBounds"
-        android:orientation="vertical"
         tools:context=".CreateGameActivity"
         >
 
@@ -55,140 +58,151 @@
             android:id="@+id/labelHowManyPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:padding="4dp"
             android:text="@string/How_many_players_question"
+            android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="@dimen/activity_big_margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
         <TextView
             android:id="@+id/labelMinPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/seekNumPlayers"
-            android:layout_alignParentStart="true"
-            android:text="@string/min_num_players"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginStart="8dp"
             android:gravity="center_horizontal"
-            android:paddingStart="@dimen/activity_big_margin"
-            android:paddingEnd="@dimen/activity_small_margin"
+            android:text="@string/min_num_players"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintEnd_toStartOf="@+id/seekNumPlayers"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelHowManyPlayers"
+            />
+
+        <SeekBar
+            android:id="@+id/seekNumPlayers"
+            style="@android:style/Widget.Material.SeekBar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:max="6"
+            android:progress="3"
+            app:layout_constraintBottom_toBottomOf="@+id/labelMinPlayers"
+            app:layout_constraintHorizontal_weight="10"
+            app:layout_constraintLeft_toRightOf="@+id/labelMinPlayers"
+            app:layout_constraintRight_toLeftOf="@+id/labelMaxPlayers"
+            app:layout_constraintTop_toTopOf="@+id/labelMinPlayers"
             />
 
         <TextView
             android:id="@+id/labelMaxPlayers"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/seekNumPlayers"
-            android:layout_alignParentEnd="true"
-            android:text="@string/max_num_players"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
             android:gravity="center_horizontal"
-            android:paddingEnd="@dimen/activity_big_margin"
-            android:paddingStart="@dimen/activity_small_margin"
-            />
-
-        <SeekBar
-            android:id="@+id/seekNumPlayers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/labelHowManyPlayers"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_vertical"
-            android:layout_toEndOf="@id/labelMinPlayers"
-            android:layout_toStartOf="@id/labelMaxPlayers"
-            android:max="6"
-            android:progress="3"
-            android:paddingBottom="2dip"
-            android:layout_marginBottom="@dimen/activity_small_margin"
+            android:text="@string/max_num_players"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintBottom_toBottomOf="@+id/labelMinPlayers"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/seekNumPlayers"
+            app:layout_constraintTop_toBottomOf="@+id/labelHowManyPlayers"
             />
 
         <TextView
             android:id="@+id/textNumPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/seekNumPlayers"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="fill_vertical|center_horizontal"
+            android:layout_marginTop="8dp"
             android:text="@string/default_num_players"
+            android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="@dimen/activity_big_margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekNumPlayers"
             />
 
         <CheckBox
             android:id="@+id/checkNameIt"
+            style="@android:style/Widget.Material.CompoundButton.CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textNumPlayers"
-            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
             android:checked="false"
             android:text="@string/Name_this_game_question"
+            android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textNumPlayers"
             />
 
         <EditText
             android:id="@+id/editGameName"
-            android:layout_width="match_parent"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/seekNumPlayers"
-            android:layout_alignStart="@+id/seekNumPlayers"
-            android:layout_below="@+id/checkNameIt"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:inputType="text"
-            android:lines="1"
-            android:maxLines="1"
-            android:minLines="1"
             android:selectAllOnFocus="true"
+            android:singleLine="true"
             android:text="@string/GameName"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkNameIt"
             tools:ignore="LabelFor"
             />
 
-        <RelativeLayout
-            android:id="@+id/layoutPhases"
+        <TextView
+            android:id="@+id/labelPhases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editGameName"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/activity_big_margin"
-            android:orientation="horizontal"
-            >
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/Phases_colon"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintEnd_toStartOf="@+id/spinnerPhases"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editGameName"
+            />
 
-            <TextView
-                android:id="@+id/labelPhases"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:text="@string/Phases_colon"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                />
+        <Spinner
+            android:id="@+id/spinnerPhases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelPhases"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/labelPhases"
+            app:layout_constraintTop_toTopOf="@+id/labelPhases"
+            />
 
-            <Spinner
-                android:id="@+id/spinnerPhases"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/labelPhases"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/activity_small_margin"
-                android:layout_toEndOf="@+id/labelPhases"
-                android:spinnerMode="dropdown"
-                />
-
-        </RelativeLayout>
 
         <GridLayout
             android:id="@+id/gridPhases"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutPhases"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/activity_medium_margin"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:columnCount="@integer/grid_phases_column_count"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelPhases"
             >
 
         </GridLayout>
 
-    </android.support.percent.PercentRelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>

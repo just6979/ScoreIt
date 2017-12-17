@@ -32,59 +32,86 @@
 
 <ScrollView
     android:id="@+id/scrollView"
+    style="@android:style/Widget.Material.ScrollView"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     >
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
         >
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/Which_Game_question"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintBottom_toTopOf="@+id/radioButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside"
             />
 
-        <RadioGroup
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            style="@android:style/Widget.Material.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            >
+            android:checked="true"
+            android:text="@string/Phase_10"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintBottom_toTopOf="@+id/radioButton2"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/Phase_10"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                />
+        <RadioButton
+            android:id="@+id/radioButton2"
+            style="@android:style/Widget.Material.CompoundButton.RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:checked="false"
+            android:enabled="false"
+            android:text="@string/Rummy"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintBottom_toTopOf="@+id/radioButton3"
+            app:layout_constraintStart_toStartOf="@+id/radioButton"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton"
+            />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:enabled="false"
-                android:text="@string/Rummy"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                />
+        <RadioButton
+            android:id="@+id/radioButton3"
+            style="@android:style/Widget.Material.CompoundButton.RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:checked="false"
+            android:enabled="false"
+            android:text="@string/Uno"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/radioButton"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton2"
+            />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:enabled="false"
-                android:text="@string/Uno"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                />
-        </RadioGroup>
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>
 

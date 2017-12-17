@@ -33,7 +33,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
     card_view:cardCornerRadius="4sp"
@@ -41,9 +41,12 @@
     card_view:cardUseCompatPadding="true"
     >
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/rootLayout"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:minHeight="13dp"
         android:orientation="vertical"
         android:padding="8dp"
         >
@@ -52,63 +55,81 @@
             android:id="@+id/textPlayerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:layout_marginStart="8dp"
             android:text="@string/Player_Name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/cardview_dark_background"
+            app:layout_constraintBottom_toBottomOf="@+id/labelPlayerPhase"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/labelPlayerScore"
             />
 
         <TextView
             android:id="@+id/labelPlayerScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/labelPlayerPhase"
-            android:layout_alignEnd="@+id/labelPlayerPhase"
+            android:layout_marginTop="8dp"
             android:text="@string/Score_colon"
+            android:textAlignment="textEnd"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/cardview_dark_background"
+            app:layout_constraintBottom_toTopOf="@+id/labelPlayerPhase"
+            app:layout_constraintRight_toRightOf="@+id/labelPlayerPhase"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
             />
 
         <TextView
             android:id="@+id/textPlayerScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/labelPlayerScore"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/labelPlayerScore"
+            android:layout_marginTop="8dp"
             android:text="@string/Score"
+            android:textAlignment="textStart"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/cardview_dark_background"
+            app:layout_constraintBottom_toTopOf="@+id/textPlayerPhase"
+            app:layout_constraintStart_toStartOf="@+id/textPlayerPhase"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
         <TextView
             android:id="@+id/labelPlayerPhase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textPlayerName"
-            android:layout_toEndOf="@+id/textPlayerName"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
             android:text="@string/Phase_colon"
+            android:textAlignment="textEnd"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/cardview_dark_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textPlayerName"
+            app:layout_constraintTop_toBottomOf="@+id/labelPlayerScore"
             />
 
         <TextView
             android:id="@+id/textPlayerPhase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/labelPlayerPhase"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/labelPlayerPhase"
             android:text="@string/Phase"
+            android:textAlignment="textStart"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/cardview_dark_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/labelPlayerPhase"
+            app:layout_constraintTop_toBottomOf="@+id/textPlayerScore"
             />
 
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
